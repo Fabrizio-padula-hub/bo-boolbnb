@@ -19,17 +19,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('apartments', ApartmentController::class)->parameters(['apartment' => 'apartment:slug']);
-        Route::get('/messages', [MessageController::class, 'index'])->name('dashboard');
-        Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('dashboard');
+        Route::resource('apartments', ApartmentController::class)->parameters([
+            'apartment' => 'apartment:slug'
+        ]);
+        Route::get('/messages', [MessageController::class, 'index'])->name('message');
+        Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
     });
 
 Route::middleware('auth')->group(function () {
