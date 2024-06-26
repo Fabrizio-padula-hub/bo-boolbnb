@@ -14,7 +14,7 @@
                     {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ' ' . $apartment->postal_code }}
                 </td>
                 <td class="py-3 px-2">{{ $apartment->city }}</td>
-                <td class="py-3 px-2">{{ $apartment->visibility ? 'si' : 'no' }}</td>
+                <td class="py-3 px-2">{{ $apartment->visibility ? 'Si' : 'No' }}</td>
                 <td class="py-3 px-2">
                     <div class="inline-flex items-center space-x-3">
                         <a href="" title="Edit" class="hover:text-white"><svg
