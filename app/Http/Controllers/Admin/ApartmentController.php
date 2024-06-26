@@ -16,8 +16,13 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
+        // foreach ($apartments as $apartment) {
+        //     // dd($apartments);
+
+        // }
         $data = [
-            'apartments' => $apartments
+            'apartments' => $apartments,
+            // 'address' => $address
         ];
         return view('admin.apartments.index', $data);
     }
