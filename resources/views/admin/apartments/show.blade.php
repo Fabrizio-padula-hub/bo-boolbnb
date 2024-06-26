@@ -11,7 +11,6 @@
                         {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ' ' . $apartment->postal_code }}
                     </div>
                     <div class="text-xl mb-2">Città: {{ $apartment->city }}</div>
-                    <div class="text-xl mb-2">Codice postale: {{ $apartment->postal_code }}</div>
                     <div class="text-xl mb-2">Numero di stanze: {{ $apartment->number_of_room }}</div>
                     <div class="text-xl mb-2">Numero di letti: {{ $apartment->number_of_beds }}</div>
                     <div class="text-xl mb-2">Numero di bagni: {{ $apartment->number_of_bathrooms }}</div>
@@ -29,8 +28,6 @@
                     @endforeach
                 </div>
             </div>
-
-
         </div>
     </div>
 </x-app-layout>
