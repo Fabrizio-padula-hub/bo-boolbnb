@@ -16,13 +16,8 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
-        // foreach ($apartments as $apartment) {
-        //     // dd($apartments);
-
-        // }
         $data = [
             'apartments' => $apartments,
-            // 'address' => $address
         ];
         return view('admin.apartments.index', $data);
     }
@@ -54,9 +49,12 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Apartment $apartments)
     {
-        //
+        $data = [
+            'apartments' => $apartments,
+        ];
+        return view('admin.apartments.show', $data);
     }
 
     /**
