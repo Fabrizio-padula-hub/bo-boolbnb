@@ -2,31 +2,40 @@
 
 @section('content')
     <div class="grid grid-cols-1">
-        <div class=" rounded-lg flex justify-center">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <div class="relative flex w-full flex-col bg-clip-border">
+            <div
+                class="pl-6 relative m-0 rounded-none backdrop-blur-sm hover:backdrop-blur-lg bg-clip-border shadow-none max-w-lg">
                 @if ($apartment->image)
                     <img class="w-full" src="{{ $apartment->image }}" alt="{{ $apartment->title }}">
                 @endif
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{ $apartment->title }}</div>
-                    <div class="mb-2">
-                        {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ' ' . $apartment->postal_code }}
-                    </div>
-                    <div class="mb-2">Città: {{ $apartment->city }}</div>
-                    <div class="mb-2">Numero di stanze: {{ $apartment->number_of_room }}</div>
-                    <div class="mb-2">Numero di letti: {{ $apartment->number_of_beds }}</div>
-                    <div class="mb-2">Numero di bagni: {{ $apartment->number_of_bathrooms }}</div>
-                    <div class="mb-2">Metri quadrati:
-                        {{ $apartment->square_meters ? $apartment->square_meters : 'Nullo' }}</div>
-                    <div class="mb-2">Visibilità: {{ $apartment->visibility ? 'Si' : 'No' }}</div>
-                    <div class="mb-2">Descrizione: {{ $apartment->description }}</div>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    @foreach ($apartment->service as $services)
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $service->name }}</span>
-                    @endforeach
-                </div>
+            </div>
+
+            <div class="p-6">
+                <h6
+                    class="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-indigo-400 antialiased">
+                    {{ $apartment->title }}
+                </h6>
+                <p class="mb-4 block font-sans text-base font-normal leading-relaxed antialiased">
+                    {{ $apartment->description }}
+                </p>
+                <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                    {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ', ' . $apartment->postal_code . ', ' . $apartment->city }}
+                </p>
+                <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                    Numero di stanze: {{ $apartment->number_of_room }}
+                </p>
+                <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                    Numero di letti: {{ $apartment->number_of_beds }}
+                </p>
+                <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                    Numero di bagni: {{ $apartment->number_of_bathrooms }}
+                </p>
+                <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                    Metri quadrati: {{ $apartment->square_meters ? $apartment->square_meters : 'Nullo' }}
+                </p>
+                <p class="leading-snug tracking-normal antialiased">
+                    {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
+                </p>
             </div>
         </div>
     </div>
