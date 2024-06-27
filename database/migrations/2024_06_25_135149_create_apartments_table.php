@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('slug');
+            $table->text('description');
             $table->tinyInteger('number_of_room');
             $table->tinyInteger('number_of_beds');
             $table->tinyInteger('number_of_bathrooms');
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->string('street_name');
             $table->string('street_number');
             $table->string('city');
-            $table->string('country_code');
+            $table->string('country_code')->default('IT');
             $table->string('postal_code');
             $table->double('lat', 11, 8)->nullable();
             $table->double('long', 11, 8)->nullable();

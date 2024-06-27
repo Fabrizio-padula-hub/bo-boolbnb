@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
+use App\Models\Service;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -14,7 +18,11 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+        $data = [
+            'apartments' => $apartments,
+        ];
+        return view('admin.apartments.index', $data);
     }
 
     /**
@@ -24,7 +32,13 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        $sponsorships = Sponsorship::all();
+        $data = [
+            'services' => $services,
+            'sponsorships' => $sponsorships,
+        ];
+        return view('admin.apartments.create', $data);
     }
 
     /**
@@ -35,7 +49,12 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+        $formData['slug'] = Str::slug($formData['title'], '-');
+        $newApartment = new Apartment();
+        $newApartment->fill($formData);
+        $newApartment->save();
+        return redirect()->route('admin.apartments.show', ['apartment' => $newApartment->slug])->with('message', $newApartment->title . 'Appartamento creato con successo.');
     }
 
     /**
@@ -44,9 +63,12 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Apartment $apartment)
     {
-        //
+        $data = [
+            'apartment' => $apartment,
+        ];
+        return view('admin.apartments.show', $data);
     }
 
     /**
