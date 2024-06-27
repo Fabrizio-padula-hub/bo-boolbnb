@@ -18,10 +18,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
-        $data = [
-            'apartments' => $apartments,
-        ];
+        $data = $this->apartmentsCount();
         return view('admin.apartments.index', $data);
     }
 
@@ -34,10 +31,9 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $sponsorships = Sponsorship::all();
-        $data = [
-            'services' => $services,
-            'sponsorships' => $sponsorships,
-        ];
+        $data = $this->apartmentsCount();
+        $data['services'] = $services;
+        $data['sponsorships'] = $sponsorships;
         return view('admin.apartments.create', $data);
     }
 
@@ -65,9 +61,8 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        $data = [
-            'apartment' => $apartment,
-        ];
+        $data = $this->apartmentsCount();
+        $data['apartment'] = $apartment;
         return view('admin.apartments.show', $data);
     }
 
@@ -103,5 +98,15 @@ class ApartmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    private function apartmentsCount()
+    {
+        $apartments = Apartment::all();
+        $apartmentsCount = Apartment::count();
+        $data = [
+            'apartments' => $apartments,
+            'apartmentsCount' => $apartmentsCount,
+        ];
+        return $data;
     }
 }

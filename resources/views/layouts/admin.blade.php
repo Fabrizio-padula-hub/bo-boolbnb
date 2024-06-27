@@ -113,9 +113,11 @@
                                     Appartamenti</p>
                                 <p class="text-slate-400 text-sm hidden md:block">Manage invoices</p>
                             </div>
-                            <div
-                                class="absolute -top-3 -right-3 md:top-0 md:right-0 px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
-                                23</div>
+                            @if ($apartments || $apartment)
+                                <div
+                                    class="absolute -top-3 -right-3 md:top-0 md:right-0 px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
+                                    {{ $apartmentsCount }}</div>
+                            @endif
                         </div>
                     </a>
                 </div>
