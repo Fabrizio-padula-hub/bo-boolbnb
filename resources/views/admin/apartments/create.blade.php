@@ -118,7 +118,7 @@
                             <div class="relative flex gap-x-3">
                                 <div class="flex h-6 items-center">
                                     <input @checked(old('visibility')) id="visibility" name="visibility"
-                                        type="checkbox" value="visibility"
+                                        type="checkbox" value="1"
                                         class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
                                 <div class="text-sm leading-6">
@@ -128,7 +128,7 @@
                             <div class="relative flex gap-x-3">
                                 <div class="flex h-6 items-center">
                                     <input @checked(old('visibility')) id="visibility" name="visibility"
-                                        type="checkbox" value="visibility"
+                                        type="checkbox" value="0"
                                         class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
                                 <div class="text-sm leading-6">

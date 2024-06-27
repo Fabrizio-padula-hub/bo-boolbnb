@@ -7,6 +7,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -48,7 +49,12 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+        $formData['slug'] = Str::slug($formData['title'], '-');
+        $newApartment = new Apartment();
+        $newApartment->fill($formData);
+        $newApartment->save();
+        return redirect()->route('admin.apartments.show', ['apartment' => $newApartment->id])->with('message', $newApartment->title . 'Appartamento creato con successo.');
     }
 
     /**

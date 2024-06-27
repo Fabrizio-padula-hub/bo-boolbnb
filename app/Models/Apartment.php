@@ -14,25 +14,30 @@ class Apartment extends Model
 {
     use HasFactory;
 
-    public function user() {
+    protected $fillable = ['user_id', 'title', 'slug', 'number_of_room', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'street_name', 'street_number', 'city', 'postal_code', 'visibility'];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function message() {
+    public function message()
+    {
         return $this->hasMany(Message::class);
     }
 
-    public function visit() {
+    public function visit()
+    {
         return $this->hasMany(Visit::class);
     }
 
-    public function sponsorship() {
+    public function sponsorship()
+    {
         return $this->belongsToMany(Sponsorship::class);
     }
 
-    public function service() {
+    public function service()
+    {
         return $this->belongsToMany(Service::class);
     }
 }
-
-

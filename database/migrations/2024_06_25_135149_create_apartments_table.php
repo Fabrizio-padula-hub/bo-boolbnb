@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('street_name');
             $table->string('street_number');
             $table->string('city');
-            $table->string('country_code');
+            $table->string('country_code')->default('IT');
             $table->string('postal_code');
             $table->double('lat', 11, 8)->nullable();
             $table->double('long', 11, 8)->nullable();
