@@ -50,7 +50,10 @@ class ApartmentController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($formData);
         $newApartment->save();
-        return redirect()->route('admin.apartments.show', ['apartment' => $newApartment->slug])->with('message', $newApartment->title . 'Appartamento creato con successo.');
+        if ($request->has('services')) {
+            $newApartment->services()->attach($formData['services']);
+        }
+        return redirect()->route('admin.apartments.show', ['apartment' => $newApartment->slug])->with('message', $newApartment->title . ' creato con successo.');
     }
 
     /**
@@ -72,14 +75,14 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Apartment $apartment)
     {
         $services = Service::all();
         $sponsorships = Sponsorship::all();
         $data = $this->apartmentsCount();
+        $data['apartment'] = $apartment;
         $data['services'] = $services;
         $data['sponsorships'] = $sponsorships;
-        dd($data);
         return view('admin.apartments.edit', $data);
     }
 
@@ -90,9 +93,18 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        $formData = $request->all();
+        $apartment['slug'] = Str::slug($formData['title'], '-');
+        $apartment->update($formData);
+        session()->flash('message', $apartment->name . ' corettamente aggiornato.');
+        // if ($request->has('services')) {
+        //     $apartment->services()->sync($formData['services']);
+        // } else {
+        //     $apartment->services()->sync([]);
+        // }
+        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug])->with('message', $apartment->title . ' aggiornato con successo con successo.');
     }
 
     /**
@@ -105,6 +117,7 @@ class ApartmentController extends Controller
     {
         //
     }
+
     private function apartmentsCount()
     {
         $apartments = Apartment::all();
