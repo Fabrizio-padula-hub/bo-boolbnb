@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Carbon\Carbon; // Importato Carbon per la gestione delle date
 
 class RegisteredUserController extends Controller
 {
@@ -34,7 +35,23 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'date_of_birth' => ['required', 'date'],
+            'date_of_birth' => [
+                'required',
+                 'date',
+                    function($attribute, $value, $fail) {
+                        // condizione che verifica che l'utente non inserisca una data futura
+                        if (Carbon::parse($value)->isFuture()) {
+                            $fail('La data di nascita non può essere futura.');
+                        }// condizione che verifica che l'utente non sia minorenne
+                        elseif (Carbon::parse($value)->diffInYears(now()) < 18) {
+                            $fail('L\'utente deve essere maggiorenne.');
+                        }// condizione che verifica che l'utente non abbia più di 90 anni
+                        if (Carbon::parse($value)->diffInYears(now()) > 90) {
+                            $fail('L\'utente non può avere più di 90 anni.');
+                        }
+                    },
+    
+        ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
