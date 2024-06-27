@@ -19,7 +19,7 @@
                     {{ $apartment->description }}
                 </p>
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ', ' . $apartment->postal_code . ', ' . $apartment->city }}
+                    {{ $address = $apartment->address }}
                 </p>
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
                     Numero di stanze: {{ $apartment->number_of_rooms }}
