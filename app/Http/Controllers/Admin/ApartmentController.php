@@ -74,8 +74,9 @@ class ApartmentController extends Controller
      */
     public function edit($id)
     {
-        $services = Service::all();
-        $sponsorships = Sponsorship::all();
+        $services = Service::findOrFail($id);
+        $sponsorships = Sponsorship::findOrFail($id);
+        dd($services);
         $data = $this->apartmentsCount();
         $data['services'] = $services;
         $data['sponsorships'] = $sponsorships;
