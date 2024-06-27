@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.admin')
+
+@section('content')
     <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
         <div class="mx-auto max-w-2xl">
             <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
@@ -37,16 +39,15 @@
                                 <div class="mt-2">
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                        <input type="text" name="street_name" id="street_name"
-                                            autocomplete="street_name" value="{{ old('street_name') }}"
+                                        <input type="text" name="street_name" id="street_name" autocomplete="street_name"
+                                            value="{{ old('street_name') }}"
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                             placeholder="Via Barlotto">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-span-full">
-                                <label for="street_number"
-                                    class="block text-sm font-medium leading-6 text-gray-900">Numero
+                                <label for="street_number" class="block text-sm font-medium leading-6 text-gray-900">Numero
                                     civico</label>
                                 <div class="mt-2">
                                     <div
@@ -188,4 +189,4 @@
             </form>
         </div>
     </div>
-</x-app-layout>
+@endsection

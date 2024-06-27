@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.admin')
+
+@section('content')
     <div class="grid grid-cols-1">
         <div class=" rounded-lg flex justify-center">
             <div class="max-w-sm rounded overflow-hidden shadow-lg">
@@ -28,4 +30,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
