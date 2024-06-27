@@ -22,6 +22,7 @@ class ApartmentsTableSeeder extends Seeder
             $newApartment = new Apartment();
             $newApartment->title = $faker->unique()->word();
             $newApartment->slug = Str::slug($newApartment->title, '-');
+            $newApartment->description = $faker->text(200);
             $newApartment->number_of_room = $faker->randomDigit();
             $newApartment->number_of_beds = $faker->randomDigit();
             $newApartment->number_of_bathrooms = $faker->randomDigit();

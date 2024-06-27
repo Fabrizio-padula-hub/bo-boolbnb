@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('slug');
+            $table->text('description');
             $table->tinyInteger('number_of_room');
             $table->tinyInteger('number_of_beds');
             $table->tinyInteger('number_of_bathrooms');

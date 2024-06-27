@@ -54,7 +54,7 @@ class ApartmentController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($formData);
         $newApartment->save();
-        return redirect()->route('admin.apartments.show', ['apartment' => $newApartment->id])->with('message', $newApartment->title . 'Appartamento creato con successo.');
+        return redirect()->route('admin.apartments.show', ['apartment' => $newApartment->slug])->with('message', $newApartment->title . 'Appartamento creato con successo.');
     }
 
     /**
