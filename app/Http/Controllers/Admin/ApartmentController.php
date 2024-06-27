@@ -74,7 +74,13 @@ class ApartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $services = Service::all();
+        $sponsorships = Sponsorship::all();
+        $data = $this->apartmentsCount();
+        $data['services'] = $services;
+        $data['sponsorships'] = $sponsorships;
+        dd($data);
+        return view('admin.apartments.edit', $data);
     }
 
     /**
