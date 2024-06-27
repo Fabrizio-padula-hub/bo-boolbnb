@@ -22,7 +22,7 @@
                     {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ', ' . $apartment->postal_code . ', ' . $apartment->city }}
                 </p>
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    Numero di stanze: {{ $apartment->number_of_room }}
+                    Numero di stanze: {{ $apartment->number_of_rooms }}
                 </p>
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
                     Numero di letti: {{ $apartment->number_of_beds }}

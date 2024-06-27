@@ -23,15 +23,11 @@ class ApartmentsTableSeeder extends Seeder
             $newApartment->title = $faker->unique()->word();
             $newApartment->slug = Str::slug($newApartment->title, '-');
             $newApartment->description = $faker->text(200);
-            $newApartment->number_of_room = $faker->randomDigit();
+            $newApartment->number_of_rooms = $faker->randomDigit();
             $newApartment->number_of_beds = $faker->randomDigit();
             $newApartment->number_of_bathrooms = $faker->randomDigit();
             $newApartment->square_meters = $faker->randomFloat(1, 20, 30);
-            $newApartment->street_name = $faker->streetName();
-            $newApartment->street_number = $faker->buildingNumber();
-            $newApartment->city = 'Roma';
-            $newApartment->country_code = 'IT';
-            $newApartment->postal_code = '00118';
+            $newApartment->address = $faker->address();
             $newApartment->lat = $faker->latitude($min = -90, $max = 90);
             $newApartment->long = $faker->longitude($min = -180, $max = 180);
             $newApartment->visibility = $faker->boolean();
