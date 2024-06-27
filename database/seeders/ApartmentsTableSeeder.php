@@ -18,10 +18,15 @@ class ApartmentsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $faker = \Faker\Factory::create('it_IT');
+        $counter = 1;
         for ($i = 0; $i < 10; $i++) {
             $newApartment = new Apartment();
             $newApartment->title = $faker->unique()->word();
             $newApartment->slug = Str::slug($newApartment->title, '-');
+            while (Apartment::where('slug', $newApartment->slug)->exists()) {
+                $newApartment->slug = $newApartment->slug . '-' . $counter;
+                $counter++;
+            }
             $newApartment->description = $faker->text(200);
             $newApartment->number_of_room = $faker->randomDigit();
             $newApartment->number_of_beds = $faker->randomDigit();

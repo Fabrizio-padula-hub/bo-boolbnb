@@ -46,7 +46,16 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $formData = $request->all();
+
         $formData['slug'] = Str::slug($formData['title'], '-');
+        $slug = $formData['slug'];
+        $counter = 1;
+        while (Apartment::where('slug', $slug)->exists()) {
+            $slug = $formData['slug'] . '-' . $counter;
+            $counter++;
+        }
+        $formData['slug'] = $slug;
+
         $newApartment = new Apartment();
         $newApartment->fill($formData);
         $newApartment->save();
