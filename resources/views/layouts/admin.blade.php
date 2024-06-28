@@ -28,7 +28,7 @@
                     class="flex flex-col justify-between space-y-2 md:space-y-0 md:flex-row items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full ">
                     <img class="rounded-full w-10 h-10 relative object-cover"
                         src="https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=1800&t=st=1669749937~exp=1669750537~hmac=4c5ab249387d44d91df18065e1e33956daab805bee4638c7fdbf83c73d62f125"
-                        alt="">
+                        alt="foto profilo">
 
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -70,7 +70,6 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-
 
                 </div>
                 <hr class="my-2 border-slate-700">
@@ -132,7 +131,8 @@
                         <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-indigo-400">
+                                    stroke-width="1.5" stroke="currentColor"
+                                    class="w-6 h-6 group-hover:text-indigo-400">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
 
@@ -149,7 +149,7 @@
                 </div>
                 <p class="text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
             </div>
-            <div id="content" class="bg-white/10 col-span-9 rounded-lg p-6">
+            <div id="content" class="bg-white/10 col-span-9 rounded-lg p-6 ">
                 @yield('content')
 
             </div>
