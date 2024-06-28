@@ -17,31 +17,35 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        body{
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 0 0 / var(--tw-bg-opacity))
+          }
         .logo {
             font-family: 'Pacifico', cursive;
-            font-size: 3rem; /* dimensione font */
-            color: rgb(31 41 55 / var(--tw-bg-opacity));; /* colore personalizzato */
+            font-size: 3rem; 
+            color: #fff; 
             display: flex;
             align-items: center;
         }
         .logo i {
             margin-right: 0.5rem;
-            font-size: 2.5rem; /* dimensione icona */
+            font-size: 2.5rem; 
         }
         .logo:hover {
-            color: #9e0b10; /* colore al passaggio del mouse */
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* ombra testo */
+            color:  rgb(55, 48, 163);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
             cursor: pointer;
         }
     </style>
 </head>
 <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <div class="min-h-screen  bg-black flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
         <div>
             <h1 class="logo"><i class="fas fa-home"></i>BoolBnb</h1>
         </div>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
             {{ $slot }}
         </div>
     </div>

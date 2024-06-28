@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>BoolBnb</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,28 +18,30 @@
 
         <style>
             body{
-                background: #171717
+                --tw-bg-opacity: 1;
+                background-color: rgb(0 0 0 / var(--tw-bg-opacity))
             }
+           
             .logo {
                 font-family: 'Pacifico', cursive;
-                font-size: 10rem; /* dimensione font */
-                color: rgb(31 41 55 / var(--tw-bg-opacity));; /* colore personalizzato */
+                font-size: 8rem; 
+                color: #ffff; 
                 display: flex;
                 align-items: center;
             }
             .logo i {
                 margin-right: 0.5rem;
-                font-size: 8.5rem; /* dimensione icona */
+                font-size: 7.5rem; 
             }
             .logo:hover {
-                color: #9e0b10; /* colore al passaggio del mouse */
-                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* ombra testo */
+                color:  rgb(55, 48, 163);
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
                 cursor: pointer;
             }
         </style>
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <body class="antialiased bg-black">
+        <div class="relative flex items-top justify-center min-h-screen  sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -54,7 +56,7 @@
                 </div>
             @endif
 
-            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
                 <div>
                     <h1 class="logo"><i class="fas fa-home"></i>BoolBnb</h1>
                 </div>
