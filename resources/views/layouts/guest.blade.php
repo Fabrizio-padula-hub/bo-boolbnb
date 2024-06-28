@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,28 +18,27 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        body{
-            --tw-bg-opacity: 1;
-            background-color: rgb(0 0 0 / var(--tw-bg-opacity))
-          }
         .logo {
             font-family: 'Pacifico', cursive;
-            font-size: 3rem; 
-            color: #fff; 
+            font-size: 3rem;
+            color: #fff;
             display: flex;
             align-items: center;
         }
+
         .logo i {
             margin-right: 0.5rem;
-            font-size: 2.5rem; 
+            font-size: 2.5rem;
         }
+
         .logo:hover {
-            color:  rgb(55, 48, 163);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+            color: rgb(55, 48, 163);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
     </style>
 </head>
+
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen  bg-black flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
         <div>
@@ -50,5 +50,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>
