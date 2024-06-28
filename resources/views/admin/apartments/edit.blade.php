@@ -19,8 +19,7 @@
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="text" name="title" id="title" autocomplete="title"
                                             value="{{ old('title', $apartment->title) }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="Appartamento zona EUR">
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +30,7 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <textarea id="description" name="description" rows="3"
-                                            class="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('description', $apartment) }}</textarea>
+                                            class="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('description', $apartment->description) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -43,8 +42,7 @@
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="text" name="address" id="address" autocomplete="address"
                                             value="{{ old('address', $apartment->address) }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="Appartamento zona EUR">
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -72,8 +70,7 @@
                                         <input type="number" name="number_of_rooms" id="number_of_rooms"
                                             autocomplete="number_of_rooms"
                                             value="{{ old('number_of_rooms', $apartment->number_of_rooms) }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="1">
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -87,8 +84,7 @@
                                         <input type="number" name="number_of_beds" id="number_of_beds"
                                             autocomplete="number_of_beds"
                                             value="{{ old('number_of_beds', $apartment->number_of_beds) }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="1">
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -102,8 +98,7 @@
                                         <input type="number" name="number_of_bathrooms" id="number_of_bathrooms"
                                             autocomplete="number_of_bathrooms"
                                             value="{{ old('number_of_bathrooms', $apartment->number_of_bathrooms) }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="1">
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -117,8 +112,7 @@
                                         <input type="number" name="square_meters" id="square_meters"
                                             autocomplete="square_meters"
                                             value="{{ old('square_meters', $apartment->square_meters) }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="13">
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
