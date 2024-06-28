@@ -42,7 +42,7 @@
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen  bg-black flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
         <div>
-            <h1 class="logo"><i class="fas fa-home"></i>BoolBnb</h1>
+            <h1 class="logo"><i class="fas fa-home"></i><a href="{{ route('home') }}">BoolBnb</a></h1>
         </div>
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
