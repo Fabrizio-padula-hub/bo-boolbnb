@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Apartment;
 
 class User extends Authenticatable
 {
@@ -45,7 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function apartment() {
+    public function apartments()
+    {
         return $this->hasMany(Apartment::class);
     }
 }
