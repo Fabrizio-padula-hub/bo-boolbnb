@@ -69,17 +69,17 @@
                     </p>
                 </div>
                 {{-- bottoni azioni --}}
-                <div class="px-6 pt-4 pb-2">
+                <div class="px-6 pt-4 pb-2 md:w-auto">
                     {{-- bottoni Mostra --}}
                     <button type="submit"
-                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        class="min-[320px]:w-13 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
                             class="hover:text-white">Mostra
                         </a>
                     </button>
                     {{-- bottoni Modifica --}}
                     <button type="submit"
-                        class="ml-2 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        class="min-[320px]:w-13 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}" title="Modifica"
                             class="hover:text-white">
                             Modifica
@@ -87,7 +87,7 @@
                     </button>
                     {{-- bottoni Elimina --}}
                     <button type="submit"
-                        class="ml-2 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        class="min-[320px]:w-13 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <a href="" title="Elimina" class="hover:text-white">
                             Elimina
                         </a>
