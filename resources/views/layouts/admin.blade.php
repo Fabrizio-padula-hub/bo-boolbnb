@@ -17,6 +17,7 @@
 <body class="h-screen bg-black">
     <div class="antialiased w-full text-slate-300 relative h-full">
         <div class="grid grid-cols-12 mx-auto gap-2 md:gap-6 lg:gap-10 xl:gap-14 max-w-[1920px] py-10 px-2 h-full">
+            
             {{-- Side bar --}}
             <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 h-full relative">
                 <h1
