@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="grid grid-cols-1">
+        {{-- freccia per ritornare all'index --}}
         <div>
             <a href="{{ route('admin.apartments.index') }}">
                 <svg class="h-8 w-8 text-indigo-800 mb-4 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -9,9 +10,8 @@
                         d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
                 </svg>
             </a>
-            
-
         </div>
+        
         <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
             <div
                 class="pl-6 relative m-0 rounded-none backdrop-blur-sm hover:backdrop-blur-lg bg-clip-border shadow-none max-w-lg">
