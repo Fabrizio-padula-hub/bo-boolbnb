@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ApartmentController extends Controller
 {
@@ -46,6 +47,7 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $formData = $request->all();
+        $this->validation($formData);
 
         $formData['slug'] = Str::slug($formData['title'], '-');
         $slug = $formData['slug'];
@@ -117,5 +119,25 @@ class ApartmentController extends Controller
             'apartmentsCount' => $apartmentsCount,
         ];
         return $data;
+    }
+
+    public function validation($data) {
+        $validator = Validator::Make(
+            $data,
+            [
+                'title' => 'required|min:5|max:50',
+                'description' => 'required',
+                'number_of_rooms' => 'required|integer|numeric|min:1',
+                'number_of_beds' => 'required|integer|numeric|min:1',
+                'number_of_bathrooms' => 'required|integer|numeric|min:1',
+                'square_meters' => 'integer|numeric|min:10',
+                'address' => 'required',
+                'visibility' => 'required|boolean'
+            ],
+            [
+                'title.required' => 'Il titolo è richiesto'
+            ]
+        )->validate();
+        return $validator;
     }
 }
