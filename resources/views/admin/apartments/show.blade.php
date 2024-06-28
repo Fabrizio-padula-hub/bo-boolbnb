@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="grid grid-cols-1">
-        <div class="relative flex w-full flex-col bg-clip-border">
+        <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
             <div
                 class="pl-6 relative m-0 rounded-none backdrop-blur-sm hover:backdrop-blur-lg bg-clip-border shadow-none max-w-lg">
                 @if ($apartment->image)

@@ -14,10 +14,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    <div class="antialiased bg-black w-full min-h-screen text-slate-300 relative py-4">
-        <div class="grid grid-cols-12 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl my-10 px-2">
-            <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 max-md:w-24">
+<body class="h-screen bg-black">
+    <div class="antialiased w-full text-slate-300 relative h-full">
+        <div class="grid grid-cols-12 mx-auto gap-2 md:gap-6 lg:gap-10 xl:gap-14 max-w-[1920px] py-10 px-2 h-full">
+            {{-- Side bar --}}
+            <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 h-full relative">
                 <h1
                     class="font-bold text-lg lg:text-3xl max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent">
                     Dashboard
@@ -147,9 +148,11 @@
                         </div>
                     </a>
                 </div>
-                <p class="text-sm text-center max-md:hidden text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
+                <p class="absolute inset-x-0 bottom-2 text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
             </div>
-            <div id="content" class="bg-white/10 col-span-9 rounded-lg p-6">
+
+            {{-- Main dx --}}
+            <div id="content" class="bg-white/10 overflow-y-auto col-span-9 sm:col-span-9 md:col-span-9 rounded-lg p-6 h-full">
                 @yield('content')
 
             </div>
