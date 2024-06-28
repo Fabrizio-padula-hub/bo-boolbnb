@@ -5,7 +5,7 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Nome')" />
+            <x-input-label for="name" :value="__('Nome *')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" 
                  autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -13,7 +13,7 @@
 
         <!-- Lastname -->
         <div class="mt-4">
-            <x-input-label for="lastname" :value="__('Cognome')" />
+            <x-input-label for="lastname" :value="__('Cognome *')" />
             <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"
                 autocomplete="family-name" />
             <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
@@ -21,7 +21,7 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email *')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                  autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -29,7 +29,7 @@
 
         <!-- Date of birth -->
         <div class="mt-4">
-            <x-input-label for="date_of_birth" :value="__('Data di nascita')" />
+            <x-input-label for="date_of_birth" :value="__('Data di nascita *')" />
             <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth"
                 :value="old('date_of_birth')" autocomplete="bday" />
             <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
@@ -37,7 +37,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password *')" />
 
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
                 autocomplete="new-password" />
@@ -47,7 +47,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Conferma Password')" />
+            <x-input-label for="password_confirmation" :value="__('Conferma Password *')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" autocomplete="new-password" />
@@ -65,5 +65,9 @@
                 {{ __('Registrati') }}
             </x-primary-button>
         </div>
+
+        <div class="text-red-500 mt-3"> i campi * sono obbligatori</div>
+
+        
     </form>
 </x-guest-layout>
