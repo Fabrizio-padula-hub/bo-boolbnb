@@ -3,8 +3,10 @@
 @section('content')
     <div class="grid grid-cols-1">
         <div class="flex justify-center">
-            <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.apartments.update', ['apartment' => $apartment->slug]) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
                         <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">Aggiungi un appartamento</h2>
@@ -16,9 +18,8 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="text" name="title" id="title" autocomplete="title"
-                                            value="{{ old('title') }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="Appartamento zona EUR">
+                                            value="{{ old('title', $apartment->title) }}"
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -29,8 +30,7 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <textarea id="description" name="description" rows="3"
-                                            class="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            placeholder="Inserisci una descrizione dell'appartamento">{{ old('description') }}</textarea>
+                                            class="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('description', $apartment->description) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -41,9 +41,8 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="text" name="address" id="address" autocomplete="address"
-                                            value="{{ old('address') }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="Via Roma 13, 00118, Roma">
+                                            value="{{ old('address', $apartment->address) }}"
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -69,9 +68,9 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="number" name="number_of_rooms" id="number_of_rooms"
-                                            autocomplete="number_of_rooms" value="{{ old('number_of_rooms') }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="1">
+                                            autocomplete="number_of_rooms"
+                                            value="{{ old('number_of_rooms', $apartment->number_of_rooms) }}"
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -83,9 +82,9 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="number" name="number_of_beds" id="number_of_beds"
-                                            autocomplete="number_of_beds" value="{{ old('number_of_beds') }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="1">
+                                            autocomplete="number_of_beds"
+                                            value="{{ old('number_of_beds', $apartment->number_of_beds) }}"
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -97,9 +96,9 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="number" name="number_of_bathrooms" id="number_of_bathrooms"
-                                            autocomplete="number_of_bathrooms" value="{{ old('number_of_bathrooms') }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="1">
+                                            autocomplete="number_of_bathrooms"
+                                            value="{{ old('number_of_bathrooms', $apartment->number_of_bathrooms) }}"
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -111,9 +110,9 @@
                                     <div
                                         class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="number" name="square_meters" id="square_meters"
-                                            autocomplete="square_meters" value="{{ old('square_meters') }}"
-                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                            placeholder="13">
+                                            autocomplete="square_meters"
+                                            value="{{ old('square_meters', $apartment->square_meters) }}"
+                                            class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
                             </div>
@@ -124,9 +123,15 @@
                                 @foreach ($services as $service)
                                     <div class="relative flex gap-x-3">
                                         <div class="flex h-6 items-center">
-                                            <input @checked(in_array($service->id, old('services', []))) id="service-{{ $service->id }}"
-                                                name="services[]" type="checkbox" value="{{ $service->id }}"
-                                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                            @if ($errors->any())
+                                                <input @checked(in_array($service->id, old('services', []))) id="service-{{ $service->id }}"
+                                                    name="services[]" type="checkbox" value="{{ $service->id }}"
+                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                            @else
+                                                <input @checked($apartment->services->contains($service)) id="service-{{ $service->id }}"
+                                                    name="services[]" type="checkbox" value="{{ $service->id }}"
+                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                            @endif
                                         </div>
                                         <div class="text-sm leading-6">
                                             <label for="service-{{ $service->id }}"
@@ -140,7 +145,7 @@
                                 Visibilità</div>
                             <div class="relative flex gap-x-3">
                                 <div class="flex h-6 items-center">
-                                    <input @checked(old('visibility')) id="visibility-yes" name="visibility"
+                                    <input @checked(old('visibility', $apartment->visibility)) id="visibility-yes" name="visibility"
                                         type="radio" value="1"
                                         class="h-4 w-4 rounded-full border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
@@ -150,7 +155,7 @@
                             </div>
                             <div class="relative flex gap-x-3">
                                 <div class="flex h-6 items-center">
-                                    <input @checked(old('visibility')) id="visibility-no" name="visibility"
+                                    <input @checked(old('visibility', !$apartment->visibility)) id="visibility-no" name="visibility"
                                         type="radio" value="0"
                                         class="h-4 w-4 rounded-full border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
