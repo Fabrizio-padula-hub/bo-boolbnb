@@ -147,7 +147,7 @@
                         </div>
                     </a>
                 </div>
-                <p class="text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
+                <p class="text-sm text-center max-md:hidden text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
             </div>
             <div id="content" class="bg-white/10 col-span-9 rounded-lg p-6 ">
                 @yield('content')

@@ -3,19 +3,15 @@
     <table class="w-full whitespace-nowrap">
         <thead class="bg-black/60">
             <th class="text-left py-3 px-2 rounded-l-lg">{{ __('Titolo') }}</th>
-            <th class="text-left py-3 px-2">{{ __('Indirizzo') }}</th>
-            <th class="text-left py-3 px-2">{{ __('Città') }}</th>
-            <th class="text-left py-3 px-2">{{ __('Visibilità') }}</th>
+            <th class="text-left py-3 px-2 max-md:hidden">{{ __('Indirizzo') }}</th>
+            <th class="text-left py-3 px-2 max-md:hidden">{{ __('Visibilità') }}</th>
             <th class="text-left py-3 px-2 rounded-r-lg">{{ __('Azioni') }}</th>
         </thead>
         @foreach ($apartments as $apartment)
             <tr class="border-b border-gray-700">
                 <td class="py-3 px-2">{{ $apartment->title }}</td>
-                <td class="py-3 px-2">
-                    {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ' ' . $apartment->postal_code }}
-                </td>
-                <td class="py-3 px-2">{{ $apartment->city }}</td>
-                <td class="py-3 px-2">{{ $apartment->visibility ? 'Si' : 'No' }}</td>
+                <td class="py-3 px-2 max-md:hidden">{{ $apartment->city }}</td>
+                <td class="py-3 px-2 max-md:hidden">{{ $apartment->visibility ? 'Si' : 'No' }}</td>
                 <td class="py-3 px-2">
                     <div class="inline-flex items-center space-x-3">
                         <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
