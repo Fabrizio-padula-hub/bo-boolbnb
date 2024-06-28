@@ -8,6 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
         <!-- Styles -->
         <style>
@@ -15,8 +17,24 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
+            body{
+                background: #171717
+            }
+            .logo {
+                font-family: 'Pacifico', cursive;
+                font-size: 10rem; /* dimensione font */
+                color: rgb(31 41 55 / var(--tw-bg-opacity));; /* colore personalizzato */
+                display: flex;
+                align-items: center;
+            }
+            .logo i {
+                margin-right: 0.5rem;
+                font-size: 8.5rem; /* dimensione icona */
+            }
+            .logo:hover {
+                color: #9e0b10; /* colore al passaggio del mouse */
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* ombra testo */
+                cursor: pointer;
             }
         </style>
     </head>
@@ -36,8 +54,11 @@
                 </div>
             @endif
 
-            <h1>Bool Bnb</h1>
-            <img src="{{Vite::asset('resources/img/logo.webp')}}" alt="ciao">
+            <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+                <div>
+                    <h1 class="logo"><i class="fas fa-home"></i>BoolBnb</h1>
+                </div>
+            </div>
         </div>
     </body>
 </html>
