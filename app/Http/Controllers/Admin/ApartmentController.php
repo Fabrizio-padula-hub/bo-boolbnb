@@ -74,13 +74,7 @@ class ApartmentController extends Controller
      */
     public function edit($id)
     {
-        $services = Service::findOrFail($id);
-        $sponsorships = Sponsorship::findOrFail($id);
-        dd($services);
-        $data = $this->apartmentsCount();
-        $data['services'] = $services;
-        $data['sponsorships'] = $sponsorships;
-        return view('admin.apartments.edit', $data);
+        //
     }
 
     /**
