@@ -14,7 +14,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="h-screen bg-black">
+<body class="h-dvh bg-black">
     <div class="antialiased w-full text-slate-300 relative h-full">
         <div class="grid grid-cols-12 mx-auto gap-2 md:gap-6 lg:gap-10 xl:gap-14 max-w-[1920px] py-10 px-2 h-full">
             {{-- Side bar --}}
@@ -152,7 +152,8 @@
             </div>
 
             {{-- Main dx --}}
-            <div id="content" class="bg-white/10 overflow-y-auto col-span-9 sm:col-span-9 md:col-span-9 rounded-lg p-6 h-full">
+            <div id="content"
+                class="bg-white/10 overflow-y-auto col-span-9 sm:col-span-9 md:col-span-9 rounded-lg p-6 h-full">
                 @yield('content')
 
             </div>
