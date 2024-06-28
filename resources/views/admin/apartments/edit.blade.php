@@ -22,6 +22,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
+                                @error('title')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- Description --}}
                             <div class="col-span-full">
@@ -33,6 +36,9 @@
                                             class="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('description', $apartment->description) }}</textarea>
                                     </div>
                                 </div>
+                                @error('description')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- Address --}}
                             <div class="col-span-full">
@@ -78,6 +84,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
+                                @error('number_of_rooms')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- number of beds --}}
                             <div class="col-span-full">
@@ -92,6 +101,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
+                                @error('number_of_beds')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- number of bathrooms --}}
                             <div class="col-span-full">
@@ -106,6 +118,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
+                                @error('number_of_bathrooms')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- square meters --}}
                             <div class="col-span-full">
@@ -120,6 +135,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
+                                @error('square_meters')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- service --}}
                             <div class="col-span-full">

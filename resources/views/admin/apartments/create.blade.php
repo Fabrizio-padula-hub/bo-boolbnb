@@ -20,6 +20,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                             placeholder="Appartamento zona EUR">
                                     </div>
+                                    @error('title')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- Description --}}
@@ -33,6 +36,9 @@
                                             placeholder="Inserisci una descrizione dell'appartamento">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
+                                @error('description')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- Address --}}
                             <div class="col-span-full">
@@ -68,6 +74,9 @@
                                             placeholder="1">
                                     </div>
                                 </div>
+                                @error('number_of_rooms')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- number of beds --}}
                             <div class="col-span-full">
@@ -82,6 +91,9 @@
                                             placeholder="1">
                                     </div>
                                 </div>
+                                @error('number_of_beds')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- number of bathrooms --}}
                             <div class="col-span-full">
@@ -96,6 +108,9 @@
                                             placeholder="1">
                                     </div>
                                 </div>
+                                @error('number_of_bathrooms')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- square meters --}}
                             <div class="col-span-full">
@@ -110,6 +125,9 @@
                                             placeholder="13">
                                     </div>
                                 </div>
+                                @error('square_meters')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- service --}}
                             <div class="col-span-full">

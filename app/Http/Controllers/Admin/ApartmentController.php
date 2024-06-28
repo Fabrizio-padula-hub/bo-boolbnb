@@ -112,6 +112,7 @@ class ApartmentController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
         $formData = $request->all();
+        $this->validation($formData);
         $apartment['slug'] = Str::slug($formData['title'], '-');
         if ($request->hasFile('image')) {
             if ($apartment->image) {
@@ -157,16 +158,33 @@ class ApartmentController extends Controller
             $data,
             [
                 'title' => 'required|min:5|max:50',
-                'description' => 'required',
+                'description' => 'min:15',
                 'number_of_rooms' => 'required|integer|numeric|min:1',
                 'number_of_beds' => 'required|integer|numeric|min:1',
                 'number_of_bathrooms' => 'required|integer|numeric|min:1',
                 'square_meters' => 'integer|numeric|min:10',
-                'address' => 'required',
-                'visibility' => 'required|boolean'
+                'visibility' => 'boolean',
             ],
             [
-                'title.required' => 'Il titolo è richiesto'
+                'title.required' => 'Questo campo è obbligatorio',
+                'title.min' => 'Il titolo dev\'essere di almeno 5 caratteri',
+                'title.max' => 'Il titolo dev\'essere di massimo 50 caratteri',
+                'description.min' => 'La descrizione dev\'essere di almeno 15 caratteri',
+                'number_of_rooms.required' => 'Questo campo è obbligatorio',
+                'number_of_rooms.integer' => 'Numero di stanze dev\'essere un numero',
+                'number_of_rooms.numeric' => 'Numero di stanze dev\'essere un numero',
+                'number_of_rooms.min' => 'Numero di stanze dev\'essere almeno 1',
+                'number_of_beds.required' => 'Questo campo è obbligatorio',
+                'number_of_beds.integer' => 'Numero di letti dev\'essere un numero',
+                'number_of_beds.numeric' => 'Numero di letti dev\'essere un numero',
+                'number_of_beds.min' => 'Numero di letti dev\'essere almeno 1',
+                'number_of_bathrooms.required' => 'Questo campo è obbligatorio',
+                'number_of_bathrooms.integer' => 'Numero di bagni dev\'essere un numero',
+                'number_of_bathrooms.numeric' => 'Numero di bagni dev\'essere un numero',
+                'number_of_bathrooms.min' => 'Numero di bagni dev\'essere almeno 1',
+                'square_meters.integer' => 'Metri quadrati dev\'essere un numero',
+                'square_meters.numeric' => 'Metri quadrati dev\'essere un numero',
+                'square_meters.min' => 'Metri quadrati dev\'essere almeno 10'
             ]
         )->validate();
         return $validator;
