@@ -1,4 +1,5 @@
 <x-guest-layout>
+    
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -6,7 +7,7 @@
         <div>
             <x-input-label for="name" :value="__('Nome')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                autofocus autocomplete="name" />
+                 autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -15,7 +16,7 @@
             <x-input-label for="lastname" :value="__('Cognome')" />
             <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"
                 required autocomplete="family-name" />
-            <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
+            {{-- <x-input-error :messages="$errors->get('lastname')" class="mt-2" /> --}}
         </div>
 
         <!-- Email Address -->
@@ -23,7 +24,7 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                 required autocomplete="email" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
         </div>
 
         <!-- Date of birth -->
@@ -41,7 +42,7 @@
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
         </div>
 
         <!-- Confirm Password -->
@@ -51,7 +52,7 @@
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            {{-- <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" /> --}}
         </div>
 
         <div class="flex items-center justify-end mt-4">
