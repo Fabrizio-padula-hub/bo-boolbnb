@@ -4,39 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Message;
-use App\Models\Visit;
-use App\Models\Sponsorship;
-use App\Models\Service;
 
 class Apartment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'slug', 'description', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'address', 'visibility'];
+    protected $fillable = ['user_id', 'title', 'slug', 'description', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'address', 'image', 'visibility'];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function message()
+    public function messages()
     {
         return $this->hasMany(Message::class);
     }
 
-    public function visit()
+    public function visits()
     {
         return $this->hasMany(Visit::class);
     }
 
-    public function sponsorship()
+    public function sponsorships()
     {
         return $this->belongsToMany(Sponsorship::class);
     }
 
-    public function service()
+    public function services()
     {
         return $this->belongsToMany(Service::class);
     }

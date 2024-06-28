@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="grid grid-cols-1">
-        <div class="relative flex w-full flex-col bg-clip-border">
+        <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
             <div
                 class="pl-6 relative m-0 rounded-none backdrop-blur-sm hover:backdrop-blur-lg bg-clip-border shadow-none max-w-lg">
                 @if ($apartment->image)
-                    <img class="w-full" src="{{ $apartment->image }}" alt="{{ $apartment->title }}">
+                    <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
                 @endif
             </div>
 
@@ -19,7 +19,7 @@
                     {{ $apartment->description }}
                 </p>
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    {{ $address = $apartment->street_name . ' ' . $apartment->street_number . ', ' . $apartment->postal_code . ', ' . $apartment->city }}
+                    {{ $address = $apartment->address }}
                 </p>
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
                     Numero di stanze: {{ $apartment->number_of_rooms }}
