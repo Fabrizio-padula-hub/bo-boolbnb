@@ -19,11 +19,11 @@
         <div class="grid grid-cols-12 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl my-10 px-2">
             <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4">
                 <h1
-                    class="font-bold text-lg lg:text-3xl sm:max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent">
+                    class="font-bold text-lg lg:text-3xl max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent">
                     Dashboard
                     <span class="text-indigo-400">.</span>
                 </h1>
-                <p class="text-slate-400 text-sm sm:max-md:hidden mb-2">Bentornato,</p>
+                <p class="text-slate-400 text-sm max-md:hidden mb-2">Bentornato,</p>
                 <div
                     class="flex flex-col justify-between space-y-2 md:space-y-0 md:flex-row items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full ">
                     <img class="rounded-full w-10 h-10 relative object-cover"
@@ -89,7 +89,7 @@
                             </div>
                             <div>
                                 <p
-                                    class="font-bold text-base lg:text-lg sm:max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
+                                    class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
                                     Dashboard
                                 </p>
 
@@ -114,14 +114,14 @@
                             </div>
                             <div>
                                 <p
-                                    class="font-bold text-base lg:text-lg sm:max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
+                                    class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
                                     Appartamenti
                                 </p>
 
                             </div>
                             @if ($apartments)
                                 <div
-                                    class="absolute -top-3 -right-3 md:top-0 md:right-0 sm:max-lg:hidden px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
+                                    class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
                                     {{ $apartmentsCount }}
                                 </div>
                             @endif
@@ -139,7 +139,7 @@
                             </div>
                             <div>
                                 <p
-                                    class="font-bold text-base lg:text-lg sm:max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
+                                    class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
                                     Nuovo Appartamento
                                 </p>
 
