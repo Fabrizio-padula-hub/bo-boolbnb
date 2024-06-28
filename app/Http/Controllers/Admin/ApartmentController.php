@@ -99,11 +99,11 @@ class ApartmentController extends Controller
         $apartment['slug'] = Str::slug($formData['title'], '-');
         $apartment->update($formData);
         session()->flash('message', $apartment->name . ' corettamente aggiornato.');
-        // if ($request->has('services')) {
-        //     $apartment->services()->sync($formData['services']);
-        // } else {
-        //     $apartment->services()->sync([]);
-        // }
+        if ($request->has('services')) {
+            $apartment->services()->sync($formData['services']);
+        } else {
+            $apartment->services()->sync([]);
+        }
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug])->with('message', $apartment->title . ' aggiornato con successo con successo.');
     }
 

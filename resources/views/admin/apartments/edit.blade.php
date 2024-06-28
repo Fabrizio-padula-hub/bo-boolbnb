@@ -50,18 +50,17 @@
                             </div>
                             {{-- image --}}
                             {{-- <div class="col-span-full">
-                            <label for="photo"
-                                class="block text-sm font-medium leading-6">Photo</label>
-                            <div class="mt-2 flex items-center gap-x-3">
-                                <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <button type="button"
-                                    class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
-                            </div>
+                                <label for="photo" class="block text-sm font-medium leading-6">Photo</label>
+                                <div class="mt-2 flex items-center gap-x-3">
+                                    <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <button type="button"
+                                        class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
+                                </div>
                             </div> --}}
                             {{-- number of rooms --}}
                             <div class="col-span-full">
@@ -124,7 +123,7 @@
                                 </div>
                             </div>
                             {{-- service --}}
-                            {{-- <div class="col-span-full">
+                            <div class="col-span-full">
                                 <div class="block text-sm font-medium leading-6 pb-1.5">
                                     Servizi</div>
                                 @foreach ($services as $service)
@@ -132,11 +131,11 @@
                                         <div class="flex h-6 items-center">
                                             @if ($errors->any())
                                                 <input @checked(in_array($service->id, old('services', []))) id="service-{{ $service->id }}"
-                                                    name="service[]" type="checkbox" value="{{ $service->id }}"
+                                                    name="services[]" type="checkbox" value="{{ $service->id }}"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             @else
                                                 <input @checked($apartment->services->contains($service)) id="service-{{ $service->id }}"
-                                                    name="service[]" type="checkbox" value="{{ $service->id }}"
+                                                    name="services[]" type="checkbox" value="{{ $service->id }}"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             @endif
                                         </div>
@@ -146,14 +145,14 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </div> --}}
+                            </div>
                             {{-- visibility --}}
                             <div class="block text-sm font-medium leading-6">
                                 Visibilità</div>
                             <div class="relative flex gap-x-3">
                                 <div class="flex h-6 items-center">
-                                    <input @checked(old('visibility', $apartment->visibility)) id="visibility-yes" name="visibility" type="radio"
-                                        value="1"
+                                    <input @checked(old('visibility', $apartment->visibility)) id="visibility-yes" name="visibility"
+                                        type="radio" value="1"
                                         class="h-4 w-4 rounded-full border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
                                 <div class="text-sm leading-6">
