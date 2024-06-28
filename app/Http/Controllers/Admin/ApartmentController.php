@@ -7,6 +7,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
@@ -47,6 +48,10 @@ class ApartmentController extends Controller
     {
         $formData = $request->all();
         $formData['slug'] = Str::slug($formData['title'], '-');
+        if ($request->hasFile('image')) {
+            $img_path = Storage::disk('public')->put('apartments_images', $formData['image']);
+            $formData['image'] = $img_path;
+        }
         $newApartment = new Apartment();
         $newApartment->fill($formData);
         $newApartment->save();
@@ -97,6 +102,13 @@ class ApartmentController extends Controller
     {
         $formData = $request->all();
         $apartment['slug'] = Str::slug($formData['title'], '-');
+        if ($request->hasFile('image')) {
+            if ($apartment->image) {
+                Storage::delete($apartment->image);
+            }
+            $img_path = Storage::disk('public')->put('apartments_images', $formData['image']);
+            $formData['image'] = $img_path;
+        }
         $apartment->update($formData);
         session()->flash('message', $apartment->name . ' corettamente aggiornato.');
         if ($request->has('services')) {

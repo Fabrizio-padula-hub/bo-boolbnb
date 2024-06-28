@@ -9,7 +9,7 @@ class Apartment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'slug', 'description', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'address', 'visibility'];
+    protected $fillable = ['user_id', 'title', 'slug', 'description', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'address', 'image', 'visibility'];
 
     public function users()
     {

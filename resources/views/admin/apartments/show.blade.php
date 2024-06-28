@@ -6,7 +6,7 @@
             <div
                 class="pl-6 relative m-0 rounded-none backdrop-blur-sm hover:backdrop-blur-lg bg-clip-border shadow-none max-w-lg">
                 @if ($apartment->image)
-                    <img class="w-full" src="{{ $apartment->image }}" alt="{{ $apartment->title }}">
+                    <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
                 @endif
             </div>
 
