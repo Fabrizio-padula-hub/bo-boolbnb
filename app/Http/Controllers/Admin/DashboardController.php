@@ -12,8 +12,8 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $apartments = Apartment::all();
-        $apartmentsCount = Apartment::count();
+        $apartments = $user->apartments;
+        $apartmentsCount = count($apartments);
         $data = [
             'user' => $user,
             'apartments' => $apartments,
