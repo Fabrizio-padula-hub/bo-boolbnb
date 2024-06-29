@@ -16,9 +16,14 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $apartments = $request->user()->apartments;
+        $apartmentsCount = count($apartments);
+        $data = [
             'user' => $request->user(),
-        ]);
+            'apartments' => $apartments,
+            'apartmentsCount' => $apartmentsCount,
+        ];
+        return view('profile.edit', $data);
     }
 
     /**
