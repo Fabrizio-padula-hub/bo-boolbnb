@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <table class="w-full whitespace-nowrap">
-        <thead class="bg-black/60 max-md:hidden">
+        <thead class="bg-black/90 max-md:hidden sticky top-0">
             <th class="text-left py-3 px-2 rounded-l-lg">{{ __('Titolo') }}</th>
             <th class="text-left py-3 px-2 max-md:hidden">{{ __('Indirizzo') }}</th>
             <th class="text-left py-3 px-2 max-md:hidden">{{ __('Visibilità') }}</th>
