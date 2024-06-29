@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-indigo-400">
             {{ __('Informazioni Profilo') }}
         </h2>
 
@@ -12,9 +12,10 @@
         @method('patch')
         {{-- nome --}}
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nome')" />
             <h4>{{ $user->name }}</h4>
         </div>
+
         {{-- email --}}
         <div class="disabled:cursor-not-allowed">
             <x-input-label for="email" :value="__('Email')" />
