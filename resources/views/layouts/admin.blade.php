@@ -17,64 +17,33 @@
 <body class="h-dvh bg-black">
     <div class="antialiased w-full text-slate-300 relative h-full">
         <div class="grid grid-cols-12 mx-auto gap-2 md:gap-6 lg:gap-10 xl:gap-14 max-w-[1920px] py-10 px-2 h-full">
+
             {{-- Side bar --}}
-            <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 h-full relative">
+            <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 h-full relative flex flex-col">
                 <h1
-                    class="font-bold text-lg lg:text-3xl max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent">
-                    Dashboard
+                    class="font-bold text-lg lg:text-3xl max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent mb-3">
+                    BoolBnB
                     <span class="text-indigo-400">.</span>
                 </h1>
-                <p class="text-slate-400 text-sm max-md:hidden mb-2">Bentornato,</p>
-                <div
-                    class="flex flex-col justify-between space-y-2 md:space-y-0 md:flex-row items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full ">
-                    <img class="rounded-full w-10 h-10 relative object-cover"
-                        src="https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=1800&t=st=1669749937~exp=1669750537~hmac=4c5ab249387d44d91df18065e1e33956daab805bee4638c7fdbf83c73d62f125"
-                        alt="foto profilo">
+
+                {{-- profilo --}}
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    <div
+                        class="flex flex-col justify-between space-y-2 md:space-y-0 md:flex-row items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full ">
+                        <img class="rounded-full w-10 h-10 relative object-cover"
+                            src="https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=1800&t=st=1669749937~exp=1669750537~hmac=4c5ab249387d44d91df18065e1e33956daab805bee4638c7fdbf83c73d62f125"
+                            alt="foto profilo">
 
 
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                {{-- Bottone log-out --}}
-                                <button
-                                    class="inline-flex items-center border border-transparent text-base leading-4 font-medium text-gray-100 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                    <p class="group-hover:text-indigo-400 leading-4">{{ Auth::user()->name }}</p>
+                        <div class="sm:flex sm:items-center sm:ml-6 text-white">
+                            <p class="group-hover:text-indigo-400 leading-4">{{ Auth::user()->name }}</p>
+                        </div>
 
-
-                                    <div class="ml-1">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </button>
-                                {{-- Bottone log-out --}}
-                            </x-slot>
-
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
                     </div>
+                </x-responsive-nav-link>
 
-                </div>
                 <hr class="my-2 border-slate-700">
-                <div id="menu" class="flex flex-col space-y-2 my-5">
+                <div id="menu" class="flex flex-col space-y-2 mt-5 grow">
                     <a href="{{ route('admin.dashboard') }}"
                         class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
                         <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
@@ -127,7 +96,7 @@
                             @endif
                         </div>
                     </a>
-                    <a href="#"
+                    <a href="{{ route('admin.apartments.create') }}"
                         class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
                         <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
@@ -136,19 +105,52 @@
                                     class="w-6 h-6 group-hover:text-indigo-400">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
-
                             </div>
                             <div>
                                 <p
                                     class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
                                     Nuovo Appartamento
                                 </p>
-
                             </div>
                         </div>
                     </a>
                 </div>
-                <p class="absolute inset-x-0 bottom-2 text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
+
+
+
+                {{-- Authentication Log out --}}
+                <div class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-2 px-2 group mb-4 min-[320px]::mb-10 max-[600px]::mb-10">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
+                            <div>
+                                <svg class="w-6 h-6 group-hover:text-indigo-400" width="24" height="24" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <path
+                                        d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <x-responsive-nav-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+
+                                    <p
+                                        class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
+                                        {{ __('Log Out') }}
+                                    </p>
+                                </x-responsive-nav-link>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                {{-- Copyright --}}
+                <p class="absolute inset-x-0 bottom-1 text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
             </div>
 
             {{-- Main dx --}}
