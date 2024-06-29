@@ -34,9 +34,9 @@ class ApartmentsTableSeeder extends Seeder
                 $newApartment->address = $apartment['address'];
                 $newApartment->lat = $apartment['lat'];
                 $newApartment->long = $apartment['long'];
-                $newApartment->number_of_rooms = $faker->randomDigit();
-                $newApartment->number_of_beds = $faker->randomDigit();
-                $newApartment->number_of_bathrooms = $faker->randomDigit();
+                $newApartment->number_of_rooms = $faker->randomDigitNotNull();
+                $newApartment->number_of_beds = $faker->randomDigitNotNull();
+                $newApartment->number_of_bathrooms = $faker->randomDigitNotNull();
                 $newApartment->square_meters = $faker->randomFloat(1, 20, 30);
                 $newApartment->visibility = $faker->boolean();
                 $newApartment->save();
