@@ -119,38 +119,40 @@
 
 
                 {{-- Authentication Log out --}}
-                <div class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-2 px-2 group mb-4 min-[320px]::mb-10 max-[600px]::mb-10">
+                <div
+                    class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-2 px-2 group mb-4 min-[320px]::mb-20 max-[600px]::mb-20">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
+
+
+                        <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                this.closest('form').submit();"
+                            class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
-                                <svg class="w-6 h-6 group-hover:text-indigo-400" width="24" height="24" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round">
+                                <svg class="w-6 h-6 group-hover:text-indigo-400" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <path
                                         d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
                                     <path d="M20 12h-13l3 -3m0 6l-3 -3" />
                                 </svg>
                             </div>
-                            <div>
-                                <x-responsive-nav-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                    this.closest('form').submit();">
 
-                                    <p
-                                        class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
-                                        {{ __('Log Out') }}
-                                    </p>
-                                </x-responsive-nav-link>
-                            </div>
-                        </div>
+                            <p
+                                class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
+                                {{ __('Log Out') }}
+                            </p>
+                        </x-responsive-nav-link>
+
+
                     </form>
                 </div>
 
 
                 {{-- Copyright --}}
-                <p class="absolute inset-x-0 bottom-1 text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
+                <p class="absolute inset-x-0 bottom-1 text-sm text-center text-gray-600 max-md:hidden">🚀 &copy; 2024 Gruppo 5</p>
             </div>
 
             {{-- Main dx --}}
