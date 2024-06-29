@@ -153,17 +153,18 @@ class ApartmentController extends Controller
         return $data;
     }
 
-    public function validation($data) {
+    public function validation($data)
+    {
         $validator = Validator::Make(
             $data,
             [
                 'title' => 'required|min:5|max:50',
-                'description' => 'min:15',
+                'description' => 'nullable|min:15',
                 'number_of_rooms' => 'required|integer|numeric|min:1',
                 'number_of_beds' => 'required|integer|numeric|min:1',
                 'number_of_bathrooms' => 'required|integer|numeric|min:1',
-                'square_meters' => 'integer|numeric|min:10',
-                'visibility' => 'boolean',
+                'square_meters' => 'nullable|integer|numeric|min:10',
+                'visibility' => 'required|boolean',
             ],
             [
                 'title.required' => 'Questo campo è obbligatorio',
