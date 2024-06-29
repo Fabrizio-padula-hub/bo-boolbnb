@@ -49,6 +49,9 @@ class ApartmentController extends Controller
     {
         $formData = $request->all();
         $this->validation($formData);
+        $user = auth()->user();
+        $id = $user->id;
+        $formData['user_id'] = $id;
 
         $formData['slug'] = Str::slug($formData['title'], '-');
         $slug = $formData['slug'];
