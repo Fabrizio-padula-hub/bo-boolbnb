@@ -65,6 +65,11 @@
             background-color: rgb(255 255 255 / var(--tw-bg-opacity))
         }
 
+        .bg-black {
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+        }
+
         .bg-gray-100 {
             --tw-bg-opacity: 1;
             background-color: rgb(243 244 246 / var(--tw-bg-opacity))
@@ -119,12 +124,25 @@
             height: 4rem
         }
 
+        .h-full {
+            height: 100%
+        }
+
+        .h-dvh {
+            height: 100dvh;
+        }
+
         .text-sm {
             font-size: .875rem
         }
 
-        .text-lg {
-            font-size: 1.125rem
+        .text-6xl {
+            font-size: 3.75rem;
+        }
+
+        .text-9xl {
+            font-size: 8rem;
+            line-height: 1;
         }
 
         .leading-7 {
@@ -284,6 +302,10 @@
             width: auto
         }
 
+        .w-full {
+            width: 100%
+        }
+
         .grid-cols-1 {
             grid-template-columns: repeat(1, minmax(0, 1fr))
         }
@@ -382,7 +404,7 @@
                 color: rgb(156 163 175 / var(--tw-text-opacity))
             }
 
-            F .dark\:text-gray-500 {
+            .dark\:text-gray-500 {
                 --tw-text-opacity: 1;
                 color: rgb(107 114 128 / var(--tw-text-opacity))
             }
@@ -390,14 +412,8 @@
     </style>
     {{-- Stile personale --}}
     <style>
-        body {
-            --tw-bg-opacity: 1;
-            background-color: rgb(0 0 0 / var(--tw-bg-opacity))
-        }
-
         .logo {
             font-family: 'Pacifico', cursive;
-            font-size: 8rem;
             color: #ffff;
             display: flex;
             align-items: center;
@@ -405,7 +421,6 @@
 
         .logo i {
             margin-right: 0.5rem;
-            font-size: 7.5rem;
         }
 
         .logo:hover {
@@ -416,26 +431,27 @@
     </style>
 </head>
 
-<body class="antialiased bg-black">
-    <div class="relative flex items-top justify-center min-h-screen  sm:items-center py-4 sm:pt-0">
+<body class="antialiased bg-black h-dvh">
+    <div class="relative flex items-top justify-center min-h-screen w-full sm:items-center sm:pt-0 h-full">
         @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <div class="fixed top-0 right-0 px-6 py-4">
                 @auth
                     <a href="{{ url('admin/dashboard') }}"
-                        class="text-lg text-white dark:text-gray-500 underline">Dashboard</a>
+                        class="text-lg text-white dark:text-gray-500 underline">{{ __('Dashboard') }}</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-lg text-white dark:text-gray-500 underline">Log in</a>
+                    <a href="{{ route('login') }}"
+                        class="text-lg text-white dark:text-gray-500 underline">{{ __('Accedi') }}</a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="ml-4 text-lg text-white dark:text-gray-500 underline">Register</a>
+                            class="ml-4 text-lg text-white dark:text-gray-500 underline">{{ __('Registrati') }}</a>
                     @endif
                 @endauth
             </div>
         @endif
 
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
-            <div>
+        <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 h-full">
+            <div class="text-6xl">
                 @if (Route::has('login'))
                     <a href="{{ url('admin/dashboard') }}" class="logo"><i class="fas fa-home"></i>BoolBnb</a>
                 @else
