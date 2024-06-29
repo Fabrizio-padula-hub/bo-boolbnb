@@ -145,8 +145,6 @@
                                 </x-responsive-nav-link>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
 
