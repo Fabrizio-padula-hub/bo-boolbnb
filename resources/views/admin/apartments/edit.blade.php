@@ -5,7 +5,8 @@
         {{-- freccia per ritornare all'index --}}
         <div>
             <a href="{{ route('admin.apartments.index') }}">
-                <svg class="h-8 w-8 text-indigo-800 mb-4 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="h-8 w-8 text-indigo-800 mb-4 hover:text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
                 </svg>
@@ -60,6 +61,9 @@
                                             class="block flex-1 rounded-md border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
+                                @error('address')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             {{-- image --}}
                             <div class="col-span-full">

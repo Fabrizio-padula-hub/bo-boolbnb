@@ -173,6 +173,7 @@ class ApartmentController extends Controller
                 'number_of_bathrooms' => 'required|integer|numeric|min:1',
                 'square_meters' => 'nullable|integer|numeric|min:10',
                 'visibility' => 'required|boolean',
+                'address' => 'required'
             ],
             [
                 'title.required' => 'Questo campo è obbligatorio',
@@ -193,7 +194,8 @@ class ApartmentController extends Controller
                 'number_of_bathrooms.min' => 'Numero di bagni dev\'essere almeno 1',
                 'square_meters.integer' => 'Metri quadrati dev\'essere un numero',
                 'square_meters.numeric' => 'Metri quadrati dev\'essere un numero',
-                'square_meters.min' => 'Metri quadrati dev\'essere almeno 10'
+                'square_meters.min' => 'Metri quadrati dev\'essere almeno 10',
+                'address.required' => 'Questo campo è obbligatorio'
             ]
         )->validate();
         return $validator;
