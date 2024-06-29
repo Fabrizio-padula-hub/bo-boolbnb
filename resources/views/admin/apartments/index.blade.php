@@ -9,7 +9,7 @@
             <th class="text-left py-3 px-2 rounded-r-lg">{{ __('Azioni') }}</th>
         </thead>
         @foreach ($apartments as $apartment)
-            <tr class="border-b border-gray-700 max-md:hidden">
+            <tr class="border-b border-gray-700 max-md:hidden hover:bg-neutral-800">
                 <td class="py-3 px-2">{{ $apartment->title }}</td>
                 <td class="py-3 px-2 max-md:hidden">{{ $apartment->city }}</td>
                 <td class="py-3 px-2 max-md:hidden">{{ $apartment->visibility ? 'Si' : 'No' }}</td>
