@@ -144,8 +144,9 @@ class ApartmentController extends Controller
 
     private function apartmentsCount()
     {
-        $apartments = Apartment::all();
-        $apartmentsCount = Apartment::count();
+        $user = auth()->user();
+        $apartments = $user->apartments;
+        $apartmentsCount = count($apartments);
         $data = [
             'apartments' => $apartments,
             'apartmentsCount' => $apartmentsCount,
