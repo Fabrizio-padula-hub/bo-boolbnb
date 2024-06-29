@@ -114,6 +114,13 @@ class ApartmentController extends Controller
         $formData = $request->all();
         $this->validation($formData);
         $apartment['slug'] = Str::slug($formData['title'], '-');
+        $slug = $apartment['slug'];
+        $counter = 1;
+        while (Apartment::where('slug', $slug)->exists()) {
+            $slug = $apartment['slug'] . '-' . $counter;
+            $counter++;
+        }
+        $apartment['slug'] = $slug;
         if ($request->hasFile('image')) {
             if ($apartment->image) {
                 Storage::delete($apartment->image);
