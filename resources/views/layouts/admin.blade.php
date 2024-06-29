@@ -121,15 +121,23 @@
 
 
                 {{-- Authentication Log out --}}
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    
-                    <x-responsive-nav-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                            this.closest('form').submit();">
-                        <p class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">{{ __('Log Out') }}</p> 
-                    </x-responsive-nav-link>
-                </form>
+                <div class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-2 px-2 group">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+    
+                        <x-responsive-nav-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                            <p
+                                class="font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400">
+                                {{ __('Log Out') }}
+                            </p>
+                        </x-responsive-nav-link>
+                    </form>
+                </div>
+               
+
+                {{-- Copyright --}}
                 <p class="absolute inset-x-0 bottom-2 text-sm text-center text-gray-600">🚀 &copy; 2024 Gruppo 5</p>
             </div>
 
