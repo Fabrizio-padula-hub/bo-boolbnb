@@ -128,7 +128,7 @@ class ApartmentController extends Controller
         } else {
             $apartment->services()->sync([]);
         }
-        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug])->with('message', $apartment->title . ' aggiornato con successo con successo.');
+        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug])->with('message', $apartment->title . ' aggiornato con successo.');
     }
 
     /**
