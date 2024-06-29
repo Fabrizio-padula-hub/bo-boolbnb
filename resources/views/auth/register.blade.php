@@ -2,7 +2,6 @@
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Nome *')" />
@@ -54,7 +53,7 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-        <div class="text-red-600 mt-3 font-medium text-sm"> I campi * sono obbligatori</div>
+        <div class="text-indigo-500 mt-3 font-medium text-sm"> I campi * sono obbligatori</div>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('login') }}">
@@ -65,9 +64,5 @@
                 {{ __('Registrati') }}
             </x-primary-button>
         </div>
-
-
-
-
     </form>
 </x-guest-layout>

@@ -7,7 +7,7 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email *')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
                 autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -15,7 +15,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password *')" />
 
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="current-password" />
@@ -31,7 +31,7 @@
                 <span class="ml-2 text-sm text-gray-600">{{ __('Ricordami') }}</span>
             </label>
         </div>
-
+        <div class="text-indigo-500 mt-3 font-medium text-sm"> I campi * sono obbligatori</div>
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -41,7 +41,7 @@
             @endif
 
             <x-primary-button class="ml-3">
-                {{ __('Log in') }}
+                {{ __('Accedi') }}
             </x-primary-button>
 
         </div>
@@ -49,12 +49,10 @@
             <div class="text-white text-xs">Non sei ancora registrato?</div>
 
             <div>
-                <a href={{ route('register') }} class="text-white text-xs">Registrati ora</a>
+                <a href={{ route('register') }}
+                    class="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Registrati
+                    ora</a>
             </div>
         </div>
-
-
-
-
     </form>
 </x-guest-layout>
