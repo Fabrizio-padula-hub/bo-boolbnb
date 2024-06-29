@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        dd(config('user'));
         $user = Auth::user();
         $apartments = Apartment::all();
         $apartmentsCount = Apartment::count();

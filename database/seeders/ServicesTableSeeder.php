@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use  App\Models\Service;
+use App\Models\Service;
 
 class ServicesTableSeeder extends Seeder
 {
@@ -16,12 +16,11 @@ class ServicesTableSeeder extends Seeder
     public function run()
     {
 
-        $services = ['WiFi', 'Posto Macchina', 'Piscina', 'Portineria', 'Sauna', 'Vista Mare', 'Lavatrice', 'Animali', 'Cucina', 'Lavastoviglie'];
-
+        $services = config('service');
         foreach ($services as $service) {
             $newService = new Service();
-            $newService->name = $service;
-            $newService->image = 'https://via.placeholder.com/640x480.png/004466?text=animals+omnis';
+            $newService->name = $service['name'];
+            $newService->image = $service['image'];
             $newService->save();
         }
     }
