@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -70,9 +70,9 @@
                         class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
                         <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
-                                <svg class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
+                                <svg class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="8" y1="6" x2="21" y2="6" />
                                     <line x1="8" y1="12" x2="21" y2="12" />
                                     <line x1="8" y1="18" x2="21" y2="18" />
@@ -83,7 +83,7 @@
                             </div>
                             <div>
                                 <p
-                                class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
+                                    class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
                                     Appartamenti
                                 </p>
 
@@ -108,7 +108,7 @@
                             </div>
                             <div>
                                 <p
-                                class="{{ Route::currentRouteName() === 'admin.apartments.create' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
+                                    class="{{ Route::currentRouteName() === 'admin.apartments.create' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
                                     Nuovo Appartamento
                                 </p>
                             </div>
@@ -152,7 +152,8 @@
 
 
                 {{-- Copyright --}}
-                <p class="absolute inset-x-0 bottom-1 text-sm text-center text-gray-600 max-md:hidden">🚀 &copy; 2024 Gruppo 5</p>
+                <p class="absolute inset-x-0 bottom-1 text-sm text-center text-gray-600 max-md:hidden">🚀 &copy; 2024
+                    Gruppo 5</p>
             </div>
 
             {{-- Main dx --}}

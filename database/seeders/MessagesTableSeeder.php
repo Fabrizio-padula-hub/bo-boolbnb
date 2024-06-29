@@ -16,7 +16,6 @@ class MessagesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $faker = \Faker\Factory::create('it_IT');
         for ($i = 0; $i < 10; $i++) {
             $newMessages = new Message();
             $newMessages->name = $faker->firstName();

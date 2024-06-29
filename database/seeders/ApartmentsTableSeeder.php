@@ -17,7 +17,6 @@ class ApartmentsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $faker = \Faker\Factory::create('it_IT');
         $counter = 1;
         $apartments = config('apartment');
         for ($i = 0; $i < 10; $i++) {
