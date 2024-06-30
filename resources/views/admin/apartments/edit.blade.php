@@ -135,7 +135,7 @@
             <div class="text-indigo-500 mt-3 font-medium text-sm">{{ __('I campi * sono obbligatori') }}</div>
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-4">
-                    {{ __('Invia') }}
+                    {{ __('Modifica') }}
                 </x-primary-button>
             </div>
         </form>
