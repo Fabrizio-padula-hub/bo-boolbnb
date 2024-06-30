@@ -89,11 +89,18 @@
                                 </p>
 
                             </div>
-                            @if ($apartments)
-                                <div
-                                    class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
-                                    {{ $apartmentsCount }}
-                                </div>
+                            @if ($apartmentsCount !== 0)
+                                @if ($apartmentsCount < 10)
+                                    <div
+                                        class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
+                                        {{ $apartmentsCount }}
+                                    </div>
+                                @else
+                                    <div
+                                        class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
+                                        {{ $apartmentsCount }}
+                                    </div>
+                                @endif
                             @endif
                         </div>
                     </a>
