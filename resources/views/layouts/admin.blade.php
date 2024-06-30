@@ -36,7 +36,7 @@
                             alt="foto profilo">
 
 
-                        <div class="sm:flex sm:items-center sm:ml-6 text-white">
+                        <div class="sm:flex sm:items-center text-white justify-center ">
                             <p class="group-hover:text-indigo-400 leading-4">{{ Auth::user()->name }}</p>
                         </div>
 
