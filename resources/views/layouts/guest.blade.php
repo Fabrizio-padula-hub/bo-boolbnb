@@ -21,9 +21,6 @@
         .logo {
             font-family: 'Pacifico', cursive;
             font-size: 3rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
         }
 
         .logo i {
@@ -32,7 +29,6 @@
         }
 
         .logo:hover {
-            color: rgb(55, 48, 163);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
@@ -42,7 +38,8 @@
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen  bg-black flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
         <div>
-            <h1 class="logo"><i class="fas fa-home"></i><a href="{{ route('home') }}">BoolBnb</a></h1>
+            <h1 class="logo flex items-center text-white hover:text-indigo-500"><i class="fas fa-home"></i><a
+                    href="{{ route('home') }}">BoolBnb</a></h1>
         </div>
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
