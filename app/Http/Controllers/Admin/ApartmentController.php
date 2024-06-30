@@ -198,7 +198,8 @@ class ApartmentController extends Controller
                 'square_meters.integer' => 'Metri quadrati dev\'essere un numero',
                 'square_meters.numeric' => 'Metri quadrati dev\'essere un numero',
                 'square_meters.min' => 'Metri quadrati dev\'essere almeno 10',
-                'address.required' => 'Questo campo è obbligatorio'
+                'address.required' => 'Questo campo è obbligatorio',
+                'visibility.required' => 'Questo campo è obbligatorio'
             ]
         )->validate();
         return $validator;
