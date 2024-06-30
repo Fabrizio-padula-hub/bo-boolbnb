@@ -28,13 +28,13 @@
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox"
                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Ricordami') }}</span>
+                <span class="ml-2 text-sm dark:text-white">{{ __('Ricordami') }}</span>
             </label>
         </div>
         <div class="text-indigo-500 mt-3 font-medium text-sm">{{ __('I campi * sono obbligatori') }}</div>
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                <a class="underline text-sm dark:text-white rounded-md focus:outline-none hover:text-indigo-500"
                     href="{{ route('password.request') }}">
                     {{ __('Hai dimenticato la tua password?') }}
                 </a>
@@ -50,7 +50,7 @@
 
             <div>
                 <a href={{ route('register') }}
-                    class="underline text-sm dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ __('Registrati ora') }}</a>
+                    class="underline text-sm dark:text-white rounded-md focus:outline-none hover:text-indigo-500">{{ __('Registrati ora') }}</a>
             </div>
         </div>
     </form>

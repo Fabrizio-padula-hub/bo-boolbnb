@@ -48,14 +48,14 @@
                 <div class="px-6 py-4">
                     @auth
                         <a href="{{ url('admin/dashboard') }}"
-                            class="link text-lg text-black dark:text-white underline">{{ __('Dashboard') }}</a>
+                            class="link text-lg text-black dark:text-white underline hover:text-indigo-500">{{ __('Dashboard') }}</a>
                     @else
                         <a href="{{ route('login') }}"
-                            class="link text-lg text-black dark:text-white underline">{{ __('Accedi') }}</a>
+                            class="link text-lg text-black dark:text-white underline hover:text-indigo-500">{{ __('Accedi') }}</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}"
-                                class="link ml-4 text-lg text-black dark:text-white underline">{{ __('Registrati') }}</a>
+                                class="link ml-4 text-lg text-black dark:text-white underline hover:text-indigo-500">{{ __('Registrati') }}</a>
                         @endif
                     @endauth
                 </div>
