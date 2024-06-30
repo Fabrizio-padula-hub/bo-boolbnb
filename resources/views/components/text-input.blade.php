@@ -2,5 +2,5 @@
 
 <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge([
     'class' =>
-        'border-gray-300 bg-transparent text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm',
+        'border-gray-300 bg-transparent dark:text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm',
 ]) !!}>

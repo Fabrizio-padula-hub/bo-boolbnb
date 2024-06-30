@@ -32,25 +32,9 @@
     </style>
 </head>
 
-<body class="bg-black h-dvh">
-    <div class="antialiased w-full text-slate-300 relative h-full">
-        @if (Route::has('login'))
-            <div class="fixed top-0 right-0 px-6 py-4">
-                @auth
-                    <a href="{{ url('admin/dashboard') }}"
-                        class="link text-lg text-white dark:text-gray-500 underline">{{ __('Dashboard') }}</a>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="link text-lg text-white dark:text-gray-500 underline">{{ __('Accedi') }}</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="link ml-4 text-lg text-white dark:text-gray-500 underline">{{ __('Registrati') }}</a>
-                    @endif
-                @endauth
-            </div>
-        @endif
-        <div class="flex justify-center items-center h-full">
+<body class="dark:bg-black h-dvh">
+    <div class="antialiased w-full dark:text-slate-300 relative h-full">
+        <div class="flex flex-col justify-center items-center h-full">
             <div class="flex items-center xl:text-9xl text-6xl hover:text-indigo-500">
                 @if (Route::has('login'))
                     <a href="{{ url('admin/dashboard') }}" class="logo"><i class="fas fa-home"></i>BoolBnb</a>
@@ -58,6 +42,22 @@
                     <a href="{{ url('admin/dashboard') }}" class="logo"><i class="fas fa-home"></i>BoolBnb</a>
                 @endif
             </div>
+            @if (Route::has('login'))
+                <div class="px-6 py-4">
+                    @auth
+                        <a href="{{ url('admin/dashboard') }}"
+                            class="link text-lg text-black dark:text-white underline">{{ __('Dashboard') }}</a>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="link text-lg text-black dark:text-white underline">{{ __('Accedi') }}</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="link ml-4 text-lg text-black dark:text-white underline">{{ __('Registrati') }}</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
         </div>
     </div>
 </body>

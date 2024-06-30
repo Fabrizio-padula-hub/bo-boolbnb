@@ -35,14 +35,14 @@
     </style>
 </head>
 
-<body class="font-sans text-gray-900 antialiased h-dvh bg-black">
+<body class="font-sans text-gray-900 antialiased h-dvh dark:bg-black">
     <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
         <div>
-            <h1 class="logo flex items-center text-white hover:text-indigo-500"><i class="fas fa-home"></i><a
+            <h1 class="logo flex items-center dark:text-white hover:text-indigo-500"><i class="fas fa-home"></i><a
                     href="{{ route('home') }}">BoolBnb</a></h1>
         </div>
 
-        <div class="w-full max-w-sm md:max-w-md mt-6 px-6 py-4 bg-white/10 shadow-md overflow-hidden rounded-lg">
+        <div class="w-full max-w-sm md:max-w-md mt-6 px-6 py-4 bg-white/10 shadow overflow-hidden rounded-lg">
             {{ $slot }}
         </div>
     </div>
