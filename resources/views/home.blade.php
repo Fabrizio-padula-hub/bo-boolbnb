@@ -37,9 +37,11 @@
         <div class="flex flex-col justify-center items-center h-full">
             <div class="flex items-center xl:text-9xl text-6xl hover:text-indigo-500">
                 @if (Route::has('login'))
-                    <a href="{{ url('admin/dashboard') }}" class="logo"><i class="fas fa-home"></i>BoolBnb</a>
+                    <a href="{{ url('admin/dashboard') }}" class="logo"><i
+                            class="fas fa-home"></i>{{ __('BoolBnb') }}</a>
                 @else
-                    <a href="{{ url('admin/dashboard') }}" class="logo"><i class="fas fa-home"></i>BoolBnb</a>
+                    <a href="{{ url('admin/dashboard') }}" class="logo"><i
+                            class="fas fa-home"></i>{{ __('BoolBnb') }}</a>
                 @endif
             </div>
             @if (Route::has('login'))

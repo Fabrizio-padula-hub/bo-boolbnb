@@ -53,7 +53,7 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-        <div class="text-indigo-500 mt-3 font-medium text-sm"> I campi * sono obbligatori</div>
+        <div class="text-indigo-500 mt-3 font-medium text-sm">{{ __('I campi * sono obbligatori') }}</div>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('login') }}">

@@ -50,8 +50,7 @@
 
             <div>
                 <a href={{ route('register') }}
-                    class="underline text-sm dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ __('Registrati
-                                        ora') }}</a>
+                    class="underline text-sm dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{{ __('Registrati ora') }}</a>
             </div>
         </div>
     </form>

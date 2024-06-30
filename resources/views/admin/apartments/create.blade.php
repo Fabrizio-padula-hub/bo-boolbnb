@@ -12,7 +12,7 @@
                 </svg>
             </a>
         </div>
-        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">Crea Appartamento</h2>
+        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">{{ __('Crea Appartamento') }}</h2>
         <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Title -->
@@ -115,7 +115,7 @@
                 </div>
                 <x-input-error :messages="$errors->get('visibility')" class="mt-2" />
             </div>
-            <div class="text-indigo-500 mt-3 font-medium text-sm"> I campi * sono obbligatori</div>
+            <div class="text-indigo-500 mt-3 font-medium text-sm">{{ __('I campi * sono obbligatori') }}</div>
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-4">
                     {{ __('Invia') }}

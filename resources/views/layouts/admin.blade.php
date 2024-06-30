@@ -23,7 +23,7 @@
             <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 h-full relative flex flex-col">
                 <h1
                     class="font-bold text-lg lg:text-3xl max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent mb-3">
-                    BoolBnB
+                    {{ __('BoolBnb') }}
                     <span class="text-indigo-400">.</span>
                 </h1>
 
@@ -60,7 +60,7 @@
                             <div>
                                 <p
                                     class="{{ Route::currentRouteName() === 'admin.dashboard' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
-                                    Dashboard
+                                    {{ __('Dashboard') }}
                                 </p>
 
                             </div>
@@ -85,7 +85,7 @@
                             <div>
                                 <p
                                     class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
-                                    Appartamenti
+                                    {{ __('Appartamenti') }}
                                 </p>
 
                             </div>
@@ -110,7 +110,7 @@
                             <div>
                                 <p
                                     class="{{ Route::currentRouteName() === 'admin.apartments.create' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
-                                    Nuovo Appartamento
+                                    {{ __('Nuovo Appartamento') }}
                                 </p>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
 
                 {{-- Copyright --}}
                 <p class="absolute inset-x-0 bottom-1 text-sm text-center text-gray-600 max-md:hidden">🚀 &copy; 2024
-                    Gruppo 5</p>
+                    {{ __('Gruppo') }} 5</p>
             </div>
 
             {{-- Main dx --}}

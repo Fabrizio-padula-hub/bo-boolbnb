@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="flex justify-between pb-2">
-        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">Appartamenti</h2>
+        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">{{ __('Appartamenti') }}</h2>
         <a href="{{ route('admin.apartments.create') }}" title="Aggiungi" class="flex items-center hover:text-indigo-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 class="w-6 h-6 group-hover:text-indigo-400">
@@ -86,7 +86,7 @@
                         <button type="submit"
                             class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
-                                class="hover:text-white">Mostra
+                                class="hover:text-white">{{ _('Mostra') }}
                             </a>
                         </button>
                         {{-- bottoni Modifica --}}
@@ -94,14 +94,14 @@
                             class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}"
                                 title="Modifica" class="hover:text-white">
-                                Modifica
+                                {{ __('Modifica') }}
                             </a>
                         </button>
                         {{-- bottoni Elimina --}}
                         <button type="submit"
                             class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             <a href="" title="Elimina" class="hover:text-white">
-                                Elimina
+                                {{ __('Elimina') }}
                             </a>
                         </button>
                     </div>
