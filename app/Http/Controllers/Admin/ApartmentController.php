@@ -151,9 +151,18 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index', ['apartment' => $apartment->slug])->with('message', $apartment->title . ' eliminato con successo.');
+    }
+
+    public function showSoftDeletedApartments(){
+
+        $softDeletedApartments = Apartment::onlyTrashed()->get();
+
+        return response()->json(['soft_deleted_apartments' => $softDeletedApartments]);
     }
 
     private function apartmentsCount()
