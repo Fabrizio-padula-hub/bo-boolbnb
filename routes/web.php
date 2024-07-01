@@ -32,6 +32,7 @@ Route::middleware(['auth', 'verified'])
         ]);
         Route::get('/messages', [MessageController::class, 'index'])->name('message');
         Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
+        Route::get('/autocomplete', [ApartmentController::class, 'autocomplete']);
     });
 
 Route::middleware('auth')->group(function () {

@@ -13,23 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    {{-- Stile personale --}}
-    <style>
-        .logo {
-            font-family: 'Pacifico', cursive;
-        }
-
-        .logo i {
-            margin-right: 0.5rem;
-        }
-
-        .logo:hover {
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/css/generic.css', 'resources/js/app.js'])
 </head>
 
 <body class="dark:bg-black h-dvh">

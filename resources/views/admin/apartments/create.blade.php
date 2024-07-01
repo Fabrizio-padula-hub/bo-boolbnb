@@ -1,9 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    @foreach ($address as $singleAddress)
-        <h1>{{ $singleAddress['address']['freeformAddress'] }}</h1>
-    @endforeach
     <div class="grid grid-cols-1">
         {{-- freccia per ritornare all'index --}}
         <div>
@@ -40,9 +37,10 @@
             <div class="mt-4">
                 <x-input-label for="address" :value="__('Indirizzo *')" />
                 <x-text-input id="address" name="address" class="block mt-1 w-full" type="text"
-                    title="{{ __('Indirizzo') }}" :value="old('address')" autocomplete="address"
+                    title="{{ __('Indirizzo') }}" :value="old('address')" autocomplete="off"
                     placeholder="Via Roma 13, 00118, Roma" />
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                <ul class="mt-2" id="suggestions"></ul>
             </div>
 
             <!-- Image -->

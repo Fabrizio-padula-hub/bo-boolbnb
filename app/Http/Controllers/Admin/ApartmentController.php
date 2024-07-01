@@ -34,12 +34,9 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $sponsorships = Sponsorship::all();
-
-        $address = $this->getAddressFromApi('Via Porta Carini')['results'];
         $data = $this->apartmentsCount();
         $data['services'] = $services;
         $data['sponsorships'] = $sponsorships;
-        $data['address'] = $address;
         return view('admin.apartments.create', $data);
     }
 
@@ -209,11 +206,15 @@ class ApartmentController extends Controller
         return $validator;
     }
 
-    public function getAddressFromApi($inputValue)
+    public function autocomplete(Request $request)
     {
-        $url = 'https://api.tomtom.com/search/2/geocode/' . $inputValue . '.json?key=fUtGP9sbSFIvB3B4Rk2SmG2E8l5VZSRj&countrySet=ITA';
+        $query = $request->input('query');
+        $apiKey = env('TOMTOM_API_KEY');
+        $url = "https://api.tomtom.com/search/2/search/$query.json?key=$apiKey&countrySet=ITA";
         $response = Http::get($url);
-        $data = $response->json();
-        return $data;
+        if ($response->successful()) {
+            return response()->json($response->json());
+        }
+        return response()->json(['error' => 'Unable to fetch data'], 500);
     }
 }
