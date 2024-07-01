@@ -7,6 +7,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -33,9 +34,12 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $sponsorships = Sponsorship::all();
+
+        $address = $this->getAddressFromApi('Via Porta Carini')['results'];
         $data = $this->apartmentsCount();
         $data['services'] = $services;
         $data['sponsorships'] = $sponsorships;
+        $data['address'] = $address;
         return view('admin.apartments.create', $data);
     }
 
@@ -203,5 +207,13 @@ class ApartmentController extends Controller
             ]
         )->validate();
         return $validator;
+    }
+
+    public function getAddressFromApi($inputValue)
+    {
+        $url = 'https://api.tomtom.com/search/2/geocode/' . $inputValue . '.json?key=fUtGP9sbSFIvB3B4Rk2SmG2E8l5VZSRj&countrySet=ITA';
+        $response = Http::get($url);
+        $data = $response->json();
+        return $data;
     }
 }

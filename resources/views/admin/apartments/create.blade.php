@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    @foreach ($address as $singleAddress)
+        <h1>{{ $singleAddress['address']['freeformAddress'] }}</h1>
+    @endforeach
     <div class="grid grid-cols-1">
         {{-- freccia per ritornare all'index --}}
         <div>
