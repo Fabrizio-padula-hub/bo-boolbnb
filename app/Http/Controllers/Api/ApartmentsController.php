@@ -9,7 +9,7 @@ use App\Models\Apartment;
 class ApartmentsController extends Controller
 {
     public function index() {
-        $apartments = Apartment::all();
+        $apartments = Apartment::with('users', 'messages', 'visits', 'sponsorships', 'services')->get();
         return response()->json([
             'success' => true,
             'results' => $apartments
