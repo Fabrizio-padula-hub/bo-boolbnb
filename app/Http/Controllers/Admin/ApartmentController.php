@@ -158,11 +158,21 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index', ['apartment' => $apartment->slug])->with('message', $apartment->title . ' eliminato con successo.');
     }
 
-    public function showSoftDeletedApartments(){
+    public function showSoftDeletedApartments()
+    {
 
-        $softDeletedApartments = Apartment::onlyTrashed()->get();
+        $softDeletedApartments = auth()->user()->apartments()->onlyTrashed()->get();
+        $data = $this->apartmentsCount();
+        $data['softDeletedApartments'] = $softDeletedApartments;
 
-        return response()->json(['soft_deleted_apartments' => $softDeletedApartments]);
+        return view('admin.apartments.deleted', $data);
+    }
+
+    public function restoreApartment($apartmentSlug)
+    {
+        $apartment = Apartment::withTrashed()->where('slug', $apartmentSlug)->first()->restore();
+
+        return redirect()->route('admin.deleted')->with('message', "Appartamento ripristinato con successo! Sarà visualizzato nella sezione 'Appartamenti.'");
     }
 
     private function apartmentsCount()

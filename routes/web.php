@@ -32,6 +32,8 @@ Route::middleware(['auth', 'verified'])
         ]);
         Route::get('/messages', [MessageController::class, 'index'])->name('message');
         Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
+        Route::get('/deleted', [ApartmentController::class, 'showSoftDeletedApartments'])->name('deleted');
+        Route::get('/restore/{apartment}', [ApartmentController::class, 'restoreApartment'])->name('restore');
     });
 
 Route::middleware('auth')->group(function () {
