@@ -62,7 +62,6 @@ class ApartmentController extends Controller
             $counter++;
         }
         $formData['slug'] = $slug;
-
         if ($request->hasFile('image')) {
             $img_path = Storage::disk('public')->put('apartments_images', $formData['image']);
             $formData['image'] = $img_path;

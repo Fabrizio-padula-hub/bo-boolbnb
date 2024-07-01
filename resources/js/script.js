@@ -36,6 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
             li.textContent = result.address.freeformAddress;
             li.addEventListener('click', function () {
                 addressInput.value = result.address.freeformAddress;
+                const lat = result.position.lat;
+                const long = result.position.lon;
+                console.log('Indirizzo selezionato:', result.address.freeformAddress);
+                console.log('Latitudine:', lat);
+                console.log('Longitudine:', long);
                 suggestions.innerHTML = '';
             });
             li.classList.add('cursor-pointer')
