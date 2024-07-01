@@ -38,13 +38,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 addressInput.value = result.address.freeformAddress;
                 const lat = result.position.lat;
                 const long = result.position.lon;
-                console.log('Indirizzo selezionato:', result.address.freeformAddress);
-                console.log('Latitudine:', lat);
-                console.log('Longitudine:', long);
                 suggestions.innerHTML = '';
+                axios.post('/admin/save', {
+                    lat: lat,
+                    long: long
+                }, {
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
             });
             li.classList.add('cursor-pointer')
             suggestions.appendChild(li);
+
         });
     }
 });

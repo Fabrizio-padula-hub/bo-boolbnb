@@ -48,8 +48,18 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+        // Recuperare i dati dalla sessione
+        $lat = session('lat');
+        $long = session('long');
+
+        // Verificare che i dati siano presenti
+        if ($lat === null || $long === null) {
+            return redirect()->back()->with('error', 'Latitudine e Longitudine mancanti');
+        }
         $formData = $request->all();
         $this->validation($formData);
+        $formData['lat'] = $lat;
+        $formData['long'] = $long;
         $user = auth()->user();
         $id = $user->id;
         $formData['user_id'] = $id;
@@ -215,5 +225,24 @@ class ApartmentController extends Controller
             return response()->json($response->json());
         }
         return response()->json(['error' => 'Unable to fetch data'], 500);
+    }
+
+    public function save(Request $request)
+    {
+        $request->validate([
+            'lat' => 'required|numeric',
+            'long' => 'required|numeric',
+        ]);
+
+        try {
+            $lat = $request->input('lat');
+            $long = $request->input('long');
+
+            session(['lat' => $lat, 'long' => $long]);
+
+            return response()->json(['success' => true, 'message' => 'Dati salvati nella sessione']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Errore durante il salvataggio dei dati', 'error' => $e->getMessage()]);
+        }
     }
 }

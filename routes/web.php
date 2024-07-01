@@ -32,7 +32,8 @@ Route::middleware(['auth', 'verified'])
         ]);
         Route::get('/messages', [MessageController::class, 'index'])->name('message');
         Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
-        Route::get('/autocomplete', [ApartmentController::class, 'autocomplete']);
+        Route::get('/autocomplete', [ApartmentController::class, 'autocomplete'])->name('apartments.autocomplete');
+        Route::post('/save', [ApartmentController::class, 'save'])->name('apartments.save');
     });
 
 Route::middleware('auth')->group(function () {
