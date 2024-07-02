@@ -34,7 +34,6 @@ Route::middleware(['auth', 'verified'])
         Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
         Route::get('/deleted', [ApartmentController::class, 'showSoftDeletedApartments'])->name('deleted');
         Route::get('/restore/{apartment}', [ApartmentController::class, 'restoreApartment'])->name('restore');
-        Route::get('/erased/{apartment}', [ApartmentController::class, 'permanentlyDelete'])->name('erased');
         Route::get('/autocomplete', [ApartmentController::class, 'autocomplete'])->name('apartments.autocomplete');
         Route::post('/save', [ApartmentController::class, 'save'])->name('apartments.save');
     });
