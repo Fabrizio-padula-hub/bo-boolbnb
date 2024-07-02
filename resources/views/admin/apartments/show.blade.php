@@ -22,8 +22,7 @@
         </div>
 
         <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
-            <div
-                class="pl-6 relative m-0 rounded-none backdrop-blur-sm hover:backdrop-blur-lg bg-clip-border shadow-none max-w-lg">
+            <div class="max-w-sm mb-8 overflow-hidden self-center">
                 @if ($apartment->image)
                     <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
                 @endif

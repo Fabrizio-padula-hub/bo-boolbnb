@@ -11,7 +11,7 @@
     </div>
     @if (count($apartments) !== 0)
         <table class="w-full whitespace-nowrap">
-            <thead class="bg-black/90 max-md:hidden sticky top-0">
+            <thead class="bg-black/90 max-md:hidden">
                 <th class="text-left py-3 px-2 rounded-l-lg">{{ __('Titolo') }}</th>
                 <th class="text-left py-3 px-2 max-md:hidden">{{ __('Indirizzo') }}</th>
                 <th class="text-left py-3 px-2 max-md:hidden">{{ __('Visibilità') }}</th>
@@ -73,11 +73,17 @@
                 {{-- card per responsive sotto i 700px --}}
                 <div
                     class="max-w-sm mb-8 rounded-lg overflow-hidden shadow-lg md:hidden border-solid border-2 border-indigo-800">
-                    <img class="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
+                    @if ($apartment->image)
+                        <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}"
+                            alt="{{ $apartment->title }}">
+                    @endif
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">{{ $apartment->title }}</div>
                         <p class="text-gray-500 text-base">
                             {{ $apartment->address }}
+                        </p>
+                        <p class="text-gray-500 text-base">
+                            {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
                         </p>
                     </div>
                     {{-- bottoni azioni --}}
