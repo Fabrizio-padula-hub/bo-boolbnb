@@ -40,22 +40,25 @@
                         @endif
                     </td>
                     <td class="py-3 px-2">
-                            {{-- icona Ripristina --}}
-                            <a href="{{ route('admin.restore', ['apartment' => $apartment->slug]) }}"
-                                title="Ripristina" class="hover:text-amber-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                </svg>
-                            </a>
+                        {{-- icona Ripristina --}}
+                        <a href="{{ route('admin.restore', ['apartment' => $apartment->slug]) }}" title="Ripristina"
+                            class="hover:text-amber-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                            </svg>
+                        </a>
                     </td>
                 </tr>
 
                 {{-- card per responsive sotto i 700px --}}
                 <div
                     class="max-w-sm mb-8 rounded-lg overflow-hidden shadow-lg md:hidden border-solid border-2 border-indigo-800">
-                    <img class="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
+                    @if ($apartment->image)
+                        <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}"
+                            alt="{{ $apartment->title }}">
+                    @endif
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">{{ $apartment->title }}</div>
                         <p class="text-gray-500 text-base">
@@ -66,24 +69,9 @@
                     <div class="px-6 pt-4 pb-2 max-[457px]:flex flex-col">
                         {{-- bottoni Mostra --}}
                         <button type="submit"
-                            class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
-                                class="hover:text-white">{{ __('Mostra') }}
-                            </a>
-                        </button>
-                        {{-- bottoni Modifica --}}
-                        <button type="submit"
                             class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}"
-                                title="Modifica" class="hover:text-white">
-                                {{ __('Modifica') }}
-                            </a>
-                        </button>
-                        {{-- bottoni Elimina --}}
-                        <button type="submit"
-                            class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="" title="Elimina" class="hover:text-white">
-                                {{ __('Elimina') }}
+                            <a href="{{ route('admin.restore', ['apartment' => $apartment->slug]) }}" title="Ripristina"
+                                class="hover:text-white">{{ __('Ripristina') }}
                             </a>
                         </button>
                     </div>
