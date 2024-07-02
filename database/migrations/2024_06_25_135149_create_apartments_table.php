@@ -23,8 +23,8 @@ return new class extends Migration
             $table->tinyInteger('number_of_bathrooms');
             $table->mediumInteger('square_meters')->nullable();
             $table->string('address');
-            $table->double('lat', 11, 8)->nullable();
-            $table->double('long', 11, 8)->nullable();
+            $table->double('lat', 11, 8);
+            $table->double('long', 11, 8);
             $table->text('image')->nullable();
             $table->boolean('visibility');
             $table->timestamps();

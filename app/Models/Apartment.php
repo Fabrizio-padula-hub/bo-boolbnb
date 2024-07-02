@@ -11,7 +11,7 @@ class Apartment extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'title', 'slug', 'description', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'address', 'image', 'visibility'];
+    protected $fillable = ['user_id', 'title', 'slug', 'description', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'address', 'image', 'lat', 'long', 'visibility'];
 
     protected $casts = [
         'deleted_at' => 'datetime',
