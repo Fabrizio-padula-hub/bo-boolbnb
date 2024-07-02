@@ -67,7 +67,7 @@
                             </a>
                             {{-- icona Elimina --}}
                             <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
-                                method="POST" title="Elimina" class="hover:text-red-800">
+                                method="POST" title="Elimina" class="flex items-center hover:text-red-800">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">
@@ -116,12 +116,17 @@
                             </a>
                         </button>
                         {{-- bottoni Elimina --}}
-                        <button type="submit"
-                            class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="" title="Elimina" class="hover:text-white">
-                                {{ __('Elimina') }}
-                            </a>
-                        </button>
+                        <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                            method="POST" title="Elimina" class=" inline-block hover:text-red-800">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                <a href="" title="Elimina" class="hover:text-white">
+                                    {{ __('Elimina') }}
+                                </a>
+                            </button>
+                        </form>
                     </div>
                 </div>
             @endforeach
