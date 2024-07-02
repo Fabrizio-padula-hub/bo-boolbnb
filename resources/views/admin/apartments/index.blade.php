@@ -70,7 +70,8 @@
                                 method="POST" title="Elimina" class="flex items-center hover:text-red-800">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">
+                                <button type="submit" class="ms-js-delete-btn"
+                                    data-apartment-title="{{ $apartment->title }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -115,13 +116,14 @@
                                 {{ __('Modifica') }}
                             </a>
                         </button>
-                        {{-- bottoni Elimina --}}
+                        {{-- bottone Elimina --}}
                         <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
                             method="POST" title="Elimina" class=" inline-block hover:text-red-800">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
-                                class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                class="ms-js-delete-btn rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                data-apartment-title="{{ $apartment->title }}">
                                 <a href="" title="Elimina" class="hover:text-white">
                                     {{ __('Elimina') }}
                                 </a>
@@ -135,4 +137,17 @@
         <p class="text-base font-semibold leading-7 py-2">In questa pagina trovi l'elenco completo di tutti
             gli appartamenti. Se vuoi aggiungere un appartamento nel nostro sistema lo troverai qui.</p>
     @endif
+
+    {{-- Modal --}}
+    <div id="ms-confirmDeleteModal"
+        class="hidden bg-slate-800 bg-opacity-50 justify-center items-center absolute top-0 right-0 bottom-0 left-0 backdrop-blur-sm">
+        <div class="bg-zinc-900 ms-modal px-16 py-14 rounded-lg text-center drop-shadow-2xl">
+            <h1 class="ms-modal-body text-xl mb-6 font-bol">
+            </h1>
+            <button id="ms-modal-cancel-deletion"
+                class="bg-red-600 px-4 py-2 rounded-md text-md text-white hover:bg-red-800">{{ __('Annulla') }}</button>
+            <button id="ms-modal-confirm-deletion"
+                class="bg-indigo-600 px-7 py-2 ml-2 rounded-md text-md text-white hover:bg-indigo-500 font-semibold">{{ __('Conferma') }}</button>
+        </div>
+    </div>
 @endsection

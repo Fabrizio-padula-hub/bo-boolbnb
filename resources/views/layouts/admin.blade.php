@@ -12,7 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/css/generic.css', 'resources/js/app.js', 'resources/js/script.js'])
+    @vite(['resources/css/app.css', 'resources/css/generic.css', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/modal.js'])
 </head>
 
 <body class="h-dvh bg-black">
@@ -122,27 +122,28 @@
                         </div>
                     </a>
                     <a href="{{ route('admin.deleted') }}"
-                    class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
-                    <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
-                        <div>
-                            <svg class="{{ Route::currentRouteName() === 'admin.deleted' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="8" y1="6" x2="21" y2="6" />
-                            <line x1="8" y1="12" x2="21" y2="12" />
-                            <line x1="8" y1="18" x2="21" y2="18" />
-                            <line x1="3" y1="6" x2="3.01" y2="6" />
-                            <line x1="3" y1="12" x2="3.01" y2="12" />
-                            <line x1="3" y1="18" x2="3.01" y2="18" />
-                        </svg>
-                        </div>
-                        <div>
-                            <p
-                                class="{{ Route::currentRouteName() === 'admin.deleted' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
-                                {{ __('Appartamenti Eliminati') }}
-                            </p>
-                        </div>
-                        {{-- @if (count($softDeletedApartments) !== 0)
+                        class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
+                        <div
+                            class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center text-red-500 md:text-slate-300">
+                            <div>
+                                <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                    class="{{ Route::currentRouteName() === 'admin.deleted' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <line x1="4" y1="7" x2="20" y2="7" />
+                                    <line x1="10" y1="11" x2="10" y2="17" />
+                                    <line x1="14" y1="11" x2="14" y2="17" />
+                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p
+                                    class="{{ Route::currentRouteName() === 'admin.deleted' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
+                                    {{ __('Cestino') }}
+                                </p>
+                            </div>
+                            {{-- @if (count($softDeletedApartments) !== 0)
                                 @if (count($softDeletedApartments) < 10)
                                     <div
                                         class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
@@ -155,8 +156,8 @@
                                     </div>
                                 @endif
                             @endif --}}
-                    </div>
-                </a>
+                        </div>
+                    </a>
                 </div>
 
 
