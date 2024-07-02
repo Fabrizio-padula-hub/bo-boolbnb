@@ -22,7 +22,7 @@
         </div>
 
         <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
-            <div class="max-w-sm mb-8 overflow-hidden self-center">
+            <div class="max-w-sm mb-8 overflow-hidden self-center rounded-t-lg">
                 @if ($apartment->image)
                     <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
                 @endif
@@ -85,7 +85,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit"
-                        class="ms-js-delete-btn rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        class="ms-js-delete-btn rounded-md w-full bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         data-apartment-title="{{ $apartment->title }}">
                         <a href="" title="Elimina" class="hover:text-white">
                             {{ __('Elimina') }}
