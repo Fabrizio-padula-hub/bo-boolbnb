@@ -48,16 +48,15 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // Recuperare i dati dalla sessione
         $lat = session('lat');
         $long = session('long');
 
-        // Verificare che i dati siano presenti
+        $formData = $request->all();
+        $this->validation($formData);
+
         if ($lat === null || $long === null) {
             return redirect()->back()->with('error', 'Latitudine e Longitudine mancanti');
         }
-        $formData = $request->all();
-        $this->validation($formData);
         $formData['lat'] = $lat;
         $formData['long'] = $long;
         $user = auth()->user();
