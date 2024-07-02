@@ -71,7 +71,7 @@
             </div>
 
             {{-- bottoni azioni --}}
-            <div class="px-6 pt-4 pb-2 max-[457px]:flex flex justify-between">
+            <div class="px-6 pt-4 pb-2 flex max-[457px]:flex-col justify-between">
                 {{-- bottoni Modifica --}}
                 <button type="submit"
                     class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
