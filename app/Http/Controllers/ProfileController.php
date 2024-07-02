@@ -17,11 +17,14 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $apartments = $request->user()->apartments;
+        $apartmentsDeleted = $request->user()->apartments()->onlyTrashed()->get();
         $apartmentsCount = count($apartments);
+        $trashCount = count($apartmentsDeleted);
         $data = [
             'user' => $request->user(),
             'apartments' => $apartments,
             'apartmentsCount' => $apartmentsCount,
+            'trashCount' => $trashCount,
         ];
         return view('profile.edit', $data);
     }

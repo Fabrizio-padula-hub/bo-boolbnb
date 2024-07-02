@@ -12,11 +12,14 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $apartments = $user->apartments;
+        $apartmentsDeleted = $user->apartments()->onlyTrashed()->get();
         $apartmentsCount = count($apartments);
+        $trashCount = count($apartmentsDeleted);
         $data = [
             'user' => $user,
             'apartments' => $apartments,
             'apartmentsCount' => $apartmentsCount,
+            'trashCount' => $trashCount,
         ];
         return view('admin.dashboard', $data);
     }

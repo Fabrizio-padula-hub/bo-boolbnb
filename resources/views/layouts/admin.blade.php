@@ -31,12 +31,12 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     <div
                         class="flex flex-col justify-between space-y-2 md:space-y-0 md:flex-row items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full ">
-                        <img class="rounded-full w-10 h-10 relative object-cover"
+                        <img class="rounded-full w-14 h-14 relative object-cover"
                             src="https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=1800&t=st=1669749937~exp=1669750537~hmac=4c5ab249387d44d91df18065e1e33956daab805bee4638c7fdbf83c73d62f125"
                             alt="foto profilo">
 
 
-                        <div class="sm:flex sm:items-center text-white justify-center ">
+                        <div class="hidden md:flex md:items-center text-white justify-center ">
                             <p class="group-hover:text-indigo-400 leading-4">{{ Auth::user()->name }}</p>
                         </div>
 
@@ -51,7 +51,7 @@
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor"
-                                    class="{{ Route::currentRouteName() === 'admin.dashboard' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}">
+                                    class="{{ Route::currentRouteName() === 'admin.dashboard' ? 'w-8 h-8 text-indigo-400' : 'w-8 h-8 group-hover:text-indigo-400' }}">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                 </svg>
@@ -71,16 +71,24 @@
                         class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
                         <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
-                                <svg class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="8" y1="6" x2="21" y2="6" />
-                                    <line x1="8" y1="12" x2="21" y2="12" />
-                                    <line x1="8" y1="18" x2="21" y2="18" />
-                                    <line x1="3" y1="6" x2="3.01" y2="6" />
-                                    <line x1="3" y1="12" x2="3.01" y2="12" />
-                                    <line x1="3" y1="18" x2="3.01" y2="18" />
-                                </svg>
+                                <div class="relative pt-0.5 pr-1">
+                                    @if ($apartmentsCount !== 0)
+                                        <div
+                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.apartments.index' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                            <span class="text-white text-xs font-black">{{ $apartmentsCount }}</span>
+                                        </div>
+                                    @endif
+                                    <svg class="{{ Route::currentRouteName() === 'admin.apartments.index' ? 'w-8 h-8 text-indigo-400' : 'w-8 h-8 group-hover:text-indigo-400' }}"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="8" y1="6" x2="21" y2="6" />
+                                        <line x1="8" y1="12" x2="21" y2="12" />
+                                        <line x1="8" y1="18" x2="21" y2="18" />
+                                        <line x1="3" y1="6" x2="3.01" y2="6" />
+                                        <line x1="3" y1="12" x2="3.01" y2="12" />
+                                        <line x1="3" y1="18" x2="3.01" y2="18" />
+                                    </svg>
+                                </div>
                             </div>
                             <div>
                                 <p
@@ -109,7 +117,7 @@
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor"
-                                    class="{{ Route::currentRouteName() === 'admin.apartments.create' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}">
+                                    class="{{ Route::currentRouteName() === 'admin.apartments.create' ? 'w-8 h-8 text-indigo-400' : 'w-8 h-8 group-hover:text-indigo-400' }}">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                             </div>
@@ -126,36 +134,45 @@
                         <div
                             class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center text-red-500 md:text-slate-300">
                             <div>
-                                <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                    class="{{ Route::currentRouteName() === 'admin.deleted' ? 'w-6 h-6 text-indigo-400' : 'w-6 h-6 group-hover:text-indigo-400' }}">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <line x1="4" y1="7" x2="20" y2="7" />
-                                    <line x1="10" y1="11" x2="10" y2="17" />
-                                    <line x1="14" y1="11" x2="14" y2="17" />
-                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                </svg>
+                                <div class="relative pt-0.5 pr-1">
+                                    @if ($trashCount !== 0)
+                                        <div
+                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.deleted' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                            <span class="text-white text-xs font-black">{{ $trashCount }}</span>
+                                        </div>
+                                    @endif
+                                    <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="{{ Route::currentRouteName() === 'admin.deleted' ? 'w-8 h-8 text-indigo-400' : 'w-8 h-8 group-hover:text-indigo-400' }}">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <line x1="4" y1="7" x2="20" y2="7" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                </div>
                             </div>
                             <div>
                                 <p
                                     class="{{ Route::currentRouteName() === 'admin.deleted' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
                                     {{ __('Cestino') }}
                                 </p>
-                            </div>
-                            {{-- @if (count($softDeletedApartments) !== 0)
-                                @if (count($softDeletedApartments) < 10)
-                                    <div
-                                        class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
-                                        {{ count($softDeletedApartments) }}
-                                    </div>
-                                @else
-                                    <div
-                                        class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
-                                        {{ count($softDeletedApartments) }}
-                                    </div>
+                                @if ($trashCount !== 0)
+                                    @if ($trashCount < 10)
+                                        <div
+                                            class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-red-800 text-xs font-mono font-bold">
+                                            {{ $trashCount }}
+                                        </div>
+                                    @else
+                                        <div
+                                            class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-red-800 text-xs font-mono font-bold">
+                                            {{ $trashCount }}
+                                        </div>
+                                    @endif
                                 @endif
-                            @endif --}}
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -174,7 +191,7 @@
                                 this.closest('form').submit();"
                             class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
-                                <svg class="w-6 h-6 group-hover:text-indigo-400" width="24" height="24"
+                                <svg class="w-8 h-8 group-hover:text-indigo-400" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />

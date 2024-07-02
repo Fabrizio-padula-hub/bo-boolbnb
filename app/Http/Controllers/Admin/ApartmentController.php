@@ -183,10 +183,13 @@ class ApartmentController extends Controller
     {
         $user = auth()->user();
         $apartments = $user->apartments;
+        $apartmentsDeleted = $user->apartments()->onlyTrashed()->get();
         $apartmentsCount = count($apartments);
+        $trashCount = count($apartmentsDeleted);
         $data = [
             'apartments' => $apartments,
             'apartmentsCount' => $apartmentsCount,
+            'trashCount' => $trashCount,
         ];
         return $data;
     }
