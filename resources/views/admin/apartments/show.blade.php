@@ -52,9 +52,41 @@
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
                     Metri quadrati: {{ $apartment->square_meters ? $apartment->square_meters : 'Nullo' }}
                 </p>
+                @if (count($apartment->services) > 0)
+                    <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                        @foreach ($apartment->services as $service)
+                            {{ $service->name }}@if (!$loop->last)
+                                ,
+                            @endif
+                        @endforeach
+                    </p>
+                @else
+                    <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                        Nessun Servizio
+                    </p>
+                @endif
                 <p class="leading-snug tracking-normal antialiased">
                     {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
                 </p>
+            </div>
+
+            {{-- bottoni azioni --}}
+            <div class="px-6 pt-4 pb-2 max-[457px]:flex flex justify-between">
+                {{-- bottoni Modifica --}}
+                <button type="submit"
+                    class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}" title="Modifica"
+                        class="hover:text-white">
+                        {{ __('Modifica') }}
+                    </a>
+                </button>
+                {{-- bottoni Elimina --}}
+                <button type="submit"
+                    class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <a href="" title="Elimina" class="hover:text-white">
+                        {{ __('Elimina') }}
+                    </a>
+                </button>
             </div>
         </div>
     </div>
