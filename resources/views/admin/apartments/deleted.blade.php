@@ -43,15 +43,14 @@
                         {{-- icona Ripristina --}}
                         <a href="" title="Ripristina" class="ms-js-restore-btn hover:text-amber-400"
                             data-apartment-title="{{ $apartment->title }}">
-                            <svg class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
+                            <svg class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" />
                                 <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
                                 <polyline points="7 9 12 4 17 9" />
                                 <line x1="12" y1="4" x2="12" y2="16" />
                             </svg>
-                            
+
                         </a>
                     </td>
                 </tr>
@@ -87,18 +86,21 @@
             gli appartamenti che sono stati precedentemente cancellati.</p>
     @endif
     {{-- Modal --}}
-    <div id="ms-confirmRestoreModal"
-        class="hidden bg-slate-800 bg-opacity-50 justify-center items-center absolute top-0 right-0 bottom-0 left-0 backdrop-blur-sm">
-        <div class="bg-zinc-900 ms-modal px-16 py-14 rounded-lg text-center drop-shadow-2xl">
-            <h1 class="ms-modal-body text-xl mb-6 font-bol">
-            </h1>
-            <button id="ms-modal-cancel-restoration"
-                class="bg-red-600 px-4 py-2 rounded-md text-md text-white hover:bg-red-800">{{ __('Annulla') }}</button>
-            <button id="ms-modal-confirm-restoration"
-                class="bg-amber-600 px-7 py-2 ml-2 rounded-md text-md text-white hover:bg-amber-400 font-semibold"><a
-                    href="{{ route('admin.restore', ['apartment' => $apartment->slug]) }}" title="Ripristina"
-                    class="hover:text-white">{{ __('Conferma') }}
-                </a></button>
+
+    @isset($apartment)
+        <div id="ms-confirmRestoreModal"
+            class="hidden bg-slate-800 bg-opacity-50 justify-center items-center absolute top-0 right-0 bottom-0 left-0 backdrop-blur-sm">
+            <div class="bg-zinc-900 ms-modal px-16 py-14 rounded-lg text-center drop-shadow-2xl">
+                <h1 class="ms-modal-body text-xl mb-6 font-bol">
+                </h1>
+                <button id="ms-modal-cancel-restoration"
+                    class="bg-red-600 px-4 py-2 rounded-md text-md text-white hover:bg-red-800">{{ __('Annulla') }}</button>
+                <button id="ms-modal-confirm-restoration"
+                    class="bg-amber-600 px-7 py-2 ml-2 rounded-md text-md text-white hover:bg-amber-400 font-semibold"><a
+                        href="{{ route('admin.restore', ['apartment' => $apartment->slug]) }}" title="Ripristina"
+                        class="hover:text-white">{{ __('Conferma') }}
+                    </a></button>
+            </div>
         </div>
-    </div>
+    @endisset
 @endsection
