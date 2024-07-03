@@ -31,9 +31,10 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     <div
                         class="flex flex-col justify-between space-y-2 md:space-y-0 md:flex-row items-center md:space-x-2 hover:bg-white/10 group transition duration-150 ease-linear rounded-lg group w-full ">
-                        <img class="rounded-full w-14 h-14 relative object-cover"
-                            src="https://img.freepik.com/free-photo/no-problem-concept-bearded-man-makes-okay-gesture-has-everything-control-all-fine-gesture-wears-spectacles-jumper-poses-against-pink-wall-says-i-got-this-guarantees-something_273609-42817.jpg?w=1800&t=st=1669749937~exp=1669750537~hmac=4c5ab249387d44d91df18065e1e33956daab805bee4638c7fdbf83c73d62f125"
-                            alt="foto profilo">
+                        <div
+                            class="flex items-center justify-center rounded-full h-14 w-14 {{ Arr::random(config('bg')) }}">
+                            <div class="text-3xl font-semibold">{{ Str::substr(Auth::user()->name, 0, 1) }}</div>
+                        </div>
 
 
                         <div class="hidden md:flex md:items-center text-white justify-center ">
