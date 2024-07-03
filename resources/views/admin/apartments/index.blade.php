@@ -17,7 +17,7 @@
         @endif
     </div>
     @if (count($apartments) !== 0)
-        <table class="w-full whitespace-nowrap">
+        <table class="w-full whitespace-nowrap max-md:hidden">
             <thead class="bg-black/90 max-md:hidden">
                 <th class="text-left py-3 px-2 rounded-l-lg">{{ __('Titolo') }}</th>
                 <th class="text-left py-3 px-2 max-md:hidden">{{ __('Indirizzo') }}</th>
@@ -82,57 +82,57 @@
                         </div>
                     </td>
                 </tr>
-
-                {{-- card per responsive sotto i 700px --}}
-                <div
-                    class="max-w-sm mb-8 rounded-lg overflow-hidden shadow-lg md:hidden border-solid border-2 border-indigo-800">
-                    @if ($apartment->image)
-                        <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}"
-                            alt="{{ $apartment->title }}">
-                    @endif
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">{{ $apartment->title }}</div>
-                        <p class="text-gray-500 text-base">
-                            {{ $apartment->address }}
-                        </p>
-                        <p class="text-gray-500 text-base">
-                            {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
-                        </p>
-                    </div>
-                    {{-- bottoni azioni --}}
-                    <div class="px-6 pt-4 pb-2 max-[457px]:flex flex-col">
-                        {{-- bottoni Mostra --}}
-                        <button type="submit"
-                            class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
-                                class="hover:text-white">{{ __('Mostra') }}
-                            </a>
-                        </button>
-                        {{-- bottoni Modifica --}}
-                        <button type="submit"
-                            class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}"
-                                title="Modifica" class="hover:text-white">
-                                {{ __('Modifica') }}
-                            </a>
-                        </button>
-                        {{-- bottone Elimina --}}
-                        <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
-                            method="POST" title="Elimina" class=" inline-block hover:text-red-800">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="ms-js-delete-btn rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                data-apartment-title="{{ $apartment->title }}">
-                                <a href="" title="Elimina" class="hover:text-white">
-                                    {{ __('Elimina') }}
-                                </a>
-                            </button>
-                        </form>
-                    </div>
-                </div>
             @endforeach
         </table>
+        @foreach ($apartments as $apartment)
+            {{-- card per responsive sotto i 700px --}}
+            <div
+                class="max-w-sm mb-8 rounded-lg overflow-hidden shadow-lg md:hidden border-solid border-2 border-indigo-800">
+                @if ($apartment->image)
+                    <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
+                @endif
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">{{ $apartment->title }}</div>
+                    <p class="text-gray-500 text-base">
+                        {{ $apartment->address }}
+                    </p>
+                    <p class="text-gray-500 text-base">
+                        {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
+                    </p>
+                </div>
+                {{-- bottoni azioni --}}
+                <div class="px-6 pt-4 pb-2 max-[457px]:flex flex-col">
+                    {{-- bottoni Mostra --}}
+                    <button type="submit"
+                        class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
+                            class="hover:text-white">{{ __('Mostra') }}
+                        </a>
+                    </button>
+                    {{-- bottoni Modifica --}}
+                    <button type="submit"
+                        class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}"
+                            title="Modifica" class="hover:text-white">
+                            {{ __('Modifica') }}
+                        </a>
+                    </button>
+                    {{-- bottone Elimina --}}
+                    <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                        method="POST" title="Elimina" class=" inline-block hover:text-red-800">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="ms-js-delete-btn w-full rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            data-apartment-title="{{ $apartment->title }}">
+                            <a href="" title="Elimina" class="hover:text-white">
+                                {{ __('Elimina') }}
+                            </a>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
     @else
         <p class="text-base font-semibold leading-7 py-2">In questa pagina trovi l'elenco completo di tutti
             gli appartamenti. Se vuoi aggiungere un appartamento nel nostro sistema lo troverai qui.</p>
