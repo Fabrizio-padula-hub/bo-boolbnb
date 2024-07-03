@@ -43,11 +43,15 @@
                         {{-- icona Ripristina --}}
                         <a href="" title="Ripristina" class="ms-js-restore-btn hover:text-amber-400"
                             data-apartment-title="{{ $apartment->title }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                            <svg class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                <polyline points="7 9 12 4 17 9" />
+                                <line x1="12" y1="4" x2="12" y2="16" />
                             </svg>
+                            
                         </a>
                     </td>
                 </tr>
