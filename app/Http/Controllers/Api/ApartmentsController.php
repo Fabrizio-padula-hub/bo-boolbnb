@@ -15,15 +15,20 @@ class ApartmentsController extends Controller
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
             $radius = $request->input('radius');
+        // Query per ottenere gli appartamenti con la distanza calcolata e i servizi correlati
+            $apartments = Apartment::select(
+                DB::raw('apartments.*, (6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(apartments.lat)) * cos(radians(apartments.long) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(apartments.lat)))) AS distance')
+            )
+            ->leftJoin('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
+            ->leftJoin('services', 'services.id', '=', 'apartment_service.service_id')
+            ->where('apartments.visibility', '=', 1)
+            ->having('distance', '<', $radius)
+            ->orderBy('distance')
+            ->with('services') // Carica i servizi correlati
+            ->get();
 
-            $apartments = DB::table('apartments')
-                ->select(DB::raw('*, (6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(lat)) * cos(radians(`long`) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(lat)))) AS distance'))
-                ->where('visibility', '=', 1)
-                ->having('distance', '<', $radius)
-                ->orderBy('distance')
-                ->get();
-
-            $totalResults = $apartments->count();
+        // Conta il numero totale di risultati
+        $totalResults = $apartments->count();
 
             return response()->json([
                 'total_results' => $totalResults,
