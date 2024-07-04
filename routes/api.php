@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ApartmentsController;
 
 /*
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentsController::class, 'show']);
+Route::post('/messages', [MessageController::class, 'store']);
