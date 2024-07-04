@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentsController;
+use App\Http\Controllers\Api\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/apartments', [ApartmentsController::class, 'index']);
+Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentsController::class, 'show']);
