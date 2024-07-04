@@ -23,7 +23,9 @@
             <div id="menu" class="bg-white/10 col-span-3 rounded-lg p-4 h-full relative flex flex-col">
                 <h1
                     class="font-bold text-lg lg:text-3xl max-md:hidden bg-gradient-to-br from-white via-white/50 to-transparent bg-clip-text text-transparent mb-3">
-                    {{ __('BoolBnb') }}
+                    <a href="http:\\localhost:5174">
+                        {{ __('BoolBnb') }}
+                    </a>
                     <span class="text-indigo-400">.</span>
                 </h1>
 
