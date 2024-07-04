@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Apartment;
 
 class ApartmentsController extends Controller
 {
@@ -32,5 +33,22 @@ class ApartmentsController extends Controller
                 'error' => 'Si è verificato un errore durante l\'elaborazione della richiesta: ' . $e->getMessage()
             ], 500);
         }
+    }
+
+    public function show($slug) {
+        $apartment = Apartment::where('slug', '=', $slug)->with('users', 'messages', 'visits', 'sponsorships', 'services')->first();
+
+        if ($apartment) {
+            $data = [
+                'success' => true,
+                'apartment'=> $apartment
+            ];
+        } else {
+            $data = [
+                'success' => false,
+                'error' => 'Non ci sono appartmenti che corrispondono a questo slug'
+            ];
+        }
+        return response()->json($data);
     }
 }
