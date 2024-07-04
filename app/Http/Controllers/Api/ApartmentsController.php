@@ -15,20 +15,24 @@ class ApartmentsController extends Controller
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
             $radius = $request->input('radius');
-        // Query per ottenere gli appartamenti con la distanza calcolata e i servizi correlati
+            $serviceId = $request->input('service');
+            // Query per ottenere gli appartamenti con la distanza calcolata e i servizi correlati
             $apartments = Apartment::select(
                 DB::raw('apartments.*, (6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(apartments.lat)) * cos(radians(apartments.long) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(apartments.lat)))) AS distance')
             )
-            ->leftJoin('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
-            ->leftJoin('services', 'services.id', '=', 'apartment_service.service_id')
-            ->where('apartments.visibility', '=', 1)
-            ->having('distance', '<', $radius)
-            ->orderBy('distance')
-            ->with('services') // Carica i servizi correlati
-            ->get();
+                // Join aggiustato per prendere tutti gli appartamenti che hanno un solo determinato servizio, aggiungere la possibilità di prenderle altri contemporaneamente
+                ->leftJoin('apartment_service', 'apartment_service.apartment_id', '=', 'apartments.id')
+                ->leftJoin('services', 'apartment_service.service_id', '=', 'services.id')
+                ->where('services.id', '=', $serviceId)
+                ->where('apartments.visibility', '=', 1)
+                // Per filtrale anche number of rooms, beds, bathrooms e square meters usare when
+                ->having('distance', '<', $radius)
+                ->orderBy('distance')
+                ->with('services') // Carica i servizi correlati
+                ->get();
 
-        // Conta il numero totale di risultati
-        $totalResults = $apartments->count();
+            // Conta il numero totale di risultati
+            $totalResults = $apartments->count();
 
             return response()->json([
                 'total_results' => $totalResults,
@@ -41,13 +45,14 @@ class ApartmentsController extends Controller
         }
     }
 
-    public function show($slug) {
+    public function show($slug)
+    {
         $apartment = Apartment::where('slug', '=', $slug)->with('users', 'messages', 'visits', 'sponsorships', 'services')->first();
 
         if ($apartment) {
             $data = [
                 'success' => true,
-                'apartment'=> $apartment
+                'apartment' => $apartment
             ];
         } else {
             $data = [
