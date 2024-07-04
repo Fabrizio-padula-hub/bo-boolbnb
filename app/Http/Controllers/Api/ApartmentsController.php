@@ -18,6 +18,7 @@ class ApartmentsController extends Controller
 
             $apartments = DB::table('apartments')
                 ->select(DB::raw('*, (6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(lat)) * cos(radians(`long`) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(lat)))) AS distance'))
+                ->where('visibility', '=', 1)
                 ->having('distance', '<', $radius)
                 ->orderBy('distance')
                 ->get();

@@ -42,7 +42,7 @@
                     <td class="py-3 px-2">
                         {{-- icona Ripristina --}}
                         <a href="" title="Ripristina" class="ms-js-restore-btn hover:text-amber-400"
-                            data-apartment-title="{{ $apartment->title }}">
+                            data-apartment-title="{{ $apartment->title }}" data-apartment-slug="{{ $apartment->slug }}">
                             <svg class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" />
@@ -74,7 +74,7 @@
                     {{-- bottoni Mostra --}}
                     <button type="submit"
                         class="ms-js-restore-btn max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-                        data-apartment-title="{{ $apartment->title }}">
+                        data-apartment-title="{{ $apartment->title }}" data-apartment-slug="{{ $apartment->slug }}">
                         <a href="" title="Ripristina" class="hover:text-white">{{ __('Ripristina') }}
                         </a>
                     </button>
@@ -95,11 +95,10 @@
                 </h1>
                 <button id="ms-modal-cancel-restoration"
                     class="bg-red-600 px-4 py-2 rounded-md text-md text-white hover:bg-red-800">{{ __('Annulla') }}</button>
-                <button id="ms-modal-confirm-restoration"
-                    class="bg-amber-600 px-7 py-2 ml-2 rounded-md text-md text-white hover:bg-amber-400 font-semibold"><a
-                        href="{{ route('admin.restore', ['apartment' => $apartment->slug]) }}" title="Ripristina"
-                        class="hover:text-white">{{ __('Conferma') }}
-                    </a></button>
+                <button class="bg-amber-600 px-7 py-2 ml-2 rounded-md text-md text-white hover:bg-amber-400 font-semibold">
+                    <a id="ms-modal-confirm-restoration" title="Ripristina" class="hover:text-white">{{ __('Conferma') }}
+                    </a>
+                </button>
             </div>
         </div>
     @endisset

@@ -9,14 +9,12 @@ allDeleteButtons.forEach((deleteButton) => {
         deleteModal.classList.remove('hidden');
         deleteModal.classList.add('flex');
 
-
         const modalCancelDeletionBtn = document.getElementById('ms-modal-cancel-deletion');
         modalCancelDeletionBtn.addEventListener('click', function () {
             event.preventDefault();
             deleteModal.classList.remove('flex');
             deleteModal.classList.add('hidden');
         });
-
 
         const modalConfirmDeletionBtn = document.getElementById('ms-modal-confirm-deletion');
         modalConfirmDeletionBtn.addEventListener('click', function () {
