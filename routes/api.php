@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ApartmentsController;
 use App\Http\Controllers\Api\ServicesController;
+use App\Http\Controllers\Api\VisitsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/apartments', [ApartmentsController::class, 'index']);
 Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentsController::class, 'show']);
 Route::post('/messages', [MessageController::class, 'store']);
+Route::post('/visits', [VisitsController::class, 'store']);
