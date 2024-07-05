@@ -17,6 +17,9 @@ class ApartmentsController extends Controller
             $radius = $request->input('radius');
             $serviceIds = $request->input('services'); // Dal fo deve arrivare un array di id che sarà scritto nelle url in forma estare tipo &services[]=1&services[]=2
             $numberOfRooms = $request->input('number_of_rooms');
+            $numberOfBeds = $request->input('number_of_beds');
+            $numberOfBathrooms = $request->input('number_of_bathrooms');
+            $squareMeters = $request->input('square_meters');
 
             $query = Apartment::select(
                 'apartments.*',
@@ -40,6 +43,18 @@ class ApartmentsController extends Controller
             // Per filtrale anche number of rooms, beds, bathrooms e square meters usare lo stesso metodo dei servizi con if (!empty) e dentro $query->where
             if (!empty($numberOfRooms)) {
                 $query->where('apartments.number_of_rooms', '>=', $numberOfRooms);
+            }
+
+            if (!empty($numberOfBeds)) {
+                $query->where('apartments.number_of_beds', '>=', $numberOfBeds);
+            }
+
+            if (!empty($numberOfBathrooms)) {
+                $query->where('apartments.number_of_bathrooms', '>=', $numberOfBathrooms);
+            }
+
+            if (!empty($squareMeters)) {
+                $query->where('apartments.square_meters', '>=', $squareMeters);
             }
 
             $apartments = $query->get();
