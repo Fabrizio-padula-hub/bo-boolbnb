@@ -16,12 +16,13 @@ class ApartmentsController extends Controller
             $longitude = $request->input('longitude');
             $radius = $request->input('radius');
             $serviceIds = $request->input('services'); // Dal fo deve arrivare un array di id che sarà scritto nelle url in forma estare tipo &services[]=1&services[]=2
+            $numberOfRooms = $request->input('number_of_rooms');
 
             $query = Apartment::select(
                 'apartments.*',
                 DB::raw('(6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(apartments.lat)) * cos(radians(apartments.long) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(apartments.lat)))) AS distance')
             )
-                ->where('apartments.visibility', '=', 1)
+                // ->where('apartments.visibility', '=', 1)
                 ->having('distance', '<', $radius)
                 ->orderBy('distance')
                 ->with('services'); // Carica i servizi correlati
@@ -37,6 +38,9 @@ class ApartmentsController extends Controller
             }
 
             // Per filtrale anche number of rooms, beds, bathrooms e square meters usare lo stesso metodo dei servizi con if (!empty) e dentro $query->where
+            if (!empty($numberOfRooms)) {
+                $query->where('apartments.number_of_rooms', '>=', $numberOfRooms);
+            }
 
             $apartments = $query->get();
 
