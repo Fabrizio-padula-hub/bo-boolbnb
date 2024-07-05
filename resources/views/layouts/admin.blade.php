@@ -132,6 +132,44 @@
                             </div>
                         </div>
                     </a>
+                    <a href="{{ route('admin.message') }}"
+                    class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
+                    <div
+                        class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center text-red-500 md:text-slate-300">
+                        <div>
+                            <div class="relative pt-0.5 pr-1">
+                                @if ($messagesCount !== 0)
+                                    <div
+                                        class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.deleted' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                        <span class="text-white text-xs font-black">{{ $messagesCount }}</span>
+                                    </div>
+                                @endif
+                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" stroke-width="2" viewBox="0 0 24 24" fill="currentColor" class="{{ Route::currentRouteName() === 'admin.message' ? 'w-8 h-8 text-indigo-400' : 'w-8 h-8 group-hover:text-indigo-400' }}">
+                                    <path fill-rule="evenodd" d="M5.337 21.718a6.707 6.707 0 0 1-.533-.074.75.75 0 0 1-.44-1.223 3.73 3.73 0 0 0 .814-1.686c.023-.115-.022-.317-.254-.543C3.274 16.587 2.25 14.41 2.25 12c0-5.03 4.428-9 9.75-9s9.75 3.97 9.75 9c0 5.03-4.428 9-9.75 9-.833 0-1.643-.097-2.417-.279a6.721 6.721 0 0 1-4.246.997Z" clip-rule="evenodd" />
+                                  </svg>
+                            </div>
+                        </div>
+                        <div>
+                            <p
+                            class="{{ Route::currentRouteName() === 'admin.message' ? 'font-bold text-base lg:text-lg max-md:hidden leading-4 text-indigo-400' : 'font-bold text-base lg:text-lg max-md:hidden text-slate-200 leading-4 group-hover:text-indigo-400' }}">
+                                {{ __('Messaggi') }}
+                            </p>
+                            @if ($messagesCount !== 0)
+                                @if ($messagesCount < 10)
+                                    <div
+                                        class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-red-800 text-xs font-mono font-bold">
+                                        {{ $messagesCount }}
+                                    </div>
+                                @else
+                                    <div
+                                        class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-red-800 text-xs font-mono font-bold">
+                                        {{ $messagesCount }}
+                                    </div>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+                    </a>
                     <a href="{{ route('admin.deleted') }}"
                         class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
                         <div

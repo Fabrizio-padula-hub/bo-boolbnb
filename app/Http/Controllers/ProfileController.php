@@ -18,13 +18,21 @@ class ProfileController extends Controller
     {
         $apartments = $request->user()->apartments;
         $apartmentsDeleted = $request->user()->apartments()->onlyTrashed()->get();
+        $messages = [];
+        foreach ($apartments as $apartment) {
+            foreach ($apartment->messages as $message) {
+                $messages[] = $message;
+            }
+        }
         $apartmentsCount = count($apartments);
         $trashCount = count($apartmentsDeleted);
+        $messagesCount = count($messages);
         $data = [
             'user' => $request->user(),
             'apartments' => $apartments,
             'apartmentsCount' => $apartmentsCount,
             'trashCount' => $trashCount,
+            'messagesCount' => $messagesCount
         ];
         return view('profile.edit', $data);
     }
