@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SponsorshipController;
+use App\Http\Controllers\Admin\VisitController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [VisitController::class, 'index'])->name('dashboard');
         Route::resource('apartments', ApartmentController::class)->parameters([
             'apartments' => 'apartment:slug'
         ]);

@@ -9,6 +9,10 @@
                     Benvenuto {{ Auth::user()->name }}
                 </div>
             </div>
+            @foreach ($visits as $visit)
+                <div>{{ $visit->ip_address }}</div>
+                <div>{{ $visit->apartment_id }}</div>
+            @endforeach
         </div>
     </div>
 @endsection
