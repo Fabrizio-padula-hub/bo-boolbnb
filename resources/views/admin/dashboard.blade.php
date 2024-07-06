@@ -9,10 +9,18 @@
                     Benvenuto {{ Auth::user()->name }}
                 </div>
             </div>
-            @foreach ($visits as $visit)
-                <div>{{ $visit->ip_address }}</div>
-                <div>{{ $visit->apartment_id }}</div>
-            @endforeach
+            <div class="p-6">
+                {{-- @foreach ($apartmentVisits as $apartmentVisit)
+                    <h1>{{ $apartmentVisit['apartment'] }}</h1>
+                    @foreach ($apartmentVisit['visits'] as $visits)
+                        <h2>{{ $visits }}</h2>
+                    @endforeach
+                @endforeach --}}
+                <canvas id="apartmentsChart"></canvas>
+                <script id="apartmentVisitsData" type="application/json">
+                    @json($apartmentVisits)
+                </script>
+            </div>
         </div>
     </div>
 @endsection
