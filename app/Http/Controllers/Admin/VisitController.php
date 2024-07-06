@@ -51,16 +51,23 @@ class VisitController extends Controller
             ];
         }
 
+        $messages = [];
+        foreach ($apartments as $apartment) {
+            foreach ($apartment->messages as $message) {
+                $messages[] = $message;
+            }
+        }
         $apartmentsDeleted = $user->apartments()->onlyTrashed()->get();
         $apartmentsCount = count($apartments);
         $trashCount = count($apartmentsDeleted);
-
+        $messagesCount = count($messages);
         $data = [
             'user' => $user,
             'apartments' => $apartments,
             'apartmentsCount' => $apartmentsCount,
             'trashCount' => $trashCount,
-            'apartmentVisits' => $apartmentVisits
+            'apartmentVisits' => $apartmentVisits,
+            'messagesCount' => $messagesCount
         ];
         return view('admin.dashboard', $data);
     }
