@@ -102,11 +102,6 @@
                         <div class="ml-2">
                             <p class="text-xl font-bold">{{ $message->name }}</p>
                             <p class="text-zinc-50 font-medium">{{ $message->email }}</p>
-                            @foreach ($apartments as $apartment)
-                                @if ($apartment->id === $message->apartment_id)
-                                    <p class="text-zinc-50 font-medium">{{ $apartment->title }}</p>
-                                @endif
-                            @endforeach
                         </div>
                     </div>
                     <div class="border-t border-white/5 p-4 flex-grow">
