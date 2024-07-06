@@ -25,7 +25,7 @@ class ApartmentsController extends Controller
                 'apartments.*',
                 DB::raw('(6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(apartments.lat)) * cos(radians(apartments.long) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(apartments.lat)))) AS distance')
             )
-                ->where('apartments.visibility', '=', 1)
+                // ->where('apartments.visibility', '=', 1)
                 ->having('distance', '<', $radius)
                 ->orderBy('distance')
                 ->with('services'); // Carica i servizi correlati
