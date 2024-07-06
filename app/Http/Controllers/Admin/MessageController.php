@@ -35,10 +35,4 @@ class MessageController extends Controller
     
         return view('admin.messages.index', $data);
     }
-
-    public function show(Apartment $apartment) {
-        dump('ciao');
-
-        return view('admin.apartments.show', $data);
-    }
  }
