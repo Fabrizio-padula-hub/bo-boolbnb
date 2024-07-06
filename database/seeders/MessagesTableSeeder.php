@@ -16,12 +16,13 @@ class MessagesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
-            $newMessages = new Message();
-            $newMessages->name = $faker->firstName();
-            $newMessages->email = $faker->email();
-            $newMessages->text = $faker->text();
-            $newMessages->save();
+        for ($i = 0; $i < 100; $i++) {
+            $newMessage = new Message();
+            $newMessage->apartment_id = $faker->numberBetween(1, 40);
+            $newMessage->name = $faker->firstName();
+            $newMessage->email = $faker->email();
+            $newMessage->text = $faker->text();
+            $newMessage->save();
         }
     }
 }
