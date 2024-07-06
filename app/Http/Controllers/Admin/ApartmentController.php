@@ -93,7 +93,15 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         $data = $this->apartmentsCount();
+        $allMessages = $apartment->messages;
+        $messages = [];
+        foreach ($allMessages as $message) {
+            if ($apartment->id === $message->apartment_id) {
+                $messages[] = $message;
+            }
+        }
         $data['apartment'] = $apartment;
+        $data['messages'] = $messages;
         return view('admin.apartments.show', $data);
     }
 

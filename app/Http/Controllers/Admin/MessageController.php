@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 { 
-    public function index(){
+    public function index() {
 
         $user = auth()->user();
         $apartments = $user->apartments;
@@ -34,5 +34,11 @@ class MessageController extends Controller
         ];
     
         return view('admin.messages.index', $data);
+    }
+
+    public function show(Apartment $apartment) {
+        dump('ciao');
+
+        return view('admin.apartments.show', $data);
     }
  }
