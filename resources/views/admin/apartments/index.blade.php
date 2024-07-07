@@ -48,6 +48,14 @@
                     <td class="py-3 px-2">
                         {{-- icone --}}
                         <div class="inline-flex items-center space-x-3">
+                            {{-- icona Sponsorizza --}}
+                            <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}" title="Sponsorizza"
+                                class="hover:text-indigo-700"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </a>
                             {{-- icona Mostra --}}
                             <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
                                 class="hover:text-indigo-700"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
