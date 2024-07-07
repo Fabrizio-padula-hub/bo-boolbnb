@@ -14,21 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('apartment_sponsorship', function (Blueprint $table) {
-            $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')
-            ->references('id')
-            ->on('apartments')
-            ->onDelete('cascade');
-
-            $table->unsignedBigInteger('sponsorship_id');
-            $table->foreign('sponsorship_id')
-            ->references('id')
-            ->on('sponsorships')
-            ->onDelete('cascade');
-
-            $table->primary(['apartment_id', 'sponsorship_id']);
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('expired_at')->nullable();
+            $table->id();
+            $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
+            $table->foreignId('sponsorship_id')->constrained()->onDelete('cascade');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
+            $table->timestamps();
         });
     }
 
