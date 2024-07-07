@@ -47,11 +47,11 @@ class SponsorshipController extends Controller
         $apartments = $user->apartments;
         
         $messages = [];
-        // foreach ($apartments as $apartment) {
-        //     foreach ($apartment->messages as $message) {
-        //         $messages[] = $message;
-        //     }
-        // }
+        foreach ($apartments as $singleApartment) {
+            foreach ($singleApartment->messages as $message) {
+                $messages[] = $message;
+            }
+        }
         $sponsorships = Sponsorship::all();
         $apartmentsDeleted = $user->apartments()->onlyTrashed()->get();
         $apartmentsCount = count($apartments);
