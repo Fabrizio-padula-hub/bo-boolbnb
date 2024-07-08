@@ -94,8 +94,9 @@ class SponsorshipController extends Controller
             if ($existingSponsorship) {
                 // Se esiste già una sponsorizzazione attiva, estendi la data di fine
                 $existingEndTime = new Carbon($existingSponsorship->pivot->end_time);
-
+                
                 if ($existingEndTime) {
+                    
                     $newEndTime = $existingEndTime->copy()->addHours($durationInHours);
 
                     $apartment->sponsorships()->updateExistingPivot($sponsorshipId, [
@@ -104,8 +105,11 @@ class SponsorshipController extends Controller
 
                     // Aggiorna il tempo cumulativo
                     if ($newEndTime > $cumulativeEndTime) {
+                        
                         $cumulativeEndTime = $newEndTime;
+                        return redirect()->route('admin.apartments.index')->with('message', 'Questo piano è già attivo su questo appartamento.');
                     }
+                    
                 }
             } else {
                 // Crea una nuova sponsorizzazione per questo appartamento
@@ -119,13 +123,14 @@ class SponsorshipController extends Controller
 
                 // Aggiorna il tempo cumulativo
                 $cumulativeEndTime = $end_time;
+                
             }
         }
 
         // Aggiorna la data di fine cumulativa per tutte le sponsorizzazioni
         $apartment->update(['sponsorship_end_time' => $cumulativeEndTime]);
 
-        return redirect()->route('admin.apartments.index')->with('message', $apartment->title . ' è ora in evidenza!');
+        return redirect()->route('admin.apartments.index')->with('message', $apartment->title . ' è ora in evidenza! La sponsorizzazione terminerà il ' . $cumulativeEndTime);
     }
 
 }
