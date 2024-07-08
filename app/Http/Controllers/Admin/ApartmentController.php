@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class ApartmentController extends Controller
 {
@@ -100,8 +101,13 @@ class ApartmentController extends Controller
                 $messages[] = $message;
             }
         }
+        $activeSponsorships = $apartment->sponsorships()
+        ->where('end_time', '>', Carbon::now())
+        ->get()
+        ->toArray();
         $data['apartment'] = $apartment;
         $data['messages'] = $messages;
+        $data['activeSponsorships'] = $activeSponsorships;
         return view('admin.apartments.show', $data);
     }
 
