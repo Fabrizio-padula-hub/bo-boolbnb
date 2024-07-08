@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             MessagesTableSeeder::class,
             SponsorshipsTableSeeder::class,
             ServicesTableSeeder::class,
+            VisitsTableSeeder::class
         ]);
     }
 }
