@@ -102,12 +102,32 @@ class ApartmentController extends Controller
             }
         }
         $activeSponsorships = $apartment->sponsorships()
-        ->where('end_time', '>', Carbon::now())
-        ->get()
-        ->toArray();
+            ->where('end_time', '>', Carbon::now())
+            ->get()
+            ->toArray();
+
+        $user = auth()->user();
+
+        // Recupera le visite per ciascun giorno della settimana per l'appartamento
+        $dailyVisits = $apartment->visits()
+            ->selectRaw('DAYOFWEEK(created_at) as day, COUNT(*) as visit_count')
+            ->groupBy('day')
+            ->orderBy('day')
+            ->get()
+            ->pluck('visit_count', 'day')
+            ->toArray();
+
+        // Inizializzazione di tutti i giorni della settimana con 0 visite
+        $weeklyData = array_fill(1, 7, 0);
+        foreach ($dailyVisits as $day => $count) {
+            $weeklyData[$day] = $count;
+        }
+
+        $data['user'] = $user;
         $data['apartment'] = $apartment;
         $data['messages'] = $messages;
         $data['activeSponsorships'] = $activeSponsorships;
+        $data['weeklyData'] = $weeklyData;
         return view('admin.apartments.show', $data);
     }
 

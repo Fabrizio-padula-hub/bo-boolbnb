@@ -12,7 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/css/generic.css', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/deleteModal.js', 'resources/js/restoreModal.js', 'resources/js/apartmentsStats.js', 'resources/js/payment.js', 'resources/js/cart.js'])
+    @vite(['resources/css/app.css', 'resources/css/generic.css', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/deleteModal.js', 'resources/js/restoreModal.js', 'resources/js/apartmentsStats.js', 'resources/js/payment.js', 'resources/js/cart.js', 'resources/js/singleApartmentStats.js'])
     <script src="https://js.braintreegateway.com/web/dropin/1.30.0/js/dropin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
