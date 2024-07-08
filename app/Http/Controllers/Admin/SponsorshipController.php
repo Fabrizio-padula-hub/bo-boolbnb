@@ -93,7 +93,7 @@ class SponsorshipController extends Controller
 
             if ($existingSponsorship) {
                 // Se esiste già una sponsorizzazione attiva, estendi la data di fine
-                $existingEndTime = $existingSponsorship->pivot->end_time;
+                $existingEndTime = new Carbon($existingSponsorship->pivot->end_time);
 
                 if ($existingEndTime) {
                     $newEndTime = $existingEndTime->copy()->addHours($durationInHours);
@@ -125,7 +125,7 @@ class SponsorshipController extends Controller
         // Aggiorna la data di fine cumulativa per tutte le sponsorizzazioni
         $apartment->update(['sponsorship_end_time' => $cumulativeEndTime]);
 
-        return redirect()->route('admin.apartments.index')->with('message', 'Sponsorizzazioni create con successo!');
+        return redirect()->route('admin.apartments.index')->with('message', $apartment->title . ' è ora in evidenza!');
     }
 
 }
