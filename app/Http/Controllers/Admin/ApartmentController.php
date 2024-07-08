@@ -103,7 +103,8 @@ class ApartmentController extends Controller
         }
         $activeSponsorships = $apartment->sponsorships()
         ->where('end_time', '>', Carbon::now())
-        ->get();
+        ->get()
+        ->toArray();
         $data['apartment'] = $apartment;
         $data['messages'] = $messages;
         $data['activeSponsorships'] = $activeSponsorships;
