@@ -39,7 +39,7 @@ class Apartment extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class)->withPivot('start_time', 'end_time');;
     }
 
     public function getRouteKeyName()

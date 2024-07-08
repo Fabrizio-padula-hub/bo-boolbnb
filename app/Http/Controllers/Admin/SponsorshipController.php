@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Sponsorship;
 use App\Models\Apartment;
+use App\Models\Sponsorship;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class SponsorshipController extends Controller
 {
     public function index()
     {
-        
-        $sponsorships = Sponsorship::all(); 
-        
+
+        $sponsorships = Sponsorship::all();
+
         $user = auth()->user();
         $apartments = $user->apartments;
         $messages = [];
@@ -33,19 +34,19 @@ class SponsorshipController extends Controller
             'trashCount' => $trashCount,
             'messagesCount' => $messagesCount,
             'messages' => $messages,
-            'sponsorships' => $sponsorships
+            'sponsorships' => $sponsorships,
         ];
-        
+
         return view('admin.sponsorships.index', $data);
     }
 
     public function create(Apartment $apartment)
     {
-        
+
         $user = auth()->user();
-        
+
         $apartments = $user->apartments;
-        
+
         $messages = [];
         foreach ($apartments as $singleApartment) {
             foreach ($singleApartment->messages as $message) {
@@ -65,7 +66,7 @@ class SponsorshipController extends Controller
             'messagesCount' => $messagesCount,
             'messages' => $messages,
             'sponsorships' => $sponsorships,
-            'apartment' => $apartment
+            'apartment' => $apartment,
         ];
         return view('admin.sponsorships.create', $data);
     }
@@ -76,26 +77,55 @@ class SponsorshipController extends Controller
             'sponsorship_ids' => 'required|array',
             'sponsorship_ids.*' => 'exists:sponsorships,id',
         ]);
-    
+
         $sponsorshipIds = $request->sponsorship_ids;
-    
+        $cumulativeEndTime = Carbon::now();
+
         foreach ($sponsorshipIds as $sponsorshipId) {
             $sponsorship = Sponsorship::findOrFail($sponsorshipId);
-    
-            $created_at = now();
-            $expired_at = $created_at->clone()->addHours($sponsorship->duration);
-    
-            // Verifica se la sponsorizzazione esiste già per questo appartamento
-            $existingSponsorship = $apartment->sponsorships()->where('sponsorship_id', $sponsorshipId)->first();
-            if (!$existingSponsorship) {
-                // Aggiungi la sponsorizzazione all'appartamento
+            $durationInHours = $sponsorship->duration;
+
+            // Verifica se esiste già una sponsorizzazione attiva per questo tipo di sponsorizzazione e appartamento
+            $existingSponsorship = $apartment->sponsorships()
+                ->where('sponsorship_id', $sponsorshipId)
+                ->where('end_time', '>', Carbon::now())
+                ->first();
+
+            if ($existingSponsorship) {
+                // Se esiste già una sponsorizzazione attiva, estendi la data di fine
+                $existingEndTime = $existingSponsorship->pivot->end_time;
+
+                if ($existingEndTime) {
+                    $newEndTime = $existingEndTime->copy()->addHours($durationInHours);
+
+                    $apartment->sponsorships()->updateExistingPivot($sponsorshipId, [
+                        'end_time' => $newEndTime,
+                    ]);
+
+                    // Aggiorna il tempo cumulativo
+                    if ($newEndTime > $cumulativeEndTime) {
+                        $cumulativeEndTime = $newEndTime;
+                    }
+                }
+            } else {
+                // Crea una nuova sponsorizzazione per questo appartamento
+                $start_time = $cumulativeEndTime->copy(); // inizia dopo l'ultima sponsorizzazione cumulativa
+                $end_time = $start_time->copy()->addHours($durationInHours);
+
                 $apartment->sponsorships()->attach($sponsorshipId, [
-                    'created_at' => $created_at,
-                    'expired_at' => $expired_at
+                    'start_time' => $start_time,
+                    'end_time' => $end_time,
                 ]);
+
+                // Aggiorna il tempo cumulativo
+                $cumulativeEndTime = $end_time;
             }
         }
-    
-        return redirect()->route('admin.apartments.index')->with('success', 'Sponsorizzazioni create con successo!');
+
+        // Aggiorna la data di fine cumulativa per tutte le sponsorizzazioni
+        $apartment->update(['sponsorship_end_time' => $cumulativeEndTime]);
+
+        return redirect()->route('admin.apartments.index')->with('message', 'Sponsorizzazioni create con successo!');
     }
+
 }
