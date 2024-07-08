@@ -111,10 +111,17 @@
                     </p>
                 </div>
                 {{-- bottoni azioni --}}
-                <div class="px-6 pt-4 pb-2 max-[457px]:flex flex-col">
-                    {{-- bottoni Mostra --}}
+                <div class="px-6 pt-4 pb-2 grid grid-cols-2 gap-2">
+                    {{-- bottoni Sponsorizza --}}
                     <button type="submit"
                         class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
+                            title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
+                        </a>
+                    </button>
+                    {{-- bottoni Mostra --}}
+                    <button type="submit"
+                        class="max-[457px]:mb-3 rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <a href="{{ route('admin.apartments.show', $apartment->slug) }}" title="Mostra"
                             class="hover:text-white">{{ __('Mostra') }}
                         </a>

@@ -64,15 +64,15 @@ document.addEventListener('DOMContentLoaded', function () {
             cartItem.classList.add('rounded-lg', 'cartElements');
 
             cartItem.innerHTML = `
-                <div class="flex justify-between items-center mb-6 rounded-lg bg-white p-6 shadow-md">
+                <div class="flex justify-between items-center mb-6 rounded-lg p-6 shadow-md bg-clip-border border-solid border-2 border-indigo-800">
                     <div class="numberSinglePlanSelected">x${cart[key].quantity}</div>
-                    <div class="mx-4 flex w-full justify-between items-center">
-                        <h2 class="text-lg font-bold text-gray-900">${cart[key].name}</h2>
+                    <div class="mx-4 px-3 flex w-full justify-between items-center">
+                        <h2 class="text-lg font-bold text-indigo-400">${cart[key].name}</h2>
                         <div class="singlePlanTotal">${(cart[key].price * cart[key].quantity).toFixed(2)}€</div>
                     </div>
                     <div class="deleteSinglePlanTotal flex items-center space-x-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
+                            stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </div>
@@ -94,6 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return sum + cart[key].price * cart[key].quantity;
         }, 0);
 
-        totalElement.textContent = `${total.toFixed(2)}€`;
+        totalElement.textContent = `${total.toFixed(2)}`;
     }
 });

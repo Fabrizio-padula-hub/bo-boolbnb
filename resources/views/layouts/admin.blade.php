@@ -136,13 +136,12 @@
                     </a>
                     <a href="{{ route('admin.message') }}"
                         class="hover:bg-white/10 transition duration-150 ease-linear rounded-lg py-3 px-2 group">
-                        <div
-                            class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center text-red-500 md:text-slate-300">
+                        <div class="relative flex flex-col space-y-2 md:flex-row md:space-y-0 space-x-2 items-center">
                             <div>
                                 <div class="relative pt-0.5 pr-1">
                                     @if ($messagesCount !== 0)
                                         <div
-                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.deleted' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.message' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
                                             <span class="text-white text-xs font-black">{{ $messagesCount }}</span>
                                         </div>
                                     @endif
@@ -163,12 +162,12 @@
                                 @if ($messagesCount !== 0)
                                     @if ($messagesCount < 10)
                                         <div
-                                            class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-red-800 text-xs font-mono font-bold">
+                                            class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2.5 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
                                             {{ $messagesCount }}
                                         </div>
                                     @else
                                         <div
-                                            class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-red-800 text-xs font-mono font-bold">
+                                            class="absolute -top-3 -right-3 md:top-0 md:right-0 max-lg:hidden px-2 py-1.5 rounded-full bg-indigo-800 text-xs font-mono font-bold">
                                             {{ $messagesCount }}
                                         </div>
                                     @endif

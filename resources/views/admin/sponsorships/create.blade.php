@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-between pb-3">
-        <h1>Sponsorizza l'appartamento '{{ $apartment->title }}'</h1>
+        <h1 class="uppercase text-indigo-400">Sponsorizza l'appartamento '{{ $apartment->title }}'</h1>
         <span id="ms-cartBtn" class="transition duration-150 ease-linear rounded-lg group cursor-pointer">
             <div class="relative pt-0.5 pr-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -45,11 +45,12 @@
                     <div class="flex justify-center">
                         <div class="flex items-center border-gray-100">
                             <span
-                                class="decrement cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                                class="decrement cursor-pointer rounded-l bg-white/10 py-1 px-3.5 duration-100 hover:bg-indigo-600 hover:text-blue-50">
                                 - </span>
-                            <span class="quantity h-8 w-8 border bg-white text-center text-xs outline-none">0</span>
                             <span
-                                class="increment cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                                class="quantity flex items-center justify-center h-8 w-8 bg-white/10 text-center text-xs outline-none">0</span>
+                            <span
+                                class="increment cursor-pointer bg-white/10 rounded-r py-1 px-3 duration-100 hover:bg-indigo-600 hover:text-blue-50">
                                 + </span>
                         </div>
                     </div>
@@ -59,35 +60,39 @@
     </div>
 
     {{-- Shopping cart --}}
-    <form id="payment-form"
-        class="ms-shoppingCart hidden h-full border bg-white p-6 shadow-md md:mt-0 w-full md:w-1/3 lg:w-1/4 absolute right-0 top-0"
-        action="{{ route('admin.payment.checkout', ['apartment' => $apartment->slug]) }}" method="POST"
-        title="Sponsorizza">
-        @csrf
-        <div id="ms-closeCart" class="cursor-pointer mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd"
-                    d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 1 1-1.06 1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
-                    clip-rule="evenodd" />
-            </svg>
-        </div>
-        <div id="cartContainer">
-            <!-- Qui verranno aggiunti gli elementi del carrello -->
-        </div>
-        <hr class="my-4" />
-        <div class="flex justify-between">
-            <p class="text-lg font-bold">Totale</p>
-            <div>
-                <p id="totalPrice" class="inline-block mb-1 text-lg font-bold total">0.00</p><span>€</span>
-                <p class="text-sm text-gray-700">inclusa IVA</p>
+    <div class="ms-shoppingCart hidden h-full bg-black shadow-md md:mt-0 w-full md:w-1/3 lg:w-1/4 absolute right-0 top-0">
+        <form id="payment-form" class="bg-white/10 h-full"
+            action="{{ route('admin.payment.checkout', ['apartment' => $apartment->slug]) }}" method="POST"
+            title="Sponsorizza">
+            @csrf
+            <div class="p-6">
+                <div id="ms-closeCart" class="cursor-pointer mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="h-6 w-6 cursor-pointer duration-150">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+                <div id="cartContainer">
+                    <!-- Qui verranno aggiunti gli elementi del carrello -->
+                </div>
+                <hr class="my-4" />
+                <div class="flex justify-between">
+                    <p class="text-lg font-bold">Totale</p>
+                    <div>
+                        <p id="totalPrice" class="inline-block mb-1 text-lg font-bold total">0.00</p><span>€</span>
+                        <p class="text-sm text-gray-700">inclusa IVA</p>
+                    </div>
+                </div>
+                <a id="prepaymentBtn">
+                    <div
+                        class="mt-6 w-full text-center rounded-md bg-indigo-700 py-1.5 font-medium text-blue-50 hover:bg-indigo-600 cursor-pointer">
+                        Acquista</div>
+                </a>
+                <div id="dropin-container" class="hidden"></div>
+                <button id="paymentBtn"
+                    class="hidden mt-6 w-full rounded-md bg-indigo-700 py-1.5 font-medium text-blue-50 hover:bg-indigo-600"
+                    type="submit">Acquista</button>
             </div>
-        </div>
-        <div id="prepaymentBtn"
-            class="mt-6 w-full text-center rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-            Acquista</div>
-        <div id="dropin-container" class="hidden"></div>
-        <button id="paymentBtn"
-            class="hidden mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
-            type="submit">Acquista</button>
-    </form>
+        </form>
+    </div>
 @endsection
