@@ -21,9 +21,9 @@
                         <p class="text-zinc-50 text-sm mt-4 ml-2">Sponsorizzazione per {{ $sponsorship->duration }} H
                         </p>
                     </div>
+                </div>
             </label>
             <input type="checkbox" id="{sponsorship_{{ $sponsorship->id }}" name="sponsorship_ids[]" value="{{ $sponsorship->id }}">
-            </div>
         @endforeach
 
         <button type="submit"

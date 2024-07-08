@@ -94,6 +94,26 @@
                 </form>
             </div>
         </div>
+        @if (!empty($activeSponsorships))
+        <h2>Sponsorizzazioni</h2>
+            @foreach ($activeSponsorships as $sponsorship)
+            <div class="bg-black/60 to-white/5 rounded-lg flex flex-col">
+                <div class="flex flex-row items-center p-4">
+                    <div class="">
+                        <p class="text-xl font-bold">{{ $sponsorship->name }}</p>
+                        <div class="flex items-center mt-4">
+                            <div class="text-3xl ">💰</div>
+                            <p class="text-zinc-50 font-medium">{{ $sponsorship->price }} $ </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-white/5 p-4 flex-grow">
+                    <p class="text-zinc-50 text-sm mt-4 ml-2">Termine della sponsorizzazione: {{ $sponsorship->pivot->end_time }}
+                    </p>
+                </div>
+            </div>
+            @endforeach
+        @endif
         @if (!empty($messages))
             <h2>Messaggi</h2>
             @foreach ($messages as $message)
