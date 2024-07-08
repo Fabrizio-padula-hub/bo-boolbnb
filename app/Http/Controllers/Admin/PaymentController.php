@@ -24,14 +24,9 @@ class PaymentController extends Controller
 
     public function checkout(Request $request)
     {
-        $request->validate([
-            'payment_method_nonce' => 'required',
-            'sponsorship_id' => 'required|exists:sponsorships,id'
-        ]);
-
         $nonce = $request->payment_method_nonce;
         $sponsorship = Sponsorship::find($request->sponsorship_id);
-        $amount = $sponsorship->price;
+        $amount = number_format($request->total_price, 2);
 
         $result = $this->gateway->transaction()->sale([
             'amount' => $amount,

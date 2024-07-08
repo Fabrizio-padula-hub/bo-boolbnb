@@ -78,12 +78,16 @@
         <div class="flex justify-between">
             <p class="text-lg font-bold">Totale</p>
             <div>
-                <p class="mb-1 text-lg font-bold total">0.00€</p>
+                <p id="totalPrice" class="inline-block mb-1 text-lg font-bold total">0.00</p><span>€</span>
                 <p class="text-sm text-gray-700">inclusa IVA</p>
             </div>
         </div>
-        {{-- <div id="dropin-container"></div> --}}
-        <button
-            class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Acquista</button>
+        <div id="prepaymentBtn"
+            class="mt-6 w-full text-center rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+            Acquista</div>
+        <div id="dropin-container" class="hidden"></div>
+        <button id="paymentBtn"
+            class="hidden mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+            type="submit">Acquista</button>
     </form>
 @endsection
