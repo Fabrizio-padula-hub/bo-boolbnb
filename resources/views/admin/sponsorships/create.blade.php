@@ -33,7 +33,7 @@
                             </span>
                         </p>
                         <p class="font-semibold text-gray-400 text-left pt-5">
-                            <span>
+                            <span class="hidden md:inline">
                                 Con il pacchetto {{ $sponsorship->name }}, avrai la possibilità di mettere in evidenza
                                 il
                                 tuo
