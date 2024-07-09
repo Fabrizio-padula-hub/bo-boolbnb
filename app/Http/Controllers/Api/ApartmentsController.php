@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Apartment;
 
 class ApartmentsController extends Controller
 {
@@ -15,7 +15,7 @@ class ApartmentsController extends Controller
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
             $radius = $request->input('radius');
-            $serviceIds = $request->input('services'); // Dal fo deve arrivare un array di id che sarà scritto nelle url in forma estare tipo &services[]=1&services[]=2
+            $serviceIds = $request->input('services'); // Dal form deve arrivare un array di id che sarà scritto nelle URL in forma estesa tipo &services[]=1&services[]=2
             $numberOfRooms = $request->input('number_of_rooms');
             $numberOfBeds = $request->input('number_of_beds');
             $numberOfBathrooms = $request->input('number_of_bathrooms');
@@ -23,16 +23,14 @@ class ApartmentsController extends Controller
 
             $query = Apartment::select(
                 'apartments.*',
-                DB::raw('(6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(apartments.lat)) * cos(radians(apartments.long) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(apartments.lat)))) AS distance')
+                DB::raw('(6371 * acos(cos(radians(' . $latitude . ')) * cos(radians(apartments.lat)) * cos(radians(apartments.long) - radians(' . $longitude . ')) + sin(radians(' . $latitude . ')) * sin(radians(apartments.lat)))) AS distance'),
+                DB::raw('(SELECT COUNT(*) FROM apartment_sponsorship WHERE apartment_sponsorship.apartment_id = apartments.id AND apartment_sponsorship.end_time > NOW()) as sponsorship_count')
             )
-                // ->where('apartments.visibility', '=', 1)
                 ->having('distance', '<', $radius)
-                ->orderBy('distance')
-                ->with('services'); // Carica i servizi correlati
+                ->with('services')
+                ->orderBy('sponsorship_count', 'desc') // Ordina prima per numero di sponsorizzazioni (sponsorizzati prima)
+                ->orderBy('distance'); // Poi per distanza
 
-            // Join aggiustato per prendere tutti gli appartamenti che hanno almeno un servizio selezionato compresa la possibilità di selezionarne più di uno
-            // (vi conviene aggiungere agli appartamenti nel db tramite edit tanti servizi così la potete testare bene)
-            // Con la if si rende il filtro opzionale solo se il 'array è popolato
             if (!empty($serviceIds)) {
                 $query->leftJoin('apartment_service', 'apartment_service.apartment_id', '=', 'apartments.id')
                     ->leftJoin('services', 'apartment_service.service_id', '=', 'services.id')
@@ -40,7 +38,6 @@ class ApartmentsController extends Controller
                     ->groupBy('apartments.id');
             }
 
-            // Per filtrale anche number of rooms, beds, bathrooms e square meters usare lo stesso metodo dei servizi con if (!empty) e dentro $query->where
             if (!empty($numberOfRooms)) {
                 $query->where('apartments.number_of_rooms', '>=', $numberOfRooms);
             }
@@ -59,7 +56,6 @@ class ApartmentsController extends Controller
 
             $apartments = $query->get();
 
-            // Filtra gli appartamenti che hanno tutti i servizi richiesti, se forniti usando pluk per prendere gli id e pusharli in un array con toArray
             if (!empty($serviceIds)) {
                 $apartments = $apartments->filter(function ($apartment) use ($serviceIds) {
                     $apartmentServiceIds = $apartment->services->pluck('id')->toArray();
@@ -67,16 +63,15 @@ class ApartmentsController extends Controller
                 });
             }
 
-            // Conta il numero totale di risultati
             $totalResults = $apartments->count();
 
             return response()->json([
                 'total_results' => $totalResults,
-                'apartments' => $apartments->values() // Ritorna i valori filtrati
+                'apartments' => $apartments->values(),
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => 'Si è verificato un errore durante l\'elaborazione della richiesta: ' . $e->getMessage()
+                'error' => 'Si è verificato un errore durante l\'elaborazione della richiesta: ' . $e->getMessage(),
             ], 500);
         }
     }
@@ -88,12 +83,12 @@ class ApartmentsController extends Controller
         if ($apartment) {
             $data = [
                 'success' => true,
-                'apartment' => $apartment
+                'apartment' => $apartment,
             ];
         } else {
             $data = [
                 'success' => false,
-                'error' => 'Non ci sono appartamenti che corrispondono a questo slug'
+                'error' => 'Non ci sono appartamenti che corrispondono a questo slug',
             ];
         }
         return response()->json($data);
