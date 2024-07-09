@@ -22,7 +22,6 @@
                 <th class="text-left py-3 px-2 rounded-l-lg">{{ __('Titolo') }}</th>
                 <th class="text-left py-3 px-2 max-md:hidden">{{ __('Indirizzo') }}</th>
                 <th class="text-left py-3 px-2 max-md:hidden">{{ __('Visibilità') }}</th>
-                <th class="text-left py-3 px-2 max-md:hidden">{{ __('Immagine') }}</th>
                 <th class="text-left py-3 px-2 rounded-r-lg">{{ __('Azioni') }}</th>
             </thead>
             @foreach ($apartments as $apartment)
@@ -30,21 +29,6 @@
                     <td class="py-3 px-2">{{ $apartment->title }}</td>
                     <td class="py-3 px-2 max-md:hidden">{{ $apartment->address }}</td>
                     <td class="py-3 px-2 max-md:hidden">{{ $apartment->visibility ? 'Si' : 'No' }}</td>
-                    <td class="py-3 px-2 max-md:hidden">
-                        @if ($apartment->image)
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                <circle cx="8.5" cy="8.5" r="1.5" />
-                                <polyline points="21 15 16 10 5 21" />
-                            </svg>
-                        @else
-                            <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        @endif
-                    </td>
                     <td class="py-3 px-2">
                         {{-- icone --}}
                         <div class="inline-flex items-center space-x-3">
