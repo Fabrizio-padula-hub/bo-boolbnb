@@ -2,15 +2,16 @@ const sponsorshipCards = document.querySelectorAll('.sponsorship');
 const paymentFormContainer = document.querySelector('.payment-form-container');
 const cartContainer = document.getElementById('cartContainer');
 sponsorshipCards.forEach(singleCard => {
-    const cardData = singleCard.getAttribute('data-card');
     singleCard.addEventListener('click', function () {
+        const cardData = JSON.parse(singleCard.getAttribute('data-card'));
+        console.log(cardData);
         cartContainer.innerHTML = '';
         const cartItem = document.createElement('div');
         cartItem.classList.add('rounded-lg', 'cartElements');
         cartItem.innerHTML = `
                 <div class="flex justify-between items-center mb-6 rounded-lg p-6 shadow-md bg-clip-border border-solid border-2 border-indigo-800">
                     <div class="mx-4 px-3 flex w-full justify-between items-center">
-                    <h1>Stai acquistando ${cardData.name} </h1>
+                    <h1><strong>${cardData.name}</strong></h1>
                         <div class="singlePlanTotal">${cardData.price}€</div>
                     </div>
                     <div class="deleteSinglePlanTotal flex items-center space-x-4">
