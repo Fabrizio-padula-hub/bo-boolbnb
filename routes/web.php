@@ -24,7 +24,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/messages', [MessageController::class, 'index'])->name('message');
         Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
         Route::get('/sponsorships/create/{apartment}', [SponsorshipController::class, 'create'])->name('sponsorships.create');
-        Route::post('/apartments/{apartment}/sponsorships', [SponsorshipController::class, 'store'])->name('apartments.sponsorship');
+        Route::get('/apartments/{apartment}/sponsorships', [SponsorshipController::class, 'store'])->name('apartments.sponsorship');
         Route::post('/sponsorships', [SponsorshipController::class, 'store'])->name('sponsorships.store');
         Route::get('/deleted', [ApartmentController::class, 'showSoftDeletedApartments'])->name('deleted');
         Route::get('/restore/{apartment}', [ApartmentController::class, 'restoreApartment'])->name('restore');

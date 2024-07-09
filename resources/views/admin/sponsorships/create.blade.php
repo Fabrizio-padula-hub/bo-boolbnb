@@ -93,6 +93,11 @@
                     class="hidden mt-6 w-full rounded-md bg-indigo-700 py-1.5 font-medium text-blue-50 hover:bg-indigo-600"
                     type="submit">Acquista</button>
             </div>
+            <input type="hidden" id="apartmentId" value="{{ $apartment->id }}">
+            @foreach ($sponsorships as $sponsorship)
+                <input type="hidden" id="sponsorshipId" name="sponsorship_ids[]" value="{{ $sponsorship->id }}">
+            @endforeach
+            <input type="hidden" id="apartmentSlug" value="{{ $apartment->slug }}">
         </form>
     </div>
 @endsection

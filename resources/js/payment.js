@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartContainer = document.getElementById('cartContainer');
     const totalPriceElement = document.getElementById('totalPrice');
 
+    const apartmentId = document.getElementById('apartmentId') ? document.getElementById('apartmentId').value : null;
+    const sponsorshipId = document.getElementById('sponsorshipId') ? document.getElementById('sponsorshipId').value : null;
+    const apartmentSlug = document.getElementById('apartmentSlug') ? document.getElementById('apartmentSlug').value : null;
+
     prepaymentBtn.addEventListener('click', function () {
         const cartItems = cartContainer.querySelectorAll('.cartElements');
         const totalPrice = parseFloat(totalPriceElement.textContent);
@@ -13,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Il carrello è vuoto. Aggiungi almeno un elemento prima di procedere al pagamento.');
             return;
         }
-        // Esegui la richiesta per ottenere il token di Braintree
-        else {
+
+        if (apartmentId && sponsorshipId && apartmentSlug) {
             dropinContainer.classList.remove('hidden');
             if (!dropinContainer.classList.contains('hidden')) {
-                axios.get('{{ $apartment->slug }}/payment/token')
+                axios.get(`{{ $apartment->slug }}/payment/token`)
                     .then(response => {
                         const data = response.data;
                         braintree.dropin.create({
@@ -27,28 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (err) {
                                 console.error(err);
                                 return;
-                            }
-
-                            // Mostra il container del Drop-in UI
-                            else {
-
-                                // Event listener per l'invio del form
+                            } else {
                                 form.addEventListener('submit', function (event) {
                                     event.preventDefault();
-
-                                    // Verifica se il carrello è popolato
                                     if (cartItems.length === 0) {
                                         alert('Il carrello è vuoto. Aggiungi almeno un elemento prima di procedere al pagamento.');
                                         return;
-                                    }
-                                    else {
+                                    } else {
                                         dropinInstance.requestPaymentMethod(function (err, payload) {
                                             if (err) {
                                                 console.error(err);
                                                 return;
                                             }
 
-                                            // Aggiungi i dati del pagamento al form
                                             const hiddenInputNonce = document.createElement('input');
                                             hiddenInputNonce.setAttribute('type', 'hidden');
                                             hiddenInputNonce.setAttribute('name', 'payment_method_nonce');
@@ -58,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                             const hiddenInputSponsorshipId = document.createElement('input');
                                             hiddenInputSponsorshipId.setAttribute('type', 'hidden');
                                             hiddenInputSponsorshipId.setAttribute('name', 'sponsorship_id');
-                                            hiddenInputSponsorshipId.setAttribute('value', '{{$sponsorship->id}}');
+                                            hiddenInputSponsorshipId.setAttribute('value', sponsorshipId);
                                             form.appendChild(hiddenInputSponsorshipId);
 
                                             const hiddenInputTotalPrice = document.createElement('input');
@@ -67,7 +62,18 @@ document.addEventListener('DOMContentLoaded', function () {
                                             hiddenInputTotalPrice.setAttribute('value', totalPrice);
                                             form.appendChild(hiddenInputTotalPrice);
 
-                                            // Invia il form
+                                            const hiddenInputApartmentId = document.createElement('input');
+                                            hiddenInputApartmentId.setAttribute('type', 'hidden');
+                                            hiddenInputApartmentId.setAttribute('name', 'apartment_id');
+                                            hiddenInputApartmentId.setAttribute('value', apartmentId);
+                                            form.appendChild(hiddenInputApartmentId);
+
+                                            const hiddenInputApartmentSlug = document.createElement('input');
+                                            hiddenInputApartmentSlug.setAttribute('type', 'hidden');
+                                            hiddenInputApartmentSlug.setAttribute('name', 'apartment_slug');
+                                            hiddenInputApartmentSlug.setAttribute('value', apartmentSlug);
+                                            form.appendChild(hiddenInputApartmentSlug);
+
                                             form.submit();
                                         });
                                     }
@@ -81,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 prepaymentBtn.classList.add('hidden');
                 paymentBtn.classList.remove('hidden');
             }
+        } else {
+            console.error('One or more required elements are missing.');
         }
     });
 });
