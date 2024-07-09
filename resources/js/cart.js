@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartContainer = document.getElementById('cartContainer');
     const totalElement = document.querySelector('.total');
     const cart = {};
+    const sponsorshipIds = [];
 
     incrementButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
@@ -38,19 +39,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateCart(index, change) {
         const price = parseFloat(document.querySelectorAll('.price')[index].textContent);
         const name = document.querySelectorAll('.text-2xl')[index].textContent;
+        const sponsorshipId = document.querySelectorAll('.sponsorship')[index].getAttribute('data-id');
 
-        if (!cart[index]) {
-            cart[index] = {
+        if (!cart[sponsorshipId]) {
+            cart[sponsorshipId] = {
                 quantity: 0,
                 name: name,
                 price: price
             };
         }
 
-        cart[index].quantity += change;
+        cart[sponsorshipId].quantity += change;
+        sponsorshipIds.push(parseInt(sponsorshipId));
 
-        if (cart[index].quantity <= 0) {
-            delete cart[index];
+        if (cart[sponsorshipId].quantity <= 0) {
+            delete cart[sponsorshipId];
         }
 
         renderCart();
@@ -64,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
             cartItem.classList.add('rounded-lg', 'cartElements');
 
             cartItem.innerHTML = `
-                <div class="flex justify-between items-center mb-6 rounded-lg p-6 shadow-md bg-clip-border border-solid border-2 border-indigo-800">
+                <div class="flex justify-between items-center mb-6 rounded-lg p-6 shadow-md bg-clip-border border-solid border-2 border-indigo-800" data-id="${key}">
                     <div class="numberSinglePlanSelected">x${cart[key].quantity}</div>
                     <div class="mx-4 px-3 flex w-full justify-between items-center">
                         <h2 class="text-lg font-bold text-indigo-400">${cart[key].name}</h2>

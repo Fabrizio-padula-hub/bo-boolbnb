@@ -16,7 +16,8 @@
     <div class="px-2 md-px-5 h-5/6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 h-full">
             @foreach ($sponsorships as $sponsorship)
-                <div class="p-8 text-center rounded-3xl shadow-xl bg-clip-border border-solid border-2 border-indigo-800">
+                <div class="sponsorship p-8 text-center rounded-3xl shadow-xl bg-clip-border border-solid border-2 border-indigo-800"
+                    data-id="{{ $sponsorship->id }}">
                     <h1 class="text-indigo-400 font-semibold text-2xl">{{ $sponsorship->name }}</h1>
                     <p class="pt-2 tracking-wide">
                         <span class="align-top">€ </span>
@@ -94,9 +95,6 @@
                     type="submit">Acquista</button>
             </div>
             <input type="hidden" id="apartmentId" value="{{ $apartment->id }}">
-            @foreach ($sponsorships as $sponsorship)
-                <input type="hidden" id="sponsorshipId" name="sponsorship_ids[]" value="{{ $sponsorship->id }}">
-            @endforeach
             <input type="hidden" id="apartmentSlug" value="{{ $apartment->slug }}">
         </form>
     </div>
