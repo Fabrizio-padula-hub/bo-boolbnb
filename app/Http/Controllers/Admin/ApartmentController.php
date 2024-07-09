@@ -103,6 +103,7 @@ class ApartmentController extends Controller
         }
         $activeSponsorships = $apartment->sponsorships()
             ->where('end_time', '>', Carbon::now())
+            ->orderBy('end_time', 'desc')
             ->get()
             ->toArray();
 

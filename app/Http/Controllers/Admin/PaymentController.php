@@ -26,22 +26,16 @@ class PaymentController extends Controller
 
     public function checkout(Request $request, $slug)
     {
-        // Debug: Verifica i dati inviati
-        dd($request->all());
-
-        if (!$request->has(['payment_method_nonce', 'total_price', 'apartment_id', 'sponsorship_ids'])) {
-            return response()->json(['success' => false, 'error' => 'Missing required fields']);
-        }
+        $request->validate([
+            'payment_method_nonce' => 'required',
+            'sponsorship_id' => 'required',
+            'price' => 'required'
+        ]);
 
         $nonce = $request->payment_method_nonce;
-        $amount = number_format($request->total_price, 2);
+        $amount = $request->price;
         $apartment_id = $request->apartment_id;
-        $sponsorship_ids = json_decode($request->sponsorship_ids);
-
-        if (empty($sponsorship_ids)) {
-            return response()->json(['success' => false, 'error' => 'Invalid sponsorship IDs']);
-        }
-
+        $sponsorship_id = $request->sponsorship_id;
         $result = $this->gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
@@ -50,22 +44,12 @@ class PaymentController extends Controller
             ],
         ]);
 
+        session([
+            'apartment_id' => $apartment_id,
+            'sponsorship_id' => $sponsorship_id
+        ]);
+
         if ($result->success) {
-            $currentTime = Carbon::now();
-            foreach ($sponsorship_ids as $sponsorship_id) {
-                $apartment = Apartment::findOrFail($apartment_id);
-                $sponsorship = Sponsorship::findOrFail($sponsorship_id);
-                $end_time = $currentTime->copy()->addHours($sponsorship->duration);
-
-                $apartment->sponsorships()->attach($sponsorship, ['start_time' => $currentTime, 'end_time' => $end_time]);
-                $currentTime = $end_time;
-            }
-
-            session([
-                'apartment_id' => $apartment_id,
-                'sponsorship_ids' => $sponsorship_ids,
-            ]);
-
             return redirect()->route('admin.apartments.sponsorship', ['apartment' => $slug]);
         } else {
             return response()->json(['success' => false, 'error' => $result->message]);

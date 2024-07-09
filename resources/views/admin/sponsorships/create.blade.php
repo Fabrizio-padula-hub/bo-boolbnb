@@ -3,15 +3,17 @@
 @section('content')
     <h1 class="pb-3 uppercase text-indigo-400">Sponsorizza l'appartamento '{{ $apartment->title }}'</h1>
     <div class="px-2 md-px-5 h-5/6 flex justify-center">
-        <form id="payment-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 h-full w-3/4"
+        <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 h-full w-3/4"
             action="{{ route('admin.payment.checkout', ['apartment' => $apartment->slug]) }}" method="POST"
             title="Sponsorizza">
             @csrf
             @csrf
             @foreach ($sponsorships as $sponsorship)
-                <label class="sponsorship" for="{sponsorship_{{ $sponsorship->id }}" data-card="{{ $sponsorship }}">
+                <label class="sponsorship" for="{sponsorship_{{ $sponsorship->id }}" data-card="{{ $sponsorship }}"
+                    data-apartment="{{ $apartment }}">
                     <div
-                        class="p-8 text-center rounded-3xl shadow-xl bg-clip-border border-solid border-2 border-indigo-800 h-2/3">
+                        class="p-8
+                    text-center rounded-3xl shadow-xl bg-clip-border border-solid border-2 border-indigo-800 h-2/3">
                         <h1 class="text-indigo-400 font-semibold text-2xl">{{ $sponsorship->name }}</h1>
                         <p class="pt-2 tracking-wide">
                             <span class="align-top">€ </span>
@@ -64,11 +66,15 @@
                     <!-- Qui verranno aggiunti gli elementi del carrello -->
                 </div>
                 <div id="dropin-container" class="hidden"></div>
+                <a id="prepaymentBtn">
+                    <div
+                        class="mt-6 w-full text-center rounded-md bg-indigo-700 py-1.5 font-medium text-blue-50 hover:bg-indigo-600 cursor-pointer">
+                        Procedi al pagamento</div>
+                </a>
+                <div id="dropin-container" class="hidden"></div>
                 <button id="paymentBtn"
-                    class="mt-6 w-full rounded-md bg-indigo-700 py-1.5 font-medium text-blue-50 hover:bg-indigo-600"
-                    type="submit">
-                    Acquista
-                </button>
+                    class="hidden mt-6 w-full rounded-md bg-indigo-700 py-1.5 font-medium text-blue-50 hover:bg-indigo-600"
+                    type="submit">Acquista</button>
             </div>
             <input type="hidden" id="apartmentId" value="{{ $apartment->id }}">
             <input type="hidden" id="apartmentSlug" value="{{ $apartment->slug }}">
