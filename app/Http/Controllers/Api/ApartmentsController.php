@@ -98,4 +98,10 @@ class ApartmentsController extends Controller
         }
         return response()->json($data);
     }
+
+    public function getSponsoredApartments()
+    {
+        $apartments = Apartment::whereHas('sponsorships')->get();
+        return response()->json($apartments);
+    }
 }

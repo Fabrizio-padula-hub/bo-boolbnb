@@ -94,7 +94,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         $data = $this->apartmentsCount();
-        $allMessages = $apartment->messages;
+        $allMessages = $apartment->messages()->orderBy('created_at', 'desc')->get();
         $messages = [];
         foreach ($allMessages as $message) {
             if ($apartment->id === $message->apartment_id) {

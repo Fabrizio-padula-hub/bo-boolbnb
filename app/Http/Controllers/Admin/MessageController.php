@@ -16,7 +16,7 @@ class MessageController extends Controller
         $apartments = $user->apartments;
         $messages = [];
         foreach ($apartments as $apartment) {
-            foreach ($apartment->messages as $message) {
+            foreach ($apartment->messages()->orderBy('created_at', 'desc')->get() as $message) {
                 $messages[] = $message;
             }
         }

@@ -27,3 +27,4 @@ Route::get('/services', [ServicesController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentsController::class, 'show']);
 Route::post('/messages', [MessageController::class, 'store']);
 Route::post('/visits', [VisitsController::class, 'store']);
+Route::get('/sponsored-apartments', [ApartmentsController::class, 'getSponsoredApartments']);
