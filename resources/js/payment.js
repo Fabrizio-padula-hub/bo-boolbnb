@@ -1,6 +1,8 @@
 const sponsorshipCards = document.querySelectorAll('.sponsorship');
 const paymentFormContainer = document.querySelector('.payment-form-container');
 const cartContainer = document.getElementById('cartContainer');
+const closeCart = document.getElementById('ms-closeCart');
+
 sponsorshipCards.forEach(singleCard => {
     singleCard.addEventListener('click', function () {
         const cardData = JSON.parse(singleCard.getAttribute('data-card'));
@@ -11,22 +13,18 @@ sponsorshipCards.forEach(singleCard => {
         cartItem.innerHTML = `
                 <div class="flex justify-between items-center mb-6 rounded-lg p-6 shadow-md bg-clip-border border-solid border-2 border-indigo-800">
                     <div class="mx-4 px-3 flex w-full justify-between items-center">
-                    <h1><strong>${cardData.name}</strong></h1>
-                        <div class="singlePlanTotal">${cardData.price}€</div>
+                    <h1 class="text-indigo-400">${cardData.name}</h1>
+                    <div class="singlePlanTotal">${cardData.price}€</div>
                     </div>
-                    <div class="deleteSinglePlanTotal flex items-center space-x-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-5 w-5 cursor-pointer duration-150">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                </div>
-            `;
+                </div>`;
         cartContainer.appendChild(cartItem);
         paymentFormContainer.classList.remove('hidden');
     });
 });
 
+closeCart.addEventListener('click', function () {
+    paymentFormContainer.classList.add('hidden');
+});
 // document.addEventListener('DOMContentLoaded', function () {
 //     const form = document.getElementById('payment-form');
 //     const prepaymentBtn = document.getElementById('prepaymentBtn');
