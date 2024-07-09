@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                             hiddenInputNonce.setAttribute('name', 'payment_method_nonce');
                                             hiddenInputNonce.setAttribute('value', payload.nonce);
                                             form.appendChild(hiddenInputNonce);
-
+                                            let sponsorshipIds = [];
                                             cartItems.forEach(item => {
                                                 const sponsorshipId = item.getAttribute('data-id');
                                                 console.log('Sponsorship ID:', sponsorshipId);
