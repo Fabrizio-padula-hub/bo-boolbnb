@@ -16,7 +16,7 @@ class VisitController extends Controller
         $apartments = $user->apartments;
         $visits = [];
 
-        // Verifica se ci sono appartamenti e visite
+        // Verifica se ci sono appartamenti
         if ($apartments->isEmpty()) {
             return view('admin.dashboard', [
                 'user' => $user,
@@ -45,7 +45,7 @@ class VisitController extends Controller
 
             // Inizializzazione di tutti i mesi con 0 visite
             $monthlyData = [];
-            for ($date = $start; $date->lessThan($end); $date->addMonth()) {
+            for ($date = $start->copy(); $date->lessThan($end); $date->addMonth()) {
                 $formattedMonth = $date->format('Y-m');
                 $monthlyData[$formattedMonth] = $monthlyVisits[$formattedMonth] ?? 0;
             }
@@ -64,8 +64,8 @@ class VisitController extends Controller
             }
         }
         $apartmentsDeleted = $user->apartments()->onlyTrashed()->get();
-        $apartmentsCount = count($apartments);
-        $trashCount = count($apartmentsDeleted);
+        $apartmentsCount = $apartments->count();
+        $trashCount = $apartmentsDeleted->count();
         $messagesCount = count($messages);
         $data = [
             'user' => $user,
