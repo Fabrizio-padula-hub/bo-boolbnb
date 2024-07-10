@@ -26,7 +26,7 @@
 
             {{-- Description --}}
             <div class="mt-4">
-                <x-input-label for="description" :value="__('Descrizione *')" />
+                <x-input-label for="description" :value="__('Descrizione')" />
                 <textarea id="description" name="description" rows="3"
                     class="block mt-1 w-full border-gray-300 bg-transparent text-white focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                     placeholder="Inserisci una descrizione dell'appartamento">{{ old('description') }}</textarea>

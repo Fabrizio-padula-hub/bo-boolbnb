@@ -20,7 +20,7 @@ class MessagesTableSeeder extends Seeder
         for ($i = 0; $i < 2; $i++) {
             foreach ($messages as $message) {
                 $newMessage = new Message();
-                $newMessage->apartment_id = $faker->numberBetween(1, 130);
+                $newMessage->apartment_id = $faker->numberBetween(1, 20);
                 $newMessage->name = $faker->name();
                 $formattedName = $this->formatName($newMessage->name);
                 $newMessage->email = $formattedName . '@mail.it';
@@ -30,10 +30,11 @@ class MessagesTableSeeder extends Seeder
         }
     }
 
-    function formatName($fullName) {
+    function formatName($fullName)
+    {
         $lowerCaseName = strtolower($fullName);
         $formattedName = str_replace(' ', '.', $lowerCaseName);
-    
+
         return $formattedName;
     }
 }

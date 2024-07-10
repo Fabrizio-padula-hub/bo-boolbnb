@@ -23,7 +23,7 @@ class ApartmentsTableSeeder extends Seeder
         for ($i = 0; $i < 1; $i++) {
             foreach ($apartments as $apartment) {
                 $newApartment = new Apartment();
-                $newApartment->user_id = $faker->numberBetween(1, 6);
+                $newApartment->user_id = $faker->numberBetween(1, 2);
                 $newApartment->title = $apartment['title'];
                 $newApartment->slug = Str::slug($newApartment->title, '-');
                 while (Apartment::where('slug', $newApartment->slug)->exists()) {
@@ -34,6 +34,7 @@ class ApartmentsTableSeeder extends Seeder
                 $newApartment->address = $apartment['address'];
                 $newApartment->lat = $apartment['lat'];
                 $newApartment->long = $apartment['long'];
+                $newApartment->image = $apartment['image'];
                 $newApartment->number_of_rooms = $faker->numberBetween(1, 3);
                 $newApartment->number_of_beds = $newApartment->number_of_rooms;
                 $newApartment->square_meters = $faker->numberBetween(15, 120);

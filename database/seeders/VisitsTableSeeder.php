@@ -20,9 +20,9 @@ class VisitsTableSeeder extends Seeder
         $startDate = Carbon::now()->subYear();
         $endDate = Carbon::now();
 
-        for ($i = 0; $i < 400; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $newVisit = new Visit();
-            $newVisit->apartment_id = $faker->numberBetween(1, 130);
+            $newVisit->apartment_id = $faker->numberBetween(1, 20);
             $newVisit->ip_address = $this->getRandomIP();
             $newVisit->visited_at = $faker->dateTimeBetween($startDate, $endDate);
             $newVisit->save();
