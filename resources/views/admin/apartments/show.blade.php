@@ -98,69 +98,103 @@
                 </form>
             </div>
         </div>
-        @if (!empty($activeSponsorships))
-            <h1 class="font-bold py-4 uppercase">Sponsorizzazioni</h1>
-            <div class="flex justify-between items-center pb-4">
-                <h1 class="text-sm md:text-base">Il tuo appartmento sarà sponsorizzato per altri
-                    {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
-                </h1>
-                <button type="submit"
-                    class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
-                        title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
-                    </a>
-                </button>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                @foreach ($activeSponsorships as $sponsorship)
-                    <div class="bg-black/60 to-white/5 rounded-lg">
-                        <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">👑</div>
-                            <div class="p-2">
-                                <p class="text-xl font-bold">{{ $sponsorship['name'] }}</p>
-                                <p class="text-gray-500 font-medium">{{ $sponsorship['price'] }} €</p>
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 py-4">
+            <div>
+                @if (!empty($messages))
+                    <h1 class="font-bold py-4 uppercase">Messaggi</h1>
+                    <section class="relative flex flex-col justify-centeroverflow-hidden antialiased">
+                        <div class="w-full max-w-6xl">
+                            <div class="flex flex-col justify-center divide-y divide-slate-200 py-4">
+                                <div class="w-full max-w-3xl">
+                                    <!-- Vertical Timeline #3 -->
+                                    <div
+                                        class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:ml-[8.75rem] md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                                        @foreach ($messages as $message)
+                                            <!-- Item #1 -->
+                                            <div class="relative">
+                                                <div class="md:flex items-center md:space-x-4 mb-3">
+                                                    <div
+                                                        class="flex items-center space-x-4 md:space-x-2 md:space-x-reverse">
+                                                        <!-- Icon -->
+                                                        <div
+                                                            class="flex items-center justify-center w-10 h-10 rounded-full bg-black/60 to-white/5 shadow md:order-1 md:ml-[1px]">
+                                                            <svg class="fill-slate-400" xmlns="http://www.w3.org/2000/svg"
+                                                                width="16" height="16">
+                                                                <path
+                                                                    d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm0 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" />
+                                                            </svg>
+                                                        </div>
+                                                        <!-- Date -->
+                                                        <time
+                                                            class="text-sm font-medium md:w-28">{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</time>
+                                                    </div>
+                                                    <!-- Title -->
+                                                    <div class="ml-14"><span
+                                                            class="text-indigo-400 font-bold">{{ $message->name }}</span>
+                                                        {{ $message->email }}
+                                                    </div>
+                                                </div>
+                                                <!-- Card -->
+                                                <div class="bg-black/60 to-white/5 p-4 rounded-3xl shadow ml-14 md:ml-44">
+                                                    {{ $message->text }}</div>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                    <!-- End: Vertical Timeline #3 -->
+                                </div>
                             </div>
                         </div>
-                        <div class="border-t border-white/5 p-4">
-                            <p class="text-md text-indigo-400">Acquistata</p>
-                            <p class="text-sm">
-                                {{ \Carbon\Carbon::parse($sponsorship['pivot']['created_at'])->format('d/m/Y \a\l\l\e H:i') }}
-                            </p>
-                        </div>
-                    </div>
-                @endforeach
+                    </section>
+                @else
+                    <p>Non ci sono messaggi.</p>
+                @endif
             </div>
-        @else
-            <p>Non ci sono sponsorizazioni attive.</p>
-        @endif
-        <div>
-            <h1 class="font-bold py-4 uppercase">Statistiche</h1>
-            <canvas id="visitsChart"></canvas>
-            <div id="weeklyData" style="display: none;">
-                {{ json_encode($weeklyData) }}
+            <div>
+                @if (!empty($activeSponsorships))
+                    <h1 class="font-bold py-4 uppercase">Sponsorizzazioni</h1>
+                    <div class="flex justify-between items-center pb-4">
+                        <h1 class="text-sm md:text-base">Il tuo appartmento sarà sponsorizzato per altri
+                            {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
+                        </h1>
+                        <button type="submit"
+                            class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
+                                title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
+                            </a>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                        @foreach ($activeSponsorships as $sponsorship)
+                            <div class="bg-black/60 to-white/5 rounded-lg">
+                                <div class="flex flex-row items-center">
+                                    <div class="text-3xl p-4">👑</div>
+                                    <div class="p-2">
+                                        <p class="text-xl font-bold">{{ $sponsorship['name'] }}</p>
+                                        <p class="text-gray-500 font-medium">{{ $sponsorship['price'] }} €</p>
+                                    </div>
+                                </div>
+                                <div class="border-t border-white/5 p-4">
+                                    <p class="text-md text-indigo-400">Acquistata</p>
+                                    <p class="text-sm">
+                                        {{ \Carbon\Carbon::parse($sponsorship['pivot']['created_at'])->format('d/m/Y \a\l\l\e H:i') }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p>Non ci sono sponsorizazioni attive.</p>
+                @endif
             </div>
         </div>
-        @if (!empty($messages))
-            <h2>Messaggi</h2>
-            @foreach ($messages as $message)
-                <div class="bg-black/60 to-white/5 rounded-lg flex flex-col">
-                    <div class="flex flex-row items-center p-4">
-                        <div class="ml-2">
-                            <p class="text-xl font-bold">{{ $message->name }}</p>
-                            <p class="text-zinc-50 font-medium">{{ $message->email }}</p>
-                        </div>
-                    </div>
-                    <div class="border-t border-white/5 p-4 flex-grow">
-                        <p class="text-zinc-50 text-sm mt-4 ml-2">{{ $message->text }}</p>
-                    </div>
-                    <div class="mt-auto ml-5">
-                        <p class="text-zinc-50 text-sm ">{{ $message->created_at }}</p>
-                    </div>
-                </div>
-            @endforeach
-        @else
-            <p>Non ci sono messaggi.</p>
-        @endif
+    </div>
+    <div>
+        <h1 class="font-bold py-4 uppercase">Statistiche</h1>
+        <canvas id="visitsChart"></canvas>
+        <div id="weeklyData" style="display: none;">
+            {{ json_encode($weeklyData) }}
+        </div>
     </div>
     {{-- Modal --}}
     <div id="ms-confirmDeleteModal"
