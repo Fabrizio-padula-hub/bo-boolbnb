@@ -203,7 +203,15 @@
                     @endforeach
                 </div>
             @else
-                <p>Non ci sono sponsorizazioni attive.</p>
+                <div class="flex justify-between items-center">
+                    <p>Non ci sono sponsorizazioni attive.</p>
+                    <button type="submit"
+                        class="max-[457px]:mb-3 rounded-full bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
+                            title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
+                        </a>
+                    </button>
+                </div>
             @endif
         </div>
     </div>
