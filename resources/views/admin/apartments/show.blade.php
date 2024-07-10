@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+    @php
+        $createdDate = \Carbon\Carbon::parse($activeSponsorships[0]['pivot']['end_time']);
+        $remainingDays = \Carbon\Carbon::now()->diffInDays($createdDate);
+    @endphp
     <div class="grid grid-cols-1">
         {{-- freccia per ritornare all'index --}}
         <div>
@@ -95,29 +99,42 @@
             </div>
         </div>
         @if (!empty($activeSponsorships))
-            <h2>Sponsorizzazioni</h2>
-            @foreach ($activeSponsorships as $sponsorship)
-                <div class="bg-black/60 to-white/5 rounded-lg flex flex-col">
-                    <div class="flex flex-row items-center p-4">
-                        <div class="">
-                            <p class="text-xl font-bold">{{ $sponsorship['name'] }}</p>
-                            <div class="flex items-center mt-4">
-                                <div class="text-3xl ">💰</div>
-                                <p class="text-zinc-50 font-medium">{{ $sponsorship['price'] }} $ </p>
+            <h1 class="font-bold py-4 uppercase">Sponsorizzazioni</h1>
+            <div class="flex justify-between items-center pb-4">
+                <h1 class="text-sm md:text-base">Il tuo appartmento sarà sponsorizzato per altri
+                    {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
+                </h1>
+                <button type="submit"
+                    class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
+                        title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
+                    </a>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                @foreach ($activeSponsorships as $sponsorship)
+                    <div class="bg-black/60 to-white/5 rounded-lg">
+                        <div class="flex flex-row items-center">
+                            <div class="text-3xl p-4">👑</div>
+                            <div class="p-2">
+                                <p class="text-xl font-bold">{{ $sponsorship['name'] }}</p>
+                                <p class="text-gray-500 font-medium">{{ $sponsorship['price'] }} €</p>
                             </div>
                         </div>
+                        <div class="border-t border-white/5 p-4">
+                            <p class="text-md text-indigo-400">Acquistata</p>
+                            <p class="text-sm">
+                                {{ \Carbon\Carbon::parse($sponsorship['pivot']['created_at'])->format('d/m/Y \a\l\l\e H:i') }}
+                            </p>
+                        </div>
                     </div>
-                    <div class="border-t border-white/5 p-4 flex-grow">
-                        <p class="text-zinc-50 text-sm mt-4 ml-2">Termine della sponsorizzazione:
-                            {{ $sponsorship['pivot']['end_time'] }}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         @else
             <p>Non ci sono sponsorizazioni attive.</p>
         @endif
         <div>
+            <h1 class="font-bold py-4 uppercase">Statistiche</h1>
             <canvas id="visitsChart"></canvas>
             <div id="weeklyData" style="display: none;">
                 {{ json_encode($weeklyData) }}
