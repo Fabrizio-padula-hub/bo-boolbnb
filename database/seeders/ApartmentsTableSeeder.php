@@ -19,7 +19,7 @@ class ApartmentsTableSeeder extends Seeder
     {
         $counter = 1;
         $apartments = config('apartment');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 130; $i++) {
             foreach ($apartments as $apartment) {
                 $newApartment = new Apartment();
                 $newApartment->user_id = $faker->numberBetween(1, 6);
@@ -33,10 +33,14 @@ class ApartmentsTableSeeder extends Seeder
                 $newApartment->address = $apartment['address'];
                 $newApartment->lat = $apartment['lat'];
                 $newApartment->long = $apartment['long'];
-                $newApartment->number_of_rooms = $faker->randomDigitNotNull();
-                $newApartment->number_of_beds = $faker->randomDigitNotNull();
-                $newApartment->number_of_bathrooms = $faker->randomDigitNotNull();
-                $newApartment->square_meters = $faker->randomFloat(1, 20, 30);
+                $newApartment->number_of_rooms = $faker->numberBetween(1, 3);
+                $newApartment->number_of_beds = $newApartment->number_of_rooms;
+                $newApartment->square_meters = $faker->numberBetween(15, 120);
+                if ($newApartment->square_meters > 80) {
+                    $newApartment->number_of_bathrooms = $faker->numberBetween(1, 2);
+                } else {
+                    $newApartment->number_of_bathrooms = $faker->numberBetween(1, 2);
+                }
                 $newApartment->visibility = $faker->boolean();
                 $newApartment->save();
             }

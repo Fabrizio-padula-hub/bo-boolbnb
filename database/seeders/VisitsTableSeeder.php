@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Visit;
+use Carbon\Carbon;
 
 class VisitsTableSeeder extends Seeder
 {
@@ -16,10 +17,14 @@ class VisitsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 300; $i++) {
+        $startDate = Carbon::now()->subYear();
+        $endDate = Carbon::now();
+
+        for ($i = 0; $i < 4000; $i++) {
             $newVisit = new Visit();
-            $newVisit->apartment_id = $faker->numberBetween(1, 40);
+            $newVisit->apartment_id = $faker->numberBetween(1, 130);
             $newVisit->ip_address = $this->getRandomIP();
+            $newVisit->visited_at = $faker->dateTimeBetween($startDate, $endDate);
             $newVisit->save();
         }
     }
