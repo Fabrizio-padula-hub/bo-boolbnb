@@ -28,7 +28,7 @@
         @endif
     </div>
     <div class="relative flex w-full flex-col lg:flex-row lg: justify-center rounded-xl bg-clip-border shadow-md">
-        <div class="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border">
+        <div class="relative m-0 lg:w-2/5 shrink-0 overflow-hidden rounded-xl lg:rounded-r-none bg-white bg-clip-border">
             @if ($apartment->image)
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt="image" class="h-full w-full object-cover" />
             @endif
