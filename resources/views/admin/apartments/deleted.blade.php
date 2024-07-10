@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="flex justify-between pb-2">
-        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">{{ __('Appartamenti Eliminati') }}</h2>
+        <h1 class="font-bold py-4 uppercase">{{ __('Appartamenti Eliminati') }}</h1>
     </div>
     <div class="mb-4">
         @if (session()->has('message'))

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="pb-3 uppercase text-indigo-400">Sponsorizza l'appartamento '{{ $apartment->title }}'</h1>
+<h1 class="font-bold py-4 uppercase">{{ __("Sponsorizza l'appartamento") }} '{{ $apartment->title }}'</h1>
     <div class="px-2 md-px-5 h-5/6 flex justify-center">
         <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 h-full w-3/4"
             action="{{ route('admin.payment.checkout', ['apartment' => $apartment->slug]) }}" method="POST"

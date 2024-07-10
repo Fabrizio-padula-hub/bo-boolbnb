@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="grid grid-cols-1">
-        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">Dashboard</h2>
+        <h1 class="font-bold py-4 uppercase">Dashboard</h1>
         <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
             <div class="bg-trasparent overflow-hidden shadow-sm">
                 <div class="p-6 text-white">

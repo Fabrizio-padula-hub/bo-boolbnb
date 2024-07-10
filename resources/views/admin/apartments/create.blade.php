@@ -12,7 +12,7 @@
                 </svg>
             </a>
         </div>
-        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">{{ __('Crea Appartamento') }}</h2>
+        <h1 class="font-bold py-4 uppercase">{{ __('Crea Appartamento') }}</h1>
         <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Title -->
