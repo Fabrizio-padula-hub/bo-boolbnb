@@ -122,11 +122,11 @@
             <div class="mt-4">
                 <label class="block font-medium text-sm text-white pb-1.5">{{ __('Visibilità *') }}</label>
                 <div class="flex gap-x-3">
-                    <input @checked(old('visibility', $apartment->visibility)) id="visibility-yes" name="visibility" type="radio"
+                    <input @checked(old('visibility', $apartment->visibility) == '1') id="visibility-yes" name="visibility" type="radio"
                         value="1" class="h-4 w-4 rounded-full border-gray-300 text-indigo-600 focus:ring-indigo-600">
                     <x-input-label for="visibility-yes" :value="__('Si')" />
 
-                    <input @checked(!old('visibility', !$apartment->visibility)) id="visibility-no" name="visibility" type="radio"
+                    <input @checked(old('visibility', $apartment->visibility) == '0') id="visibility-no" name="visibility" type="radio"
                         value="0" class="h-4 w-4 rounded-full border-gray-300 text-indigo-600 focus:ring-indigo-600">
                     <x-input-label for="visibility-no" :value="__('No')" />
                 </div>
