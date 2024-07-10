@@ -1,13 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    @php
-        $createdDate = \Carbon\Carbon::parse($activeSponsorships[0]['pivot']['end_time']);
-        $remainingDays = \Carbon\Carbon::now()->diffInDays($createdDate);
-        $remainingMinutes = \Carbon\Carbon::now()->diffInMinutes($createdDate);
-        $remainingHours = floor($remainingMinutes / 60);
-        $remainingMinutes = $remainingMinutes % 60;
-    @endphp
+    @if (!empty($activeSponsorships))
+        @php
+            $createdDate = \Carbon\Carbon::parse($activeSponsorships[0]['pivot']['end_time']);
+            $remainingDays = \Carbon\Carbon::now()->diffInDays($createdDate);
+            $remainingMinutes = \Carbon\Carbon::now()->diffInMinutes($createdDate);
+            $remainingHours = floor($remainingMinutes / 60);
+            $remainingMinutes = $remainingMinutes % 60;
+        @endphp
+    @endif
     <div class="grid grid-cols-1">
         {{-- freccia per ritornare all'index --}}
         <div>
