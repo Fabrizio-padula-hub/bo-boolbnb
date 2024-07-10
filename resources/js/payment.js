@@ -41,7 +41,25 @@ prepaymentBtn.addEventListener('click', function () {
                     const data = response.data;
                     braintree.dropin.create({
                         authorization: data.token,
-                        container: '#dropin-container'
+                        container: '#dropin-container',
+                        translations: {
+                            en: {
+                                // English translations can go here
+                            },
+                            it: {
+                                "payingWith": "Pagare con",
+                                "chooseAnotherWayToPay": "Scegli un altro metodo di pagamento",
+                                "cardVerification": "Verifica carta",
+                                "fieldEmptyForNumber": "Per favore, inserisci il numero di carta.",
+                                "fieldInvalidForNumber": "Il numero di carta non è valido.",
+                                "fieldInvalidForExpirationDate": "La data di scadenza non è valida.",
+                                "genericError": "Si è verificato un errore di sistema.",
+                                "hostedFieldsFailedTokenizationError": "Per favore, verifica le tue informazioni e riprova.",
+                                "hostedFieldsTokenizationCvvVerificationFailedError": "Verifica della carta di credito fallita. Per favore, verifica le tue informazioni e riprova.",
+                                "unsupportedCardTypeError": "Questo tipo di carta non è supportato. Per favore, usa un'altra carta."
+                            }
+                        },
+                        locale: 'it'
                     }, function (err, dropinInstance) {
                         if (err) {
                             console.error(err);
@@ -49,6 +67,26 @@ prepaymentBtn.addEventListener('click', function () {
                         } else {
                             form.addEventListener('submit', function (event) {
                                 event.preventDefault();
+
+                                // Validazione del form
+                                const requiredFields = [
+                                    { name: 'payment_method_nonce', value: dropinInstance.requestPaymentMethod.bind(dropinInstance) },
+                                    { name: 'price', value: cardData.price },
+                                    { name: 'apartment_id', value: apartmentData.id },
+                                    { name: 'apartment_slug', value: apartmentData.slug },
+                                    { name: 'sponsorship_id', value: cardData.id }
+                                ];
+
+                                let valid = true;
+                                requiredFields.forEach(field => {
+                                    if (!field.value) {
+                                        alert(`Il campo ${field.name} è obbligatorio.`);
+                                        valid = false;
+                                    }
+                                });
+
+                                if (!valid) return;
+
                                 dropinInstance.requestPaymentMethod(function (err, payload) {
                                     if (err) {
                                         console.error(err);
@@ -92,8 +130,11 @@ prepaymentBtn.addEventListener('click', function () {
                     });
                 })
                 .catch(error => {
-                    console.error('Error fetching token:', error);
+                    console.error('Errore nel recupero del token:', error);
                 });
+
+            // Funzione di validazione del form
+
             prepaymentBtn.classList.add('hidden');
             paymentBtn.classList.remove('hidden');
         }
