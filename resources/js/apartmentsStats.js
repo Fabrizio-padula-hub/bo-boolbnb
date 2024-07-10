@@ -3,16 +3,15 @@ import Chart from 'chart.js/auto';
 document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('apartmentsChart').getContext('2d');
     const apartmentVisits = JSON.parse(document.getElementById('apartmentVisitsData').textContent);
-    // Mesi dell'anno
-    const months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+
+    // Mesi dell'anno da luglio 2023 a luglio 2024
+    const months = ['Luglio 2023', 'Agosto 2023', 'Settembre 2023', 'Ottobre 2023', 'Novembre 2023', 'Dicembre 2023', 'Gennaio 2024', 'Febbraio 2024', 'Marzo 2024', 'Aprile 2024', 'Maggio 2024', 'Giugno 2024', 'Luglio 2024'];
 
     // Raggruppare le visite per appartamento e mese
     const groupedVisits = {};
     apartmentVisits.forEach(apartment => {
-        groupedVisits[apartment.apartment_slug] = [apartment.apartment, Object.values(apartment.visits), getRandomRGBA()]
-        // apartment: apartment.apartment,
-        //     visits: Object.values(apartment.visits),
-        // };
+        const visits = Object.values(apartment.visits);
+        groupedVisits[apartment.apartment_slug] = [apartment.apartment, visits, getRandomRGBA()];
     });
 
     // Costruire i datasets
@@ -22,11 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
             data: groupedVisits[apartment][1],
             backgroundColor: groupedVisits[apartment][2],
             borderColor: groupedVisits[apartment][2],
-            borderWidth: 1
+            borderWidth: 1,
+            fill: false,
         };
     });
-
-    console.log(datasets);
 
     // Creare il grafico
     new Chart(ctx, {
@@ -36,20 +34,24 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: datasets
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grace: '5%'  // Aggiungi un po' di spazio sopra il valore massimo per una migliore visualizzazione
                 }
-            }
+            },
+            resizeDelay: 0,
         }
     });
 });
 
 function getRandomRGBA() {
-    const r = Math.floor(Math.random() * 256); // Red: 0-255
-    const g = Math.floor(Math.random() * 256); // Green: 0-255
-    const b = Math.floor(Math.random() * 256); // Blue: 0-255
-    const a = Math.random().toFixed(2); // Alpha: 0-1 with two decimal points
+    const r = Math.floor(Math.random() * 256); // Rosso: 0-255
+    const g = Math.floor(Math.random() * 256); // Verde: 0-255
+    const b = Math.floor(Math.random() * 256); // Blu: 0-255
+    const a = (Math.random() * 0.5 + 0.5).toFixed(2); // Alfa: 0.5-1 con due decimali
 
     return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
