@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Apartment;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use App\Models\Service;
+use App\Models\Sponsorship;
 
 class ApartmentsTableSeeder extends Seeder
 {
@@ -43,6 +44,9 @@ class ApartmentsTableSeeder extends Seeder
                 }
                 $newApartment->visibility = $faker->boolean();
                 $newApartment->save();
+
+                $services = Service::inRandomOrder()->limit(3)->get();
+                $newApartment->services()->attach($services);
             }
         }
     }

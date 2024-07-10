@@ -22,10 +22,18 @@ class MessagesTableSeeder extends Seeder
                 $newMessage = new Message();
                 $newMessage->apartment_id = $faker->numberBetween(1, 130);
                 $newMessage->name = $faker->name();
-                $newMessage->email = $newMessage->name . '@mail.it';
+                $formattedName = $this->formatName($newMessage->name);
+                $newMessage->email = $formattedName . '@mail.it';
                 $newMessage->text = $message['text'];
                 $newMessage->save();
             }
         }
+    }
+
+    function formatName($fullName) {
+        $lowerCaseName = strtolower($fullName);
+        $formattedName = str_replace(' ', '.', $lowerCaseName);
+    
+        return $formattedName;
     }
 }
