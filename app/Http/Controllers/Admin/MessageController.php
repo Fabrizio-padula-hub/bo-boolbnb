@@ -5,25 +5,29 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Message;
-use App\Models\Apartment;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
-{ 
-    public function index() {
-
+{
+    public function index()
+    {
         $user = auth()->user();
         $apartments = $user->apartments;
-        $messages = [];
+
+        // Collezioniamo tutti i messaggi in una singola query ordinata per data di creazione decrescente
+        $messages = collect();
         foreach ($apartments as $apartment) {
-            foreach ($apartment->messages()->orderBy('created_at', 'desc')->get() as $message) {
-                $messages[] = $message;
-            }
+            $messages = $messages->merge($apartment->messages()->orderBy('created_at', 'desc')->get());
         }
+
+        // Ordiniamo i messaggi in base alla data di creazione decrescente
+        $messages = $messages->sortByDesc('created_at');
+
         $apartmentsDeleted = $user->apartments()->onlyTrashed()->get();
-        $apartmentsCount = count($apartments);
-        $trashCount = count($apartmentsDeleted);
-        $messagesCount = count($messages);
+        $apartmentsCount = $apartments->count();
+        $trashCount = $apartmentsDeleted->count();
+        $messagesCount = $messages->count();
+
         $data = [
             'user' => $user,
             'apartments' => $apartments,
@@ -32,7 +36,7 @@ class MessageController extends Controller
             'messagesCount' => $messagesCount,
             'messages' => $messages
         ];
-    
+
         return view('admin.messages.index', $data);
     }
- }
+}
