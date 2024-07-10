@@ -6,6 +6,7 @@ const form = document.getElementById('payment-form');
 const prepaymentBtn = document.getElementById('prepaymentBtn');
 const paymentBtn = document.getElementById('paymentBtn');
 const dropinContainer = document.getElementById('dropin-container');
+const loader = document.getElementById('loader');
 let cardData;
 let apartmentData;
 
@@ -34,6 +35,7 @@ closeCart.addEventListener('click', function () {
 
 prepaymentBtn.addEventListener('click', function () {
     if (apartmentData.id && apartmentData.slug) {
+        loader.classList.remove('hidden');
         dropinContainer.classList.remove('hidden');
         if (!dropinContainer.classList.contains('hidden')) {
             axios.get(`${apartmentData.slug}/payment/token`)
@@ -65,6 +67,7 @@ prepaymentBtn.addEventListener('click', function () {
                             console.error(err);
                             return;
                         } else {
+                            loader.classList.add('hidden');
                             form.addEventListener('submit', function (event) {
                                 event.preventDefault();
 

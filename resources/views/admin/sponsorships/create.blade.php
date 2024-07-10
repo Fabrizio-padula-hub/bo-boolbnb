@@ -80,4 +80,8 @@
             <input type="hidden" id="apartmentSlug" value="{{ $apartment->slug }}">
         </form>
     </div>
+    <!-- Loader -->
+    <div id="loader" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-indigo-500"></div>
+     </div>
 @endsection
