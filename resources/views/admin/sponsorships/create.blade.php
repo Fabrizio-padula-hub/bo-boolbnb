@@ -1,7 +1,15 @@
 @extends('layouts.admin')
+<style>
+    input[type="radio"]:checked+label {
+        background-color: #ebf4ff;
+        border-color: #5a67d8;
+        color: black;
+        transform: scale(1.05);
+    }
+</style>
 
 @section('content')
-<h1 class="font-bold py-4 uppercase">{{ __("Sponsorizza l'appartamento") }} '{{ $apartment->title }}'</h1>
+    <h1 class="font-bold py-4 uppercase">{{ __("Sponsorizza l'appartamento") }} '{{ $apartment->title }}'</h1>
     <div class="px-2 md-px-5 h-5/6 flex justify-center">
         <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 h-full w-3/4"
             action="{{ route('admin.payment.checkout', ['apartment' => $apartment->slug]) }}" method="POST"
@@ -9,41 +17,30 @@
             @csrf
             @csrf
             @foreach ($sponsorships as $sponsorship)
-                <label class="sponsorship" for="{sponsorship_{{ $sponsorship->id }}" data-card="{{ $sponsorship }}"
+                <input type="radio" id="sponsorship_{{ $sponsorship->id }}" class="hidden" name="sponsorship_ids[]"
+                    value="{{ $sponsorship->id }}">
+                <label
+                    class="sponsorship mt-8 p-3 order-3 bg-clip-border border-solid border-2 border-indigo-800 shadow-xl rounded-3xl  transition-all duration-300 ease-in-out transform hover:scale-105"
+                    for="sponsorship_{{ $sponsorship->id }}" data-card="{{ $sponsorship }}"
                     data-apartment="{{ $apartment }}">
-                    <div
-                        class="p-8
-                    text-center rounded-3xl shadow-xl bg-clip-border border-solid border-2 border-indigo-800 h-2/3">
-                        <h1 class="text-indigo-400 font-semibold text-2xl">{{ $sponsorship->name }}</h1>
-                        <p class="pt-2 tracking-wide">
-                            <span class="align-top">€ </span>
-                            <span class="text-3xl font-semibold price">{{ $sponsorship->price }}</span>
-                        </p>
-                        <hr class="mt-4 border-1">
-                        <div class="py-8">
-                            <p class="font-semibold text-gray-400 text-left flex">
-                                <span class="material-icons align-middle">
-                                    Durata
-                                </span>
-                                <span class="pl-2">
-                                    {{ $sponsorship->duration }}<span class="text-indigo-400">h</span>
-                                </span>
-                            </p>
-                            <p class="font-semibold text-gray-400 text-left pt-5">
-                                <span class="hidden md:inline">
-                                    Con il pacchetto {{ $sponsorship->name }}, avrai la possibilità di mettere in
-                                    evidenza
-                                    il
-                                    tuo
-                                    appartamento per
-                                    {{ $sponsorship->duration }}h
-                                </span>
-                            </p>
+                    <div class="mb-7 pb-7 border-b">
+                        <div class="ml-5 flex-1">
+                            <span class="block text-2xl font-semibold">{{ $sponsorship->name }}</span>
+                            <span class="block text-3xl font-bold text-indigo-800 mt-2">
+                                Prezzo: {{ $sponsorship->price }} €
+                            </span>
                         </div>
                     </div>
+                    <ul class="mb-7 font-medium text-gray-500">
+                        <li class="flex text-lg mb-2">
+                            <span class="ml-3">Durata: {{ $sponsorship->duration }} h</span>
+                        </li>
+                        <li class="flex text-lg">
+                            <p class="flex-1">Con il pacchetto {{ $sponsorship->name }}, avrai la possibilità di mettere
+                                in evidenza il tuo appartamento per {{ $sponsorship->duration }} ore.</p>
+                        </li>
+                    </ul>
                 </label>
-                <input type="radio" id="{sponsorship_{{ $sponsorship->id }}" class="hidden" name="sponsorship_ids[]"
-                    value="{{ $sponsorship->id }}">
             @endforeach
         </form>
     </div>
@@ -83,5 +80,5 @@
     <!-- Loader -->
     <div id="loader" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-indigo-500"></div>
-     </div>
+    </div>
 @endsection
