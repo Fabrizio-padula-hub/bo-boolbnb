@@ -4,6 +4,9 @@
     @php
         $createdDate = \Carbon\Carbon::parse($activeSponsorships[0]['pivot']['end_time']);
         $remainingDays = \Carbon\Carbon::now()->diffInDays($createdDate);
+        $remainingMinutes = \Carbon\Carbon::now()->diffInMinutes($createdDate);
+        $remainingHours = floor($remainingMinutes / 60);
+        $remainingMinutes = $remainingMinutes % 60;
     @endphp
     <div class="grid grid-cols-1">
         {{-- freccia per ritornare all'index --}}
@@ -99,6 +102,7 @@
             </div>
         </div>
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 py-4">
+            {{-- Messaggi --}}
             <div>
                 @if (!empty($messages))
                     <h1 class="font-bold py-4 uppercase">Messaggi</h1>
@@ -150,15 +154,22 @@
                     <p>Non ci sono messaggi.</p>
                 @endif
             </div>
+            {{-- Sponsorizzazioni --}}
             <div>
                 @if (!empty($activeSponsorships))
                     <h1 class="font-bold py-4 uppercase">Sponsorizzazioni</h1>
                     <div class="flex justify-between items-center pb-4">
-                        <h1 class="text-sm md:text-base">Il tuo appartmento sarà sponsorizzato per altri
-                            {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
-                        </h1>
+                        @if ($remainingDays >= 1)
+                            <h1 class="text-xs md:text-base">Il tuo appartmento sarà sponsorizzato per altri
+                                {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
+                            </h1>
+                        @else
+                            <h1 class="text-xs md:text-base">Il tuo appartmento sarà sponsorizzato per
+                                {{ $remainingHours }}h e {{ $remainingMinutes }}m
+                            </h1>
+                        @endif
                         <button type="submit"
-                            class="max-[457px]:mb-3 rounded-md bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            class="max-[457px]:mb-3 rounded-full bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
                                 title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
                             </a>
