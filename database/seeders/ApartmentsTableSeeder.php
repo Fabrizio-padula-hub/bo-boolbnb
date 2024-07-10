@@ -19,7 +19,7 @@ class ApartmentsTableSeeder extends Seeder
     {
         $counter = 1;
         $apartments = config('apartment');
-        for ($i = 0; $i < 130; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             foreach ($apartments as $apartment) {
                 $newApartment = new Apartment();
                 $newApartment->user_id = $faker->numberBetween(1, 6);
