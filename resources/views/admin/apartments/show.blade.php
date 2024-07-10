@@ -19,7 +19,6 @@
             </svg>
         </a>
     </div>
-
     <div class="mb-4">
         @if (session()->has('message'))
             <div class="bg-neutral-900 rounded text-green-900 px-4 py-3" role="alert">
@@ -39,80 +38,76 @@
             </div>
         @endif
     </div>
-
-    <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
-        <div class="max-w-sm mb-8 overflow-hidden self-center rounded-t-lg">
+    <div class="relative flex w-full flex-col lg:flex-row lg: justify-center rounded-xl bg-clip-border shadow-md">
+        <div class="relative m-0 lg:w-2/5 shrink-0 overflow-hidden rounded-xl lg:rounded-r-none bg-white bg-clip-border">
             @if ($apartment->image)
-                <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
+                <img src="{{ asset('storage/' . $apartment->image) }}" alt="image" class="h-full w-full object-cover" />
             @endif
         </div>
-
         <div class="p-6">
             <h6
-                class="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-indigo-400 antialiased">
+                class="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-indigo-500 antialiased">
                 {{ $apartment->title }}
             </h6>
+            <h4
+                class="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                {{ $address = $apartment->address }}
+            </h4>
             <p class="mb-4 block font-sans text-base font-normal leading-relaxed antialiased">
                 {{ $apartment->description }}
             </p>
+            <hr class=" my-4 border-1">
             <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                {{ $address = $apartment->address }}
+                {{ $apartment->number_of_rooms }} camere
             </p>
             <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                Numero di stanze: {{ $apartment->number_of_rooms }}
+                {{ $apartment->number_of_beds }} letti
             </p>
             <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                Numero di letti: {{ $apartment->number_of_beds }}
+                {{ $apartment->number_of_bathrooms }} bagni
             </p>
             <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                Numero di bagni: {{ $apartment->number_of_bathrooms }}
-            </p>
-            <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                Metri quadrati: {{ $apartment->square_meters ? $apartment->square_meters : 'Nullo' }}
+                {{ $apartment->square_meters ? $apartment->square_meters . 'mq' : 'Nullo' }}
             </p>
             @if (count($apartment->services) > 0)
-                <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                <div class="w-5 h-5 flex mb-1.5 leading-snug tracking-normal antialiased">
                     @foreach ($apartment->services as $service)
-                        {{ $service->name }}@if (!$loop->last)
-                            ,
-                        @endif
+                        <img src="{{ asset('storage/' . $service->image) }}" alt="image" class="mr-2 invert" />
                     @endforeach
-                </p>
+                </div>
             @else
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
                     Nessun Servizio
                 </p>
             @endif
-            <p class="leading-snug tracking-normal antialiased">
-                {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
+            <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                {{ $apartment->visibility ? 'Visibile' : 'Non Visibile' }}
             </p>
-        </div>
-
-        {{-- bottoni azioni --}}
-        <div class="pt-4 pb-2 flex max-[457px]:flex-col justify-between">
-            {{-- bottoni Modifica --}}
-            <button type="submit"
-                class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}" title="Modifica"
-                    class="hover:text-white">
-                    {{ __('Modifica') }}
-                </a>
-            </button>
-            {{-- bottone Elimina --}}
-            <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST"
-                title="Elimina" class=" inline-block hover:text-red-800">
-                @csrf
-                @method('DELETE')
+            {{-- bottoni azioni --}}
+            <div class="pt-4 pb-2 flex max-[457px]:flex-col justify-between">
+                {{-- bottoni Modifica --}}
                 <button type="submit"
-                    class="ms-js-delete-btn rounded-md w-full bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    data-apartment-title="{{ $apartment->title }}">
-                    <a href="" title="Elimina" class="hover:text-white">
-                        {{ __('Elimina') }}
+                    class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <a href="{{ route('admin.apartments.edit', ['apartment' => $apartment->slug]) }}" title="Modifica"
+                        class="hover:text-white">
+                        {{ __('Modifica') }}
                     </a>
                 </button>
-            </form>
+                {{-- bottone Elimina --}}
+                <form action="{{ route('admin.apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST"
+                    title="Elimina" class=" inline-block hover:text-red-800">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                        class="ms-js-delete-btn rounded-md w-full bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        data-apartment-title="{{ $apartment->title }}">
+                        <a href="" title="Elimina" class="hover:text-white">
+                            {{ __('Elimina') }}
+                        </a>
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
     <hr class="hidden md:block mt-8 border-1">
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 py-4">
