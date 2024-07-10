@@ -104,6 +104,6 @@ class SponsorshipController extends Controller
 
         // Aggiorna la data di fine cumulativa per tutte le sponsorizzazioni
         $apartment->update(['sponsorship_end_time' => $cumulativeEndTime]);
-        return redirect()->route('admin.apartments.index')->with('message', $apartment->title . ' è in evidenza! La sponsorizzazione terminerà il ' . $cumulativeEndTime);
+        return redirect()->route('admin.apartments.index')->with('message', $apartment->title . ' è in evidenza! La sponsorizzazione terminerà il ' . \Carbon\Carbon::parse($cumulativeEndTime)->format('d/m/Y \a\l\l\e H:i'));
     }
 }
