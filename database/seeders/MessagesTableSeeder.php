@@ -17,7 +17,7 @@ class MessagesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $messages = config('message');
-        for ($i = 0; $i < 400; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             foreach ($messages as $message) {
                 $newMessage = new Message();
                 $newMessage->apartment_id = $faker->numberBetween(1, 130);
