@@ -15,10 +15,10 @@
 
         <div class="mb-4">
             @if (session()->has('message'))
-                <div class="rounded text-green-900 px-4 py-3" role="alert">
+                <div class="bg-neutral-900 rounded text-green-900 px-4 py-3" role="alert">
                     <div class="flex">
                         <div>
-                            <svg class="fill-current h-6 w-6 text-green-500 mr-4" xmlns="http://www.w3.org/2000/svg"
+                            <svg class="fill-current h-6 w-6 text-green-700 mr-4" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
                                 preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                                 <path
@@ -26,7 +26,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-green-500">{{ session('message') }}</p>
+                            <p class="text-sm text-green-700">{{ session('message') }}</p>
                         </div>
                     </div>
                 </div>
