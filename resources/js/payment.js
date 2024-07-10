@@ -31,6 +31,9 @@ sponsorshipCards.forEach(singleCard => {
 
 closeCart.addEventListener('click', function () {
     paymentFormContainer.classList.add('hidden');
+    document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+        radio.checked = false;
+    });
 });
 
 prepaymentBtn.addEventListener('click', function () {
