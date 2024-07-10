@@ -33,7 +33,7 @@
                                         {{ $message->email }}
                                         @foreach ($apartments as $apartment)
                                             @if ($apartment->id === $message->apartment_id)
-                                                <p class="text-xs md:text-sm text-slate-400">{{ $apartment->title }}</p>
+                                                <a href="{{route('admin.apartments.show', ['apartment' => $apartment->slug])}}" class="text-xs md:text-sm text-slate-400">{{ $apartment->title }}</a>
                                             @endif
                                         @endforeach
                                     </div>
