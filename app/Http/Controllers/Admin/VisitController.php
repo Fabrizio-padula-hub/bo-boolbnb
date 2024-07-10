@@ -30,9 +30,13 @@ class VisitController extends Controller
 
         // Recupero delle visite per ciascun appartamento e raggruppamento per mese
         $apartmentVisits = [];
+        $start = Carbon::create(2023, 7, 1);
+        $end = Carbon::create(2024, 8, 1);
+
         foreach ($apartments as $apartment) {
             $monthlyVisits = $apartment->visits()
-                ->selectRaw('MONTH(created_at) as month, COUNT(*) as visit_count')
+                ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as visit_count')
+                ->whereBetween('created_at', [$start, $end])
                 ->groupBy('month')
                 ->orderBy('month')
                 ->get()
@@ -40,9 +44,10 @@ class VisitController extends Controller
                 ->toArray();
 
             // Inizializzazione di tutti i mesi con 0 visite
-            $monthlyData = array_fill(1, 12, 0);
-            foreach ($monthlyVisits as $month => $count) {
-                $monthlyData[$month] = $count;
+            $monthlyData = [];
+            for ($date = $start; $date->lessThan($end); $date->addMonth()) {
+                $formattedMonth = $date->format('Y-m');
+                $monthlyData[$formattedMonth] = $monthlyVisits[$formattedMonth] ?? 0;
             }
 
             $apartmentVisits[] = [

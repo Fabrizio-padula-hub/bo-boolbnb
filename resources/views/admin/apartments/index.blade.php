@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="flex justify-between pb-2">
-        <h2 class="text-base font-semibold leading-7 text-indigo-400 py-2">{{ __('Appartamenti') }}</h2>
+        <h1 class="font-bold py-4 uppercase">{{ __('Appartamenti') }}</h1>
         <a href="{{ route('admin.apartments.create') }}" title="Aggiungi" class="flex items-center hover:text-indigo-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 class="w-6 h-6 group-hover:text-indigo-400">

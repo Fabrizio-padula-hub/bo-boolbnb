@@ -28,8 +28,14 @@
                                             class="text-sm font-medium md:w-28">{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</time>
                                     </div>
                                     <!-- Title -->
-                                    <div class="ml-14"><span class="text-indigo-400 font-bold">{{ $message->name }}</span>
+                                    <div class="ml-14 text-sm md:text-base"><span
+                                            class="text-indigo-400 font-bold">{{ $message->name }}</span>
                                         {{ $message->email }}
+                                        @foreach ($apartments as $apartment)
+                                            @if ($apartment->id === $message->apartment_id)
+                                                <p class="text-xs md:text-sm text-slate-400">{{ $apartment->title }}</p>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- Card -->
@@ -37,7 +43,6 @@
                                     {{ $message->text }}</div>
                             </div>
                         @endforeach
-
                     </div>
                     <!-- End: Vertical Timeline #3 -->
                 </div>

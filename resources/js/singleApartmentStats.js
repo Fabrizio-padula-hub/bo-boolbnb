@@ -25,11 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'bar',
         data: data,
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grace: '5%'  // Aggiungi un po' di spazio sopra il valore massimo per una migliore visualizzazione
                 }
-            }
+            },
+            resizeDelay: 0,
         }
     });
 });

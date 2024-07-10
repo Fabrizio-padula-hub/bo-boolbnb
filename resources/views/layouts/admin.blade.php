@@ -85,7 +85,7 @@
                                 <div class="relative pt-0.5 pr-1">
                                     @if ($apartmentsCount !== 0)
                                         <div
-                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.apartments.index' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                            class="lg:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.apartments.index' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
                                             <span class="text-white text-xs font-black">{{ $apartmentsCount }}</span>
                                         </div>
                                     @endif
@@ -147,7 +147,7 @@
                                 <div class="relative pt-0.5 pr-1">
                                     @if ($messagesCount !== 0)
                                         <div
-                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.message' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                            class="lg:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.message' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
                                             <span class="text-white text-xs font-black">{{ $messagesCount }}</span>
                                         </div>
                                     @endif
@@ -189,7 +189,7 @@
                                 <div class="relative pt-0.5 pr-1">
                                     @if ($trashCount !== 0)
                                         <div
-                                            class="md:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.deleted' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
+                                            class="lg:hidden flex items-center justify-center absolute top-0 right-0 rounded-full h-4 w-4 {{ Route::currentRouteName() === 'admin.deleted' ? 'bg-red-500' : 'bg-indigo-400 group-hover:bg-red-500' }}">
                                             <span class="text-white text-xs font-black">{{ $trashCount }}</span>
                                         </div>
                                     @endif

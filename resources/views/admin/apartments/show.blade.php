@@ -10,76 +10,69 @@
             $remainingMinutes = $remainingMinutes % 60;
         @endphp
     @endif
-    <div class="grid grid-cols-1">
-        {{-- freccia per ritornare all'index --}}
-        <div>
-            <a href="{{ route('admin.apartments.index') }}">
-                <svg class="h-8 w-8 text-indigo-800 mb-4 hover:text-white" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
-                </svg>
-            </a>
-        </div>
+    {{-- freccia per ritornare all'index --}}
+    <div>
+        <a href="{{ route('admin.apartments.index') }}">
+            <svg class="h-8 w-8 text-indigo-800 mb-4 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+            </svg>
+        </a>
+    </div>
 
-        <div class="mb-4">
-            @if (session()->has('message'))
-                <div class="text-green-600">
-                    {{ session('message') }}
-                </div>
+    <div class="mb-4">
+        @if (session()->has('message'))
+            <div class="text-green-600">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
+    <div class="relative flex w-full flex-col lg:flex-row lg: justify-center rounded-xl bg-clip-border shadow-md">
+        <div class="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border">
+            @if ($apartment->image)
+                <img src="{{ asset('storage/' . $apartment->image) }}" alt="image" class="h-full w-full object-cover" />
             @endif
         </div>
-
-        <div class="relative flex w-full flex-col bg-clip-border border-solid border-2 border-indigo-800 rounded-lg">
-            <div class="max-w-sm mb-8 overflow-hidden self-center rounded-t-lg">
-                @if ($apartment->image)
-                    <img class="w-full" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
-                @endif
-            </div>
-
-            <div class="p-6">
-                <h6
-                    class="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-indigo-400 antialiased">
-                    {{ $apartment->title }}
-                </h6>
-                <p class="mb-4 block font-sans text-base font-normal leading-relaxed antialiased">
-                    {{ $apartment->description }}
-                </p>
+        <div class="p-6">
+            <h6
+                class="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-indigo-500 antialiased">
+                {{ $apartment->title }}
+            </h6>
+            <h4
+                class="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                {{ $address = $apartment->address }}
+            </h4>
+            <p class="mb-4 block font-sans text-base font-normal leading-relaxed antialiased">
+                {{ $apartment->description }}
+            </p>
+            <hr class=" my-4 border-1">
+            <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                {{ $apartment->number_of_rooms }} camere
+            </p>
+            <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                {{ $apartment->number_of_beds }} letti
+            </p>
+            <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                {{ $apartment->number_of_bathrooms }} bagni
+            </p>
+            <p class="mb-1.5 leading-snug tracking-normal antialiased">
+                {{ $apartment->square_meters ? $apartment->square_meters . 'mq' : 'Nullo' }}
+            </p>
+            @if (count($apartment->services) > 0)
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    {{ $address = $apartment->address }}
+                    @foreach ($apartment->services as $service)
+                        {{ $service->name }}@if (!$loop->last)
+                            ,
+                        @endif
+                    @endforeach
                 </p>
+            @else
                 <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    Numero di stanze: {{ $apartment->number_of_rooms }}
+                    Nessun Servizio
                 </p>
-                <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    Numero di letti: {{ $apartment->number_of_beds }}
-                </p>
-                <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    Numero di bagni: {{ $apartment->number_of_bathrooms }}
-                </p>
-                <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                    Metri quadrati: {{ $apartment->square_meters ? $apartment->square_meters : 'Nullo' }}
-                </p>
-                @if (count($apartment->services) > 0)
-                    <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                        @foreach ($apartment->services as $service)
-                            {{ $service->name }}@if (!$loop->last)
-                                ,
-                            @endif
-                        @endforeach
-                    </p>
-                @else
-                    <p class="mb-1.5 leading-snug tracking-normal antialiased">
-                        Nessun Servizio
-                    </p>
-                @endif
-                <p class="leading-snug tracking-normal antialiased">
-                    {{ $apartment->visibility ? 'Visibile' : 'Non visibile' }}
-                </p>
-            </div>
-
+            @endif
             {{-- bottoni azioni --}}
-            <div class="px-6 pt-4 pb-2 flex max-[457px]:flex-col justify-between">
+            <div class="pt-4 pb-2 flex max-[457px]:flex-col justify-between">
                 {{-- bottoni Modifica --}}
                 <button type="submit"
                     class="max-[457px]:mb-3 rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
@@ -103,109 +96,111 @@
                 </form>
             </div>
         </div>
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 py-4">
-            {{-- Messaggi --}}
-            <div>
-                @if (!empty($messages))
-                    <h1 class="font-bold py-4 uppercase">Messaggi</h1>
-                    <section class="relative flex flex-col justify-centeroverflow-hidden antialiased">
-                        <div class="w-full max-w-6xl">
-                            <div class="flex flex-col justify-center divide-y divide-slate-200 py-4">
-                                <div class="w-full max-w-3xl">
-                                    <!-- Vertical Timeline #3 -->
-                                    <div
-                                        class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:ml-[8.75rem] md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
-                                        @foreach ($messages as $message)
-                                            <!-- Item #1 -->
-                                            <div class="relative">
-                                                <div class="md:flex items-center md:space-x-4 mb-3">
+    </div>
+    <hr class="hidden md:block mt-8 border-1">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 py-4">
+        {{-- Messaggi --}}
+        <div>
+            <h1 class="font-bold py-4 uppercase">Messaggi</h1>
+            @if (!empty($messages))
+                <section class="relative flex flex-col justify-centeroverflow-hidden antialiased">
+                    <div class="w-full max-w-6xl">
+                        <div class="flex flex-col justify-center divide-y divide-slate-200 py-4">
+                            <div class="w-full max-w-3xl">
+                                <!-- Vertical Timeline #3 -->
+                                <div
+                                    class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:ml-[8.75rem] md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                                    @foreach ($messages as $message)
+                                        <!-- Item #1 -->
+                                        <div class="relative">
+                                            <div class="md:flex items-center md:space-x-4 mb-3">
+                                                <div class="flex items-center space-x-4 md:space-x-2 md:space-x-reverse">
+                                                    <!-- Icon -->
                                                     <div
-                                                        class="flex items-center space-x-4 md:space-x-2 md:space-x-reverse">
-                                                        <!-- Icon -->
-                                                        <div
-                                                            class="flex items-center justify-center w-10 h-10 rounded-full bg-black/60 to-white/5 shadow md:order-1 md:ml-[1px]">
-                                                            <svg class="fill-slate-400" xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16">
-                                                                <path
-                                                                    d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm0 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" />
-                                                            </svg>
-                                                        </div>
-                                                        <!-- Date -->
-                                                        <time
-                                                            class="text-sm font-medium md:w-28">{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</time>
+                                                        class="flex items-center justify-center w-10 h-10 rounded-full bg-black/60 to-white/5 shadow md:order-1 md:ml-[1px]">
+                                                        <svg class="fill-slate-400" xmlns="http://www.w3.org/2000/svg"
+                                                            width="16" height="16">
+                                                            <path
+                                                                d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm0 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" />
+                                                        </svg>
                                                     </div>
-                                                    <!-- Title -->
-                                                    <div class="ml-14"><span
-                                                            class="text-indigo-400 font-bold">{{ $message->name }}</span>
-                                                        {{ $message->email }}
-                                                    </div>
+                                                    <!-- Date -->
+                                                    <time
+                                                        class="text-sm font-medium md:w-28">{{ \Carbon\Carbon::parse($message->created_at)->format('d/m/Y H:i') }}</time>
                                                 </div>
-                                                <!-- Card -->
-                                                <div class="bg-black/60 to-white/5 p-4 rounded-3xl shadow ml-14 md:ml-44">
-                                                    {{ $message->text }}</div>
+                                                <!-- Title -->
+                                                <div class="ml-14 text-sm md:text-base"><span
+                                                        class="text-indigo-400 font-bold">{{ $message->name }}</span>
+                                                    {{ $message->email }}
+                                                </div>
                                             </div>
-                                        @endforeach
+                                            <!-- Card -->
+                                            <div class="bg-black/60 to-white/5 p-4 rounded-3xl shadow ml-14 md:ml-44">
+                                                {{ $message->text }}</div>
+                                        </div>
+                                    @endforeach
 
-                                    </div>
-                                    <!-- End: Vertical Timeline #3 -->
                                 </div>
+                                <!-- End: Vertical Timeline #3 -->
                             </div>
                         </div>
-                    </section>
-                @else
-                    <p>Non ci sono messaggi.</p>
-                @endif
-            </div>
-            {{-- Sponsorizzazioni --}}
-            <div>
-                @if (!empty($activeSponsorships))
-                    <h1 class="font-bold py-4 uppercase">Sponsorizzazioni</h1>
-                    <div class="flex justify-between items-center pb-4">
-                        @if ($remainingDays >= 1)
-                            <h1 class="text-xs md:text-base">Il tuo appartmento sarà sponsorizzato per altri
-                                {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
-                            </h1>
-                        @else
-                            <h1 class="text-xs md:text-base">Il tuo appartmento sarà sponsorizzato per
-                                {{ $remainingHours }}h e {{ $remainingMinutes }}m
-                            </h1>
-                        @endif
-                        <button type="submit"
-                            class="max-[457px]:mb-3 rounded-full bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
-                                title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
-                            </a>
-                        </button>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                        @foreach ($activeSponsorships as $sponsorship)
-                            <div class="bg-black/60 to-white/5 rounded-lg">
-                                <div class="flex flex-row items-center">
-                                    <div class="text-3xl p-4">👑</div>
-                                    <div class="p-2">
-                                        <p class="text-xl font-bold">{{ $sponsorship['name'] }}</p>
-                                        <p class="text-gray-500 font-medium">{{ $sponsorship['price'] }} €</p>
-                                    </div>
-                                </div>
-                                <div class="border-t border-white/5 p-4">
-                                    <p class="text-md text-indigo-400">Acquistata</p>
-                                    <p class="text-sm">
-                                        {{ \Carbon\Carbon::parse($sponsorship['pivot']['created_at'])->format('d/m/Y \a\l\l\e H:i') }}
-                                    </p>
+                </section>
+            @else
+                <p>Non ci sono messaggi.</p>
+            @endif
+        </div>
+        {{-- Sponsorizzazioni --}}
+        <div>
+            <h1 class="font-bold py-4 uppercase">Sponsorizzazioni</h1>
+            @if (!empty($activeSponsorships))
+                <div class="flex justify-between items-center pb-4">
+                    @if ($remainingDays >= 1)
+                        <h1 class="text-xs md:text-base">Il tuo appartmento sarà sponsorizzato per altri
+                            {{ $remainingDays }} {{ $remainingDays == 1 ? 'giorno' : 'giorni' }}
+                        </h1>
+                    @else
+                        <h1 class="text-xs md:text-base">Il tuo appartmento sarà sponsorizzato per
+                            {{ $remainingHours }}h e {{ $remainingMinutes }}m
+                        </h1>
+                    @endif
+                    <button type="submit"
+                        class="max-[457px]:mb-3 rounded-full bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <a href="{{ route('admin.sponsorships.create', ['apartment' => $apartment->slug]) }}"
+                            title="Sponsorizza" class="hover:text-white">{{ __('Sponsorizza') }}
+                        </a>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                    @foreach ($activeSponsorships as $sponsorship)
+                        <div class="bg-black/60 to-white/5 rounded-lg">
+                            <div class="flex flex-row items-center">
+                                <div class="text-3xl p-4">👑</div>
+                                <div class="p-2">
+                                    <p class="text-xl font-bold">{{ $sponsorship['name'] }}</p>
+                                    <p class="text-gray-500 font-medium">{{ $sponsorship['price'] }} €</p>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
-                @else
-                    <p>Non ci sono sponsorizazioni attive.</p>
-                @endif
-            </div>
+                            <div class="border-t border-white/5 p-4">
+                                <p class="text-md text-indigo-400">Acquistata</p>
+                                <p class="text-sm">
+                                    {{ \Carbon\Carbon::parse($sponsorship['pivot']['created_at'])->format('d/m/Y \a\l\l\e H:i') }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p>Non ci sono sponsorizazioni attive.</p>
+            @endif
         </div>
     </div>
     <div>
         <h1 class="font-bold py-4 uppercase">Statistiche</h1>
-        <canvas id="visitsChart"></canvas>
-        <div id="weeklyData" style="display: none;">
+        <div class="w-full min-h-[30rem] max-sm:-ml-3 mt-4 flex justify-center">
+            <canvas id="visitsChart" class="w-full h-full"></canvas>
+        </div>
+        <div id="weeklyData" class="hidden">
             {{ json_encode($weeklyData) }}
         </div>
     </div>
