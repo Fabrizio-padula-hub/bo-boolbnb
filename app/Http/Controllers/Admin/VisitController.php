@@ -35,8 +35,8 @@ class VisitController extends Controller
 
         foreach ($apartments as $apartment) {
             $monthlyVisits = $apartment->visits()
-                ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as visit_count')
-                ->whereBetween('created_at', [$start, $end])
+                ->selectRaw('DATE_FORMAT(visited_at, "%Y-%m") as month, COUNT(*) as visit_count')
+                ->whereBetween('visited_at', [$start, $end])
                 ->groupBy('month')
                 ->orderBy('month')
                 ->get()

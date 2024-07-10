@@ -29,12 +29,13 @@ class VisitsTableSeeder extends Seeder
         }
     }
 
-    function getRandomIP() {
+    function getRandomIP()
+    {
         $octet1 = rand(0, 255);
         $octet2 = rand(0, 255);
         $octet3 = rand(0, 255);
         $octet4 = rand(0, 255);
-    
+
         return "$octet1.$octet2.$octet3.$octet4";
     }
 }
