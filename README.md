@@ -20,8 +20,44 @@ Benvenuti su BoolBnb, la piattaforma perfetta per trovare e prenotare alloggi un
 
 Per iniziare con BoolBnb, segui questi semplici passaggi:
 
-```bash
-git clone https://github.com/utente/boolbnb.git
-cd boolbnb
-npm install
-npm start
+### Prerequisiti
+
+Assicurati di avere installato:
+
+- [Node.js](https://nodejs.org/)
+- [Composer](https://getcomposer.org/)
+
+### Passaggi
+
+1. Clona il repository:
+
+    ```bash
+    git clone https://github.com/utente/boolbnb.git
+    cd boolbnb
+    ```
+
+2. Installa le dipendenze Node.js:
+
+    ```bash
+    npm install
+    ```
+
+3. Installa le dipendenze PHP con Composer:
+
+    ```bash
+    composer install
+    ```
+
+4. Avvia l'applicazione:
+
+    ```bash
+    npm start
+    ```
+
+## 💻 Utilizzo
+
+Ecco come avviare l'applicazione:
+
+```javascript
+const boolbnb = require('boolbnb');
+boolbnb.start();
