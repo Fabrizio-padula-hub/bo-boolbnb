@@ -64,3 +64,20 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# 🎉 Nome del Progetto
+
+![Build Status](https://img.shields.io/github/workflow/status/utente/repo/CI)
+![Coverage](https://img.shields.io/codecov/c/github/utente/repo)
+![License](https://img.shields.io/github/license/utente/repo)
+
+Benvenuti nel mio progetto! Questo progetto fa XYZ in modo semplice e divertente.
+
+![Demo](link_alla_gif.gif)
+
+## Installazione
+
+```bash
+git clone https://github.com/utente/repo.git
+cd repo
+npm install
